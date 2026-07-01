@@ -116,7 +116,7 @@
 
             <div class="login-card">
 
-                <img src="Images/img2.jpg" class="logo" />
+                <img src="Images/img_papeleta.png" class="logo" />
 
                 <label>Coloque su nombre de usuario y/o gmail.</label>
                 <asp:TextBox ID="txtUsuario" runat="server" CssClass="caja" placeholder="Escribe aquí..."></asp:TextBox>

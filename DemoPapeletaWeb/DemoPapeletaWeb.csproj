@@ -73,6 +73,7 @@
     <Content Include="Images\img3.jpg" />
     <Content Include="Images\img4.jpg" />
     <Content Include="Images\img5.jpg" />
+    <Content Include="Images\img_papeleta.png" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
