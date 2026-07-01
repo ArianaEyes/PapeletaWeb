@@ -129,7 +129,7 @@
                     <span>Estar de acuerdo con las políticas y privacidad</span>
                 </div>
 
-                <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn-login" />
+                <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn-login" OnClick="btnLogin_Click" />
 
                 <br />
 
