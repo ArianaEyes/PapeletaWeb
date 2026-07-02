@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="DemoPapeletaWeb.Site" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Sistema de Gestión de Papeletas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
+    <style>
+        body { background: #eef2f7; font-family: 'Segoe UI'; }
+        .sidebar {
+            position: fixed; left: 0; top: 0;
+            width: 250px; height: 100%;
+            background: #1f2937; color: white;
+        }
+        .logo {
+            padding: 25px; font-size: 24px; font-weight: bold;
+            text-align: center; border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .logo i { color: #0d6efd; margin-right: 8px; }
+        .sidebar a {
+            display: block; padding: 16px 25px;
+            color: white; text-decoration: none;
+            font-size: 17px; transition: .3s;
+        }
+        .sidebar a:hover { background: #0d6efd; padding-left: 35px; }
+        .sidebar a i { width: 25px; }
+        .main { margin-left: 250px; }
+        .topbar {
+            height: 70px; background: white;
+            box-shadow: 0px 3px 10px rgba(0,0,0,.1);
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 0 35px;
+        }
+        .usuario { font-size: 17px; font-weight: 600; }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-road"></i> Papeletas
+            </div>
+            <a href="Inicio.aspx"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="Infractores.aspx"><i class="fa-solid fa-user"></i> Infractores</a>
+            <a href="Policias.aspx"><i class="fa-solid fa-user-shield"></i> Policías</a>
+            <a href="#"><i class="fa-solid fa-file-circle-exclamation"></i> Papeletas</a>
+            <a href="#"><i class="fa-solid fa-car"></i> Vehículos</a>
+            <a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Infracciones</a>
+            <a href="#"><i class="fa-solid fa-location-dot"></i> Ubigeo</a>
+            <a href="Login.aspx"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <h4>Sistema de Gestión de Papeletas</h4>
+                <div class="usuario">
+                    <i class="fa-solid fa-circle-user"></i> Administrador
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <footer class="text-center mt-4 mb-3">
+                <hr />
+                <p class="text-secondary">
+                    <i class="fa-solid fa-shield-halved text-primary"></i>
+                    Sistema de Gestión de Papeletas © 2026<br />
+                    Desarrollado por el Grupo 5 - PA4
+                </p>
+            </footer>
+        </div>
+
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
