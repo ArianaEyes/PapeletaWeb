@@ -20,8 +20,6 @@ body{
     font-family:'Segoe UI';
 }
 
-/*========== SIDEBAR ==========*/
-
 .sidebar{
 
 position:fixed;
@@ -75,15 +73,11 @@ width:25px;
 
 }
 
-/*========== CONTENIDO ==========*/
-
 .main{
 
 margin-left:250px;
 
 }
-
-/*========== NAVBAR ==========*/
 
 .topbar{
 
@@ -109,8 +103,6 @@ font-weight:600;
 
 }
 
-/*========== BIENVENIDA ==========*/
-
 .banner{
 
 margin:30px;
@@ -132,8 +124,6 @@ box-shadow:0px 10px 25px rgba(0,0,0,.2);
 font-weight:bold;
 
 }
-
-/*========== TARJETAS ==========*/
 
 .card-menu{
 
@@ -279,7 +269,7 @@ Administrador
 
 <h2>
 
-Bienvenido 👋
+¡Bienvenid@!
 
 </h2>
 
@@ -532,8 +522,8 @@ Ingresar
 <td>Carlos Ramos</td>
 
 <td>
-<span class="badge bg-warning text-dark">
-Pendiente
+<span class="badge bg-success">
+Activa
 </span>
 </td>
 
@@ -551,8 +541,8 @@ Pendiente
 
 <td>
 
-<span class="badge bg-success">
-Cancelada
+<span class="badge bg-danger">
+Inactivo
 </span>
 
 </td>
@@ -572,7 +562,7 @@ Cancelada
 <td>
 
 <span class="badge bg-danger">
-Observada
+Inactivo
 </span>
 
 </td>
