@@ -65,7 +65,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CSS\DemoCSS.css" />
+    <Content Include="CSS\infracciones.css" />
+    <Content Include="CSS\infractores.css" />
+    <Content Include="CSS\login.css" />
+    <Content Include="CSS\inicio.css" />
     <Content Include="Images\img1.jpg" />
     <Content Include="Images\img2.jpg" />
     <Content Include="Images\img3.jpg" />

@@ -1,0 +1,73 @@
+﻿.banner {
+    margin: 30px;
+    background: linear-gradient(135deg,#0d6efd,#4f9dff);
+    color: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,.2);
+}
+
+.banner h2 {
+    font-weight: bold;
+}
+
+.card-menu {
+    border: none;
+    border-radius: 20px;
+    transition: .3s;
+    box-shadow: 0px 5px 20px rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+    .card-menu:hover {
+        transform: translateY(-8px);
+    }
+
+.icono {
+    font-size: 55px;
+}
+
+.azul {
+    color: #0d6efd;
+}
+
+.amarillo {
+    color: #ffc107;
+}
+
+.verde {
+    color: #198754;
+}
+
+.rojo {
+    color: #dc3545;
+}
+
+.naranja {
+    color: #fd7e14;
+}
+
+.texto-azul {
+    color: #0d6efd;
+    font-weight: bold;
+}
+
+.texto-amarillo {
+    color: #d39e00;
+    font-weight: bold;
+}
+
+.texto-verde {
+    color: #198754;
+    font-weight: bold;
+}
+
+.texto-rojo {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.texto-naranja {
+    color: #fd7e14;
+    font-weight: bold;
+}

@@ -3,24 +3,7 @@
     Inherits="DemoPapeletaWeb.Infractores" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .page-header {
-            background: linear-gradient(135deg,#ffc107,#ffdb70);
-            color: #333;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,.15);
-        }
-
-            .page-header h2 {
-                font-weight: bold;
-            }
-
-        .table th {
-            white-space: nowrap;
-        }
-    </style>
+    <link href="CSS/infractores.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
