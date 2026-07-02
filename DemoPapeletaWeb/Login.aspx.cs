@@ -24,5 +24,10 @@ namespace DemoPapeletaWeb
                 lblError.Text = "Credenciales inválidas.";
             }
         }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registro.aspx");
+        }
     }
 }

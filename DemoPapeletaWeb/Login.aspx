@@ -136,7 +136,8 @@
 
                 <br />
 
-                <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse" CssClass="btn-register" />
+                <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse" 
+                CssClass="btn-register" OnClick="btnRegistrar_Click" />
 
             </div>
 
