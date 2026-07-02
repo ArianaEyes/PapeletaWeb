@@ -1,2 +1,107 @@
 ﻿body {
 }
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.contenedor {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0,0,0), transparent), url("../Images/img3.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    
+}
+
+.imagen-fondo {
+    display: none;
+}
+
+.mensaje {
+    font-family: "Geologica", sans-serif;
+    position: absolute;
+    left: 7rem;
+    top: 16rem;
+    background: white;
+    color: black;
+    font-size: 34px;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.7);
+}
+
+.login-card {
+    font-family: "Google Sans", sans-serif;
+    position: absolute;
+    right: 7rem;
+    top: 10rem;
+    width: 23rem;
+    background: #EBE40A;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+    border-radius: 10px;
+    margin: auto;
+    height: 40rem;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.7);
+}
+.formulario {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+.logo {
+    width: 300px;
+    margin:auto;
+}
+
+.login-card label {
+    display: block;
+    font-size: .8rem;
+    margin-bottom:8px;
+}
+.casillas {
+    width: 80%;
+    margin-right:1.5rem;
+
+}
+.caja {
+    width: 100%;
+    padding: 1rem .8rem;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.check {
+    font-size: 10px;
+    margin: 12px 0;
+    text-align: left;
+}
+
+.btn {
+    width: 15rem;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+}
+.login {
+    background: black;
+    color: white;
+    
+}
+
+.register {
+    background: white;
+    color: black;
+    margin-top: 1rem;
+}
