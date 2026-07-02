@@ -11,7 +11,7 @@ namespace DemoPapeletaWeb
 {
 
 
-    public partial class Papeletas
+    public partial class Infracciones
     {
     }
 }
