@@ -1,20 +1,16 @@
 ﻿<%@ Page Title="Policías" Language="C#" MasterPageFile="~/Site.Master"
     AutoEventWireup="true" CodeBehind="Policias.aspx.cs"
-    Inherits="DemoPapeletaWeb.Policias" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    Inherits="DemoPapeletaWeb.Policias" %><asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .page-header {
-            background: linear-gradient(135deg,#0d6efd,#4f9dff);
+            /* Degradado en tonos rojos/peligro para diferenciar */
+            background: linear-gradient(135deg,#dc3545,#ff6b6b);
             color: white; border-radius: 20px;
             padding: 30px; margin: 30px;
             box-shadow: 0px 10px 25px rgba(0,0,0,.15);
         }
         .page-header h2 { font-weight: bold; }
-    </style>
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    </style></asp:Content><asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="page-header">
         <h2><i class="fa-solid fa-user-shield"></i> Gestión de Policías</h2>
@@ -28,7 +24,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-hover align-middle">
-                    <thead class="table-primary">
+                    <thead class="table-danger">
                         <tr>
                             <th>Código</th>
                             <th>Nombres</th>
@@ -63,6 +59,4 @@
                 </table>
             </div>
         </div>
-    </div>
-
-</asp:Content>
+    </div></asp:Content>

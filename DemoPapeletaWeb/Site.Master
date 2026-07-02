@@ -47,8 +47,8 @@
             <a href="Inicio.aspx"><i class="fa-solid fa-house"></i> Inicio</a>
             <a href="Infractores.aspx"><i class="fa-solid fa-user"></i> Infractores</a>
             <a href="Policias.aspx"><i class="fa-solid fa-user-shield"></i> Policías</a>
-            <a href="#"><i class="fa-solid fa-file-circle-exclamation"></i> Papeletas</a>
-            <a href="#"><i class="fa-solid fa-car"></i> Vehículos</a>
+            <a href="Papeletas.aspx"><i class="fa-solid fa-file-circle-exclamation"></i> Papeletas</a>
+            <a href="Vehiculos.aspx"><i class="fa-solid fa-car"></i> Vehículos</a>
             <a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Infracciones</a>
             <a href="#"><i class="fa-solid fa-location-dot"></i> Ubigeo</a>
             <a href="Login.aspx"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>

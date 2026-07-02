@@ -26,7 +26,7 @@
                 <div class="card card-menu p-4 text-center">
                     <i class="fa-solid fa-file-circle-exclamation icono"></i>
                     <h5>Papeletas</h5><p>Registrar y consultar papeletas.</p>
-                    <button class="btn btn-primary">Ingresar</button>
+                    <a href="Papeletas.aspx" class="btn btn-primary">Ingresar</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -40,7 +40,7 @@
                 <div class="card card-menu p-4 text-center">
                     <i class="fa-solid fa-car icono"></i>
                     <h5>Vehículos</h5><p>Gestionar vehículos.</p>
-                    <button class="btn btn-primary">Ingresar</button>
+                    <a href="Vehiculos.aspx" class="btn btn-primary">Ingresar</a>
                 </div>
             </div>
             <div class="col-md-4">

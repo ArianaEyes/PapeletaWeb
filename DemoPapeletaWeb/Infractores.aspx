@@ -1,20 +1,17 @@
 ﻿<%@ Page Title="Infractores" Language="C#" MasterPageFile="~/Site.Master"
     AutoEventWireup="true" CodeBehind="Infractores.aspx.cs"
-    Inherits="DemoPapeletaWeb.Infractores" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    Inherits="DemoPapeletaWeb.Infractores" %><asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .page-header {
-            background: linear-gradient(135deg,#198754,#4dcf8e);
-            color: white; border-radius: 20px;
+            /* Degradado en tonos amarillos/warning */
+            background: linear-gradient(135deg,#ffc107,#ffdb70);
+            color: #333; /* Texto oscuro para mejor contraste con amarillo */
+            border-radius: 20px;
             padding: 30px; margin: 30px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,.15);
+            box-shadow: 0px 10px 25px rgba(0,0,0,.1);
         }
         .page-header h2 { font-weight: bold; }
-    </style>
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    </style></asp:Content><asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="page-header">
         <h2><i class="fa-solid fa-user"></i> Gestión de Infractores</h2>
@@ -28,7 +25,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-hover align-middle">
-                    <thead class="table-success">
+                    <thead class="table-warning">
                         <tr>
                             <th>Código</th>
                             <th>Nombres</th>
@@ -63,6 +60,4 @@
                 </table>
             </div>
         </div>
-    </div>
-
-</asp:Content>
+    </div></asp:Content>
