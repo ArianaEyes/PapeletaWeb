@@ -118,6 +118,9 @@
 
                 <img src="Images/img_papeleta.png" class="logo" />
 
+                <asp:Label ID="lblError" runat="server" Text="" 
+                Style="color:red; font-size:13px; margin-top:10px; display:block;"></asp:Label>
+
                 <label>Coloque su nombre de usuario y/o gmail.</label>
                 <asp:TextBox ID="txtUsuario" runat="server" CssClass="caja" placeholder="Escribe aquí..."></asp:TextBox>
 

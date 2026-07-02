@@ -16,7 +16,13 @@ namespace DemoPapeletaWeb
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Inicio.aspx");
+            if (txtUsuario.Text == "admin" && txtPassword.Text == "12345")
+            {
+                Response.Redirect("Inicio.aspx");
+            }
+            else {
+                lblError.Text = "Credenciales inválidas.";
+            }
         }
     }
 }
