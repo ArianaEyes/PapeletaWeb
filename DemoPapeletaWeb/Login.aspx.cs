@@ -11,13 +11,21 @@ namespace DemoPapeletaWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Protege todas las páginas que usen este Login Page contra el botón
+            //"Navegar hacia atrás" del navegador
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+            //Mostramos en el lblUsuario el login del usuario que inició sesión
+            
+            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (txtUsuario.Text == "admin" && txtPassword.Text == "12345")
             {
+                Session["Usuario"] = txtUsuario.Text;
                 Response.Redirect("Inicio.aspx");
             }
             else {

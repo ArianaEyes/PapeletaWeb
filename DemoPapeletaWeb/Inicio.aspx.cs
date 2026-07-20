@@ -11,7 +11,11 @@ namespace DemoPapeletaWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+           
+            lblUsuario.InnerText = "Bievenido "+ Session["Usuario"].ToString();
         }
     }
 }

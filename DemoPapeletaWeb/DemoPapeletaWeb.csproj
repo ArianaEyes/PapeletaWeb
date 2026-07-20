@@ -117,6 +117,7 @@
     <Content Include="Images\img5.jpg" />
     <Content Include="Images\img_papeleta.png" />
     <Content Include="Infracciones.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Vehiculos.aspx" />
     <Content Include="Papeletas.aspx" />
     <Content Include="Infractores.aspx" />
@@ -133,6 +134,13 @@
     </Compile>
     <Compile Include="Infracciones.aspx.designer.cs">
       <DependentUpon>Infracciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vehiculos.aspx.cs">
       <DependentUpon>Vehiculos.aspx</DependentUpon>
