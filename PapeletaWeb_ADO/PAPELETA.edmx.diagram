@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e23a40a6a7ff4f51a7c5742f8e18b7dc" Name="Diagram1">
+        <EntityTypeShape EntityType="PAPELETAModel.TB_COLOR" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_INFRACCION" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_INFRACTOR" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_MARCA" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_PAPELETA" Width="1.5" PointX="10.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_POLICIA" Width="1.5" PointX="8" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_RANGO" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_TIPO_VEHICULO" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_UBIGEO" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.Tb_Usuario" Width="1.5" PointX="5.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.TB_VEHICULO" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_INFRACCION" Width="1.5" PointX="7.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_INFRACTOR" Width="1.5" PointX="9.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_PAPELETA" Width="1.5" PointX="11.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_POLICIA" Width="1.5" PointX="12.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_UBIGEO" Width="1.5" PointX="12.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_VEHICULO" Width="1.5" PointX="5.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAPELETAModel.VW_VISTAMULTAS" Width="1.5" PointX="13.75" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="PAPELETAModel.FK_VEHICULO_COLOR" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_PAPELETA_INFRACCION" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_INFRACTOR_UBIGEO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_VEHICULO_INFRACTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_VEHICULO_MARCA" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_PAPELETA_POLICIA" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_PAPELETA_VEHICULO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_POLICIA_UBIGEO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_TB_POLICIA_TB_RANGO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAPELETAModel.FK_TB_VEHICULO_TB_TIPO_VEHICULO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

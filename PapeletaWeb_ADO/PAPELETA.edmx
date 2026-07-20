@@ -1,0 +1,2072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PAPELETAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_COLOR">
+          <Key>
+            <PropertyRef Name="COD_COLOR" />
+          </Key>
+          <Property Name="COD_COLOR" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="COLOR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_INFRACCION">
+          <Key>
+            <PropertyRef Name="COD_INFRACCION" />
+          </Key>
+          <Property Name="COD_INFRACCION" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="DESCRIPCION_SANCION" Type="varchar" MaxLength="200" />
+          <Property Name="CALIFICACION" Type="varchar" MaxLength="10" />
+          <Property Name="PUNTOS" Type="int" />
+          <Property Name="UIT" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
+          <Property Name="MEDIDA_PREVENTIVA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_INFRACTOR">
+          <Key>
+            <PropertyRef Name="COD_INFRACTOR" />
+          </Key>
+          <Property Name="COD_INFRACTOR" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" />
+          <Property Name="APE_PATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="APE_MATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CORREO" Type="varchar" MaxLength="100" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="150" />
+          <Property Name="COD_UBIGEO" Type="char" MaxLength="6" />
+          <Property Name="SEXO" Type="char" MaxLength="1" />
+          <Property Name="FEC_NACIMIENTO" Type="smalldatetime" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="NRO_BREVETE" Type="char" MaxLength="8" />
+          <Property Name="TIPO_BREVETE" Type="varchar" MaxLength="20" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TB_MARCA">
+          <Key>
+            <PropertyRef Name="COD_MARCA" />
+          </Key>
+          <Property Name="COD_MARCA" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="50" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_PAPELETA">
+          <Key>
+            <PropertyRef Name="COD_PAPELETA" />
+          </Key>
+          <Property Name="COD_PAPELETA" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="COD_INFRACCION" Type="char" MaxLength="3" />
+          <Property Name="COD_POLICIA" Type="char" MaxLength="6" />
+          <Property Name="COD_VEHICULO" Type="char" MaxLength="6" />
+          <Property Name="FECHA_INFRACCION" Type="date" Nullable="false" />
+          <Property Name="HORA_INFRACCION" Type="time" Precision="7" Nullable="false" />
+          <Property Name="LUGAR_INFRACCION" Type="varchar" MaxLength="150" />
+          <Property Name="REFERENCIA" Type="varchar" MaxLength="200" />
+          <Property Name="INFO_ADICIONAL" Type="varchar" MaxLength="100" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="100" />
+          <Property Name="ESTADO_PAPELETA" Type="char" MaxLength="1" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_POLICIA">
+          <Key>
+            <PropertyRef Name="COD_POLICIA" />
+          </Key>
+          <Property Name="COD_POLICIA" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="PATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="COD_UBIGEO" Type="char" MaxLength="6" />
+          <Property Name="SEXO" Type="char" MaxLength="1" />
+          <Property Name="FECHANACIMIENTO" Type="date" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+          <Property Name="COD_RANGO" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_RANGO">
+          <Key>
+            <PropertyRef Name="COD_RANGO" />
+          </Key>
+          <Property Name="COD_RANGO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_RANGO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPCION_RANGO" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_VEHICULO">
+          <Key>
+            <PropertyRef Name="COD_TIPO_VEHICULO" />
+          </Key>
+          <Property Name="COD_TIPO_VEHICULO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_TIPO_VEHICULO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_VEHICULO" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_UBIGEO">
+          <Key>
+            <PropertyRef Name="COD_UBIGEO" />
+          </Key>
+          <Property Name="COD_UBIGEO" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PROVINCIA" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DISTRITO" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+          <Property Name="ID_DEPA" Type="char" MaxLength="2" />
+          <Property Name="ID_PROV" Type="char" MaxLength="2" />
+          <Property Name="ID_DIST" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Tb_Usuario">
+          <Key>
+            <PropertyRef Name="Login_Usuario" />
+          </Key>
+          <Property Name="Login_Usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Pass_Usuario" Type="varchar" MaxLength="20" />
+          <Property Name="Niv_Usuario" Type="int" />
+          <Property Name="Est_Usuario" Type="int" />
+          <Property Name="Fec_Registro" Type="datetime" />
+          <Property Name="Usu_Registro" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TB_VEHICULO">
+          <Key>
+            <PropertyRef Name="COD_VEHICULO" />
+          </Key>
+          <Property Name="COD_VEHICULO" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="COD_INFRACTOR" Type="char" MaxLength="5" />
+          <Property Name="COD_MARCA" Type="char" MaxLength="6" />
+          <Property Name="COD_COLOR" Type="char" MaxLength="3" />
+          <Property Name="ANIO_FABRICACION" Type="int" />
+          <Property Name="NRO_MOTOR" Type="varchar" MaxLength="30" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="FEC_REGISTRO" Type="smalldatetime" />
+          <Property Name="USU_REGISTRO" Type="varchar" MaxLength="30" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="smalldatetime" />
+          <Property Name="USU_ULT_MODIFICACION" Type="varchar" MaxLength="30" />
+          <Property Name="COD_TIPO_VEHICULO" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_INFRACCION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_INFRACCION">
+          <Key>
+            <PropertyRef Name="COD_INFRACCION" />
+          </Key>
+          <Property Name="COD_INFRACCION" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="DESCRIPCION_SANCION" Type="varchar" MaxLength="200" />
+          <Property Name="CALIFICACION" Type="varchar" MaxLength="10" />
+          <Property Name="PUNTOS" Type="int" />
+          <Property Name="UIT" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="8" />
+          <Property Name="MEDIDA_PREVENTIVA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_INFRACTOR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_INFRACTOR">
+          <Key>
+            <PropertyRef Name="COD_INFRACTOR" />
+            <PropertyRef Name="NOMBRES" />
+            <PropertyRef Name="APE_PATERNO" />
+            <PropertyRef Name="APE_MATERNO" />
+            <PropertyRef Name="DEPARTAMENTO" />
+            <PropertyRef Name="PROVINCIA" />
+            <PropertyRef Name="DISTRITO" />
+          </Key>
+          <Property Name="COD_INFRACTOR" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APE_PATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="APE_MATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CORREO" Type="varchar" MaxLength="100" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="150" />
+          <Property Name="SEXO" Type="varchar" MaxLength="9" />
+          <Property Name="FEC_NACIMIENTO" Type="smalldatetime" />
+          <Property Name="NRO_BREVETE" Type="char" MaxLength="8" />
+          <Property Name="TIPO_BREVETE" Type="varchar" MaxLength="20" />
+          <Property Name="COD_UBIGEO" Type="char" MaxLength="6" />
+          <Property Name="DEPARTAMENTO" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PROVINCIA" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DISTRITO" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_PAPELETA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_PAPELETA">
+          <Key>
+            <PropertyRef Name="COD_PAPELETA" />
+            <PropertyRef Name="COD_INFRACCION" />
+            <PropertyRef Name="POLICIA" />
+            <PropertyRef Name="COD_VEHICULO" />
+            <PropertyRef Name="FECHA_INFRACCION" />
+            <PropertyRef Name="HORA_INFRACCION" />
+          </Key>
+          <Property Name="COD_PAPELETA" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="COD_INFRACCION" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="DESCRIPCION_SANCION" Type="varchar" MaxLength="200" />
+          <Property Name="POLICIA" Type="varchar" MaxLength="81" Nullable="false" />
+          <Property Name="COD_VEHICULO" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="FECHA_INFRACCION" Type="date" Nullable="false" />
+          <Property Name="HORA_INFRACCION" Type="time" Precision="7" Nullable="false" />
+          <Property Name="LUGAR_INFRACCION" Type="varchar" MaxLength="150" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="100" />
+          <Property Name="ESTADO_PAPELETA" Type="char" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_POLICIA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_POLICIA">
+          <Key>
+            <PropertyRef Name="COD_POLICIA" />
+            <PropertyRef Name="PATERNO" />
+            <PropertyRef Name="MATERNO" />
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="RANGO" />
+          </Key>
+          <Property Name="COD_POLICIA" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="PATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MATERNO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="COD_RANGO" Type="int" />
+          <Property Name="SEXO" Type="varchar" MaxLength="9" />
+          <Property Name="FECHANACIMIENTO" Type="date" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="8" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="RANGO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="COD_UBIGEO" Type="char" MaxLength="6" />
+          <Property Name="DISTRITO" Type="varchar" MaxLength="40" />
+          <Property Name="PROVINCIA" Type="varchar" MaxLength="40" />
+          <Property Name="DEPARTAMENTO" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_UBIGEO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_UBIGEO">
+          <Key>
+            <PropertyRef Name="COD_UBIGEO" />
+            <PropertyRef Name="DEPARTAMENTO" />
+            <PropertyRef Name="PROVINCIA" />
+            <PropertyRef Name="DISTRITO" />
+          </Key>
+          <Property Name="COD_UBIGEO" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="ID_DEPA" Type="char" MaxLength="2" />
+          <Property Name="ID_PROV" Type="char" MaxLength="2" />
+          <Property Name="ID_DIST" Type="char" MaxLength="2" />
+          <Property Name="DEPARTAMENTO" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PROVINCIA" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DISTRITO" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_VEHICULO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_VEHICULO">
+          <Key>
+            <PropertyRef Name="COD_VEHICULO" />
+            <PropertyRef Name="INFRACTOR" />
+            <PropertyRef Name="COLOR" />
+            <PropertyRef Name="ESTADO" />
+          </Key>
+          <Property Name="COD_VEHICULO" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" />
+          <Property Name="INFRACTOR" Type="varchar" MaxLength="112" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="50" />
+          <Property Name="COLOR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TIPO_VEHICULO" Type="varchar" MaxLength="30" />
+          <Property Name="ANIO_FABRICACION" Type="int" />
+          <Property Name="NRO_MOTOR" Type="varchar" MaxLength="30" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_VISTAMULTAS">
+          <Key>
+            <PropertyRef Name="COD_PAPELETA" />
+            <PropertyRef Name="COD_INFRACTOR" />
+            <PropertyRef Name="INFRACTOR" />
+            <PropertyRef Name="FECHA_INFRACCION" />
+            <PropertyRef Name="POLICIA" />
+          </Key>
+          <Property Name="COD_PAPELETA" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="COD_INFRACTOR" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="INFRACTOR" Type="varchar" MaxLength="112" Nullable="false" />
+          <Property Name="LUGAR_INFRACCION" Type="varchar" MaxLength="150" />
+          <Property Name="FALTA_COMETIDA" Type="varchar" MaxLength="200" />
+          <Property Name="CALIFICACION" Type="varchar" MaxLength="10" />
+          <Property Name="UIT" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FECHA_INFRACCION" Type="date" Nullable="false" />
+          <Property Name="POLICIA" Type="varchar" MaxLength="112" Nullable="false" />
+          <Property Name="ESTADO_PAPELETA" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <Association Name="FK_INFRACTOR_UBIGEO">
+          <End Role="TB_UBIGEO" Type="Self.TB_UBIGEO" Multiplicity="0..1" />
+          <End Role="TB_INFRACTOR" Type="Self.TB_INFRACTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_UBIGEO">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Principal>
+            <Dependent Role="TB_INFRACTOR">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAPELETA_INFRACCION">
+          <End Role="TB_INFRACCION" Type="Self.TB_INFRACCION" Multiplicity="0..1" />
+          <End Role="TB_PAPELETA" Type="Self.TB_PAPELETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_INFRACCION">
+              <PropertyRef Name="COD_INFRACCION" />
+            </Principal>
+            <Dependent Role="TB_PAPELETA">
+              <PropertyRef Name="COD_INFRACCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAPELETA_POLICIA">
+          <End Role="TB_POLICIA" Type="Self.TB_POLICIA" Multiplicity="0..1" />
+          <End Role="TB_PAPELETA" Type="Self.TB_PAPELETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_POLICIA">
+              <PropertyRef Name="COD_POLICIA" />
+            </Principal>
+            <Dependent Role="TB_PAPELETA">
+              <PropertyRef Name="COD_POLICIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAPELETA_VEHICULO">
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="0..1" />
+          <End Role="TB_PAPELETA" Type="Self.TB_PAPELETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_VEHICULO">
+              <PropertyRef Name="COD_VEHICULO" />
+            </Principal>
+            <Dependent Role="TB_PAPELETA">
+              <PropertyRef Name="COD_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POLICIA_UBIGEO">
+          <End Role="TB_UBIGEO" Type="Self.TB_UBIGEO" Multiplicity="0..1" />
+          <End Role="TB_POLICIA" Type="Self.TB_POLICIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_UBIGEO">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Principal>
+            <Dependent Role="TB_POLICIA">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_POLICIA_TB_RANGO">
+          <End Role="TB_RANGO" Type="Self.TB_RANGO" Multiplicity="0..1" />
+          <End Role="TB_POLICIA" Type="Self.TB_POLICIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_RANGO">
+              <PropertyRef Name="COD_RANGO" />
+            </Principal>
+            <Dependent Role="TB_POLICIA">
+              <PropertyRef Name="COD_RANGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_VEHICULO_TB_TIPO_VEHICULO">
+          <End Role="TB_TIPO_VEHICULO" Type="Self.TB_TIPO_VEHICULO" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_VEHICULO">
+              <PropertyRef Name="COD_TIPO_VEHICULO" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_TIPO_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEHICULO_COLOR">
+          <End Role="TB_COLOR" Type="Self.TB_COLOR" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_COLOR">
+              <PropertyRef Name="COD_COLOR" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_COLOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEHICULO_INFRACTOR">
+          <End Role="TB_INFRACTOR" Type="Self.TB_INFRACTOR" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_INFRACTOR">
+              <PropertyRef Name="COD_INFRACTOR" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_INFRACTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEHICULO_MARCA">
+          <End Role="TB_MARCA" Type="Self.TB_MARCA" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MARCA">
+              <PropertyRef Name="COD_MARCA" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_ACTUALIZAR_INFRACCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACCION" Type="char" Mode="In" />
+          <Parameter Name="DESCRIPCION" Type="varchar" Mode="In" />
+          <Parameter Name="CALIFICACION" Type="varchar" Mode="In" />
+          <Parameter Name="PUNTOS" Type="int" Mode="In" />
+          <Parameter Name="UIT" Type="decimal" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="MEDIDA" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTUALIZAR_INFRACTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACTOR" Type="char" Mode="In" />
+          <Parameter Name="DNI" Type="char" Mode="In" />
+          <Parameter Name="APE_PATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="APE_MATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="NOMBRES" Type="varchar" Mode="In" />
+          <Parameter Name="CORREO" Type="varchar" Mode="In" />
+          <Parameter Name="DIRECCION" Type="varchar" Mode="In" />
+          <Parameter Name="COD_UBIGEO" Type="char" Mode="In" />
+          <Parameter Name="SEXO" Type="char" Mode="In" />
+          <Parameter Name="FEC_NACIMIENTO" Type="smalldatetime" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="NRO_BREVETE" Type="char" Mode="In" />
+          <Parameter Name="TIPO_BREVETE" Type="varchar" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTUALIZAR_PAPELETA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_PAPELETA" Type="char" Mode="In" />
+          <Parameter Name="LUGAR" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPCION" Type="varchar" Mode="In" />
+          <Parameter Name="OBSERVACIONES" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTUALIZAR_POLICIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_POLICIA" Type="char" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+          <Parameter Name="PATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="MATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="DNI" Type="char" Mode="In" />
+          <Parameter Name="COD_UBIGEO" Type="char" Mode="In" />
+          <Parameter Name="COD_RANGO" Type="int" Mode="In" />
+          <Parameter Name="SEXO" Type="char" Mode="In" />
+          <Parameter Name="FECHANACIMIENTO" Type="date" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTUALIZAR_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_VEHICULO" Type="char" Mode="In" />
+          <Parameter Name="COD_INFRACTOR" Type="char" Mode="In" />
+          <Parameter Name="COD_MARCA" Type="char" Mode="In" />
+          <Parameter Name="COD_COLOR" Type="char" Mode="In" />
+          <Parameter Name="TIPO_VEHICULO" Type="varchar" Mode="In" />
+          <Parameter Name="ANIO_FABRICACION" Type="int" Mode="In" />
+          <Parameter Name="NRO_MOTOR" Type="varchar" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_INFRACCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACCION" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_INFRACTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACTOR" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_PAPELETA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_PAPELETA" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_POLICIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_POLICIA" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_VEHICULO" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_ELIMINAR_INFRACCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACCION" Type="char" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ELIMINAR_INFRACTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACTOR" Type="varchar" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ELIMINAR_PAPELETA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_PAPELETA" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_ELIMINAR_POLICIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_POLICIA" Type="char" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ELIMINAR_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_VEHICULO" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTAR_INFRACCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DESCRIPCION" Type="varchar" Mode="In" />
+          <Parameter Name="CALIFICACION" Type="varchar" Mode="In" />
+          <Parameter Name="PUNTOS" Type="int" Mode="In" />
+          <Parameter Name="UIT" Type="decimal" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="MEDIDA" Type="varchar" Mode="In" />
+          <Parameter Name="USU_REGISTRO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTAR_INFRACTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DNI" Type="char" Mode="In" />
+          <Parameter Name="APE_PATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="APE_MATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="NOMBRES" Type="varchar" Mode="In" />
+          <Parameter Name="CORREO" Type="varchar" Mode="In" />
+          <Parameter Name="DIRECCION" Type="varchar" Mode="In" />
+          <Parameter Name="COD_UBIGEO" Type="char" Mode="In" />
+          <Parameter Name="SEXO" Type="char" Mode="In" />
+          <Parameter Name="FEC_NACIMIENTO" Type="smalldatetime" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="NRO_BREVETE" Type="char" Mode="In" />
+          <Parameter Name="TIPO_BREVETE" Type="varchar" Mode="In" />
+          <Parameter Name="USU_REGISTRO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTAR_POLICIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+          <Parameter Name="PATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="MATERNO" Type="varchar" Mode="In" />
+          <Parameter Name="DNI" Type="char" Mode="In" />
+          <Parameter Name="COD_UBIGEO" Type="char" Mode="In" />
+          <Parameter Name="COD_RANGO" Type="int" Mode="In" />
+          <Parameter Name="SEXO" Type="char" Mode="In" />
+          <Parameter Name="FECHANACIMIENTO" Type="date" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="USU_REGISTRO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTAR_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACTOR" Type="char" Mode="In" />
+          <Parameter Name="COD_MARCA" Type="char" Mode="In" />
+          <Parameter Name="COD_COLOR" Type="char" Mode="In" />
+          <Parameter Name="TIPO_VEHICULO" Type="varchar" Mode="In" />
+          <Parameter Name="ANIO_FABRICACION" Type="int" Mode="In" />
+          <Parameter Name="NRO_MOTOR" Type="varchar" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="FOTO" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="USU_REGISTRO" Type="varchar" Mode="In" />
+          <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTAR_INFRACCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_INFRACTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_PAPELETA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_POLICIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTARMULTASINFRACTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_INFRACTOR" Type="char" Mode="In" />
+          <Parameter Name="FECINI" Type="date" Mode="In" />
+          <Parameter Name="FECFIN" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SP_OBTENER_UBIGEO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="COD_UBIGEO" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_UBIGEO_DEPARTAMENTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_DEPA" Type="char" Mode="In" />
+          <Parameter Name="ID_PROV" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_UBIGEO_PROVINCIASDEPARTAMENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_DEPA" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="PAPELETAModelStoreContainer">
+          <EntitySet Name="TB_COLOR" EntityType="Self.TB_COLOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_INFRACCION" EntityType="Self.TB_INFRACCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_INFRACTOR" EntityType="Self.TB_INFRACTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_MARCA" EntityType="Self.TB_MARCA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PAPELETA" EntityType="Self.TB_PAPELETA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_POLICIA" EntityType="Self.TB_POLICIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_RANGO" EntityType="Self.TB_RANGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPO_VEHICULO" EntityType="Self.TB_TIPO_VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_UBIGEO" EntityType="Self.TB_UBIGEO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Usuario" EntityType="Self.Tb_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_VEHICULO" EntityType="Self.TB_VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_INFRACCION" EntityType="Self.VW_INFRACCION" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_INFRACCION].[COD_INFRACCION] AS [COD_INFRACCION], 
+    [VW_INFRACCION].[DESCRIPCION_SANCION] AS [DESCRIPCION_SANCION], 
+    [VW_INFRACCION].[CALIFICACION] AS [CALIFICACION], 
+    [VW_INFRACCION].[PUNTOS] AS [PUNTOS], 
+    [VW_INFRACCION].[UIT] AS [UIT], 
+    [VW_INFRACCION].[ESTADO] AS [ESTADO], 
+    [VW_INFRACCION].[MEDIDA_PREVENTIVA] AS [MEDIDA_PREVENTIVA]
+    FROM [dbo].[VW_INFRACCION] AS [VW_INFRACCION]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_INFRACTOR" EntityType="Self.VW_INFRACTOR" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_INFRACTOR].[COD_INFRACTOR] AS [COD_INFRACTOR], 
+    [VW_INFRACTOR].[DNI] AS [DNI], 
+    [VW_INFRACTOR].[NOMBRES] AS [NOMBRES], 
+    [VW_INFRACTOR].[APE_PATERNO] AS [APE_PATERNO], 
+    [VW_INFRACTOR].[APE_MATERNO] AS [APE_MATERNO], 
+    [VW_INFRACTOR].[CORREO] AS [CORREO], 
+    [VW_INFRACTOR].[DIRECCION] AS [DIRECCION], 
+    [VW_INFRACTOR].[SEXO] AS [SEXO], 
+    [VW_INFRACTOR].[FEC_NACIMIENTO] AS [FEC_NACIMIENTO], 
+    [VW_INFRACTOR].[NRO_BREVETE] AS [NRO_BREVETE], 
+    [VW_INFRACTOR].[TIPO_BREVETE] AS [TIPO_BREVETE], 
+    [VW_INFRACTOR].[COD_UBIGEO] AS [COD_UBIGEO], 
+    [VW_INFRACTOR].[DEPARTAMENTO] AS [DEPARTAMENTO], 
+    [VW_INFRACTOR].[PROVINCIA] AS [PROVINCIA], 
+    [VW_INFRACTOR].[DISTRITO] AS [DISTRITO], 
+    [VW_INFRACTOR].[FOTO] AS [FOTO], 
+    [VW_INFRACTOR].[ESTADO] AS [ESTADO]
+    FROM [dbo].[VW_INFRACTOR] AS [VW_INFRACTOR]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PAPELETA" EntityType="Self.VW_PAPELETA" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PAPELETA].[COD_PAPELETA] AS [COD_PAPELETA], 
+    [VW_PAPELETA].[COD_INFRACCION] AS [COD_INFRACCION], 
+    [VW_PAPELETA].[DESCRIPCION_SANCION] AS [DESCRIPCION_SANCION], 
+    [VW_PAPELETA].[POLICIA] AS [POLICIA], 
+    [VW_PAPELETA].[COD_VEHICULO] AS [COD_VEHICULO], 
+    [VW_PAPELETA].[FECHA_INFRACCION] AS [FECHA_INFRACCION], 
+    [VW_PAPELETA].[HORA_INFRACCION] AS [HORA_INFRACCION], 
+    [VW_PAPELETA].[LUGAR_INFRACCION] AS [LUGAR_INFRACCION], 
+    [VW_PAPELETA].[DESCRIPCION] AS [DESCRIPCION], 
+    [VW_PAPELETA].[OBSERVACIONES] AS [OBSERVACIONES], 
+    [VW_PAPELETA].[ESTADO_PAPELETA] AS [ESTADO_PAPELETA]
+    FROM [dbo].[VW_PAPELETA] AS [VW_PAPELETA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_POLICIA" EntityType="Self.VW_POLICIA" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_POLICIA].[COD_POLICIA] AS [COD_POLICIA], 
+    [VW_POLICIA].[PATERNO] AS [PATERNO], 
+    [VW_POLICIA].[MATERNO] AS [MATERNO], 
+    [VW_POLICIA].[NOMBRE] AS [NOMBRE], 
+    [VW_POLICIA].[DNI] AS [DNI], 
+    [VW_POLICIA].[COD_RANGO] AS [COD_RANGO], 
+    [VW_POLICIA].[SEXO] AS [SEXO], 
+    [VW_POLICIA].[FECHANACIMIENTO] AS [FECHANACIMIENTO], 
+    [VW_POLICIA].[ESTADO] AS [ESTADO], 
+    [VW_POLICIA].[FOTO] AS [FOTO], 
+    [VW_POLICIA].[RANGO] AS [RANGO], 
+    [VW_POLICIA].[COD_UBIGEO] AS [COD_UBIGEO], 
+    [VW_POLICIA].[DISTRITO] AS [DISTRITO], 
+    [VW_POLICIA].[PROVINCIA] AS [PROVINCIA], 
+    [VW_POLICIA].[DEPARTAMENTO] AS [DEPARTAMENTO]
+    FROM [dbo].[VW_POLICIA] AS [VW_POLICIA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_UBIGEO" EntityType="Self.VW_UBIGEO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_UBIGEO].[COD_UBIGEO] AS [COD_UBIGEO], 
+    [VW_UBIGEO].[ID_DEPA] AS [ID_DEPA], 
+    [VW_UBIGEO].[ID_PROV] AS [ID_PROV], 
+    [VW_UBIGEO].[ID_DIST] AS [ID_DIST], 
+    [VW_UBIGEO].[DEPARTAMENTO] AS [DEPARTAMENTO], 
+    [VW_UBIGEO].[PROVINCIA] AS [PROVINCIA], 
+    [VW_UBIGEO].[DISTRITO] AS [DISTRITO]
+    FROM [dbo].[VW_UBIGEO] AS [VW_UBIGEO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_VEHICULO" EntityType="Self.VW_VEHICULO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_VEHICULO].[COD_VEHICULO] AS [COD_VEHICULO], 
+    [VW_VEHICULO].[DNI] AS [DNI], 
+    [VW_VEHICULO].[INFRACTOR] AS [INFRACTOR], 
+    [VW_VEHICULO].[MARCA] AS [MARCA], 
+    [VW_VEHICULO].[COLOR] AS [COLOR], 
+    [VW_VEHICULO].[TIPO_VEHICULO] AS [TIPO_VEHICULO], 
+    [VW_VEHICULO].[ANIO_FABRICACION] AS [ANIO_FABRICACION], 
+    [VW_VEHICULO].[NRO_MOTOR] AS [NRO_MOTOR], 
+    [VW_VEHICULO].[ESTADO] AS [ESTADO]
+    FROM [dbo].[VW_VEHICULO] AS [VW_VEHICULO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_VISTAMULTAS" EntityType="Self.VW_VISTAMULTAS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_VISTAMULTAS].[COD_PAPELETA] AS [COD_PAPELETA], 
+    [VW_VISTAMULTAS].[COD_INFRACTOR] AS [COD_INFRACTOR], 
+    [VW_VISTAMULTAS].[INFRACTOR] AS [INFRACTOR], 
+    [VW_VISTAMULTAS].[LUGAR_INFRACCION] AS [LUGAR_INFRACCION], 
+    [VW_VISTAMULTAS].[FALTA_COMETIDA] AS [FALTA_COMETIDA], 
+    [VW_VISTAMULTAS].[CALIFICACION] AS [CALIFICACION], 
+    [VW_VISTAMULTAS].[UIT] AS [UIT], 
+    [VW_VISTAMULTAS].[FECHA_INFRACCION] AS [FECHA_INFRACCION], 
+    [VW_VISTAMULTAS].[POLICIA] AS [POLICIA], 
+    [VW_VISTAMULTAS].[ESTADO_PAPELETA] AS [ESTADO_PAPELETA]
+    FROM [dbo].[VW_VISTAMULTAS] AS [VW_VISTAMULTAS]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_INFRACTOR_UBIGEO" Association="Self.FK_INFRACTOR_UBIGEO">
+            <End Role="TB_UBIGEO" EntitySet="TB_UBIGEO" />
+            <End Role="TB_INFRACTOR" EntitySet="TB_INFRACTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAPELETA_INFRACCION" Association="Self.FK_PAPELETA_INFRACCION">
+            <End Role="TB_INFRACCION" EntitySet="TB_INFRACCION" />
+            <End Role="TB_PAPELETA" EntitySet="TB_PAPELETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAPELETA_POLICIA" Association="Self.FK_PAPELETA_POLICIA">
+            <End Role="TB_POLICIA" EntitySet="TB_POLICIA" />
+            <End Role="TB_PAPELETA" EntitySet="TB_PAPELETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAPELETA_VEHICULO" Association="Self.FK_PAPELETA_VEHICULO">
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+            <End Role="TB_PAPELETA" EntitySet="TB_PAPELETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POLICIA_UBIGEO" Association="Self.FK_POLICIA_UBIGEO">
+            <End Role="TB_UBIGEO" EntitySet="TB_UBIGEO" />
+            <End Role="TB_POLICIA" EntitySet="TB_POLICIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_POLICIA_TB_RANGO" Association="Self.FK_TB_POLICIA_TB_RANGO">
+            <End Role="TB_RANGO" EntitySet="TB_RANGO" />
+            <End Role="TB_POLICIA" EntitySet="TB_POLICIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_VEHICULO_TB_TIPO_VEHICULO" Association="Self.FK_TB_VEHICULO_TB_TIPO_VEHICULO">
+            <End Role="TB_TIPO_VEHICULO" EntitySet="TB_TIPO_VEHICULO" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEHICULO_COLOR" Association="Self.FK_VEHICULO_COLOR">
+            <End Role="TB_COLOR" EntitySet="TB_COLOR" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEHICULO_INFRACTOR" Association="Self.FK_VEHICULO_INFRACTOR">
+            <End Role="TB_INFRACTOR" EntitySet="TB_INFRACTOR" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEHICULO_MARCA" Association="Self.FK_VEHICULO_MARCA">
+            <End Role="TB_MARCA" EntitySet="TB_MARCA" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PAPELETAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_COLOR">
+          <Key>
+            <PropertyRef Name="COD_COLOR" />
+          </Key>
+          <Property Name="COD_COLOR" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COLOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_VEHICULO" Relationship="Self.FK_VEHICULO_COLOR" FromRole="TB_COLOR" ToRole="TB_VEHICULO" />
+        </EntityType>
+        <EntityType Name="TB_INFRACCION">
+          <Key>
+            <PropertyRef Name="COD_INFRACCION" />
+          </Key>
+          <Property Name="COD_INFRACCION" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_SANCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CALIFICACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PUNTOS" Type="Int32" />
+          <Property Name="UIT" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MEDIDA_PREVENTIVA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_PAPELETA" Relationship="Self.FK_PAPELETA_INFRACCION" FromRole="TB_INFRACCION" ToRole="TB_PAPELETA" />
+        </EntityType>
+        <EntityType Name="TB_INFRACTOR">
+          <Key>
+            <PropertyRef Name="COD_INFRACTOR" />
+          </Key>
+          <Property Name="COD_INFRACTOR" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="APE_PATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APE_MATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FEC_NACIMIENTO" Type="DateTime" Precision="0" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NRO_BREVETE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="TIPO_BREVETE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TB_UBIGEO" Relationship="Self.FK_INFRACTOR_UBIGEO" FromRole="TB_INFRACTOR" ToRole="TB_UBIGEO" />
+          <NavigationProperty Name="TB_VEHICULO" Relationship="Self.FK_VEHICULO_INFRACTOR" FromRole="TB_INFRACTOR" ToRole="TB_VEHICULO" />
+        </EntityType>
+        <EntityType Name="TB_MARCA">
+          <Key>
+            <PropertyRef Name="COD_MARCA" />
+          </Key>
+          <Property Name="COD_MARCA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MARCA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_VEHICULO" Relationship="Self.FK_VEHICULO_MARCA" FromRole="TB_MARCA" ToRole="TB_VEHICULO" />
+        </EntityType>
+        <EntityType Name="TB_PAPELETA">
+          <Key>
+            <PropertyRef Name="COD_PAPELETA" />
+          </Key>
+          <Property Name="COD_PAPELETA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_INFRACCION" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="COD_POLICIA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="COD_VEHICULO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="FECHA_INFRACCION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HORA_INFRACCION" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="LUGAR_INFRACCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="REFERENCIA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="INFO_ADICIONAL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PAPELETA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_INFRACCION" Relationship="Self.FK_PAPELETA_INFRACCION" FromRole="TB_PAPELETA" ToRole="TB_INFRACCION" />
+          <NavigationProperty Name="TB_POLICIA" Relationship="Self.FK_PAPELETA_POLICIA" FromRole="TB_PAPELETA" ToRole="TB_POLICIA" />
+          <NavigationProperty Name="TB_VEHICULO" Relationship="Self.FK_PAPELETA_VEHICULO" FromRole="TB_PAPELETA" ToRole="TB_VEHICULO" />
+        </EntityType>
+        <EntityType Name="TB_POLICIA">
+          <Key>
+            <PropertyRef Name="COD_POLICIA" />
+          </Key>
+          <Property Name="COD_POLICIA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FECHANACIMIENTO" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COD_RANGO" Type="Int32" />
+          <NavigationProperty Name="TB_PAPELETA" Relationship="Self.FK_PAPELETA_POLICIA" FromRole="TB_POLICIA" ToRole="TB_PAPELETA" />
+          <NavigationProperty Name="TB_UBIGEO" Relationship="Self.FK_POLICIA_UBIGEO" FromRole="TB_POLICIA" ToRole="TB_UBIGEO" />
+          <NavigationProperty Name="TB_RANGO" Relationship="Self.FK_TB_POLICIA_TB_RANGO" FromRole="TB_POLICIA" ToRole="TB_RANGO" />
+        </EntityType>
+        <EntityType Name="TB_RANGO">
+          <Key>
+            <PropertyRef Name="COD_RANGO" />
+          </Key>
+          <Property Name="COD_RANGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_RANGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_RANGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_POLICIA" Relationship="Self.FK_TB_POLICIA_TB_RANGO" FromRole="TB_RANGO" ToRole="TB_POLICIA" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_VEHICULO">
+          <Key>
+            <PropertyRef Name="COD_TIPO_VEHICULO" />
+          </Key>
+          <Property Name="COD_TIPO_VEHICULO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_TIPO_VEHICULO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_VEHICULO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_VEHICULO" Relationship="Self.FK_TB_VEHICULO_TB_TIPO_VEHICULO" FromRole="TB_TIPO_VEHICULO" ToRole="TB_VEHICULO" />
+        </EntityType>
+        <EntityType Name="TB_UBIGEO">
+          <Key>
+            <PropertyRef Name="COD_UBIGEO" />
+          </Key>
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVINCIA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DISTRITO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DEPA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ID_PROV" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ID_DIST" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TB_INFRACTOR" Relationship="Self.FK_INFRACTOR_UBIGEO" FromRole="TB_UBIGEO" ToRole="TB_INFRACTOR" />
+          <NavigationProperty Name="TB_POLICIA" Relationship="Self.FK_POLICIA_UBIGEO" FromRole="TB_UBIGEO" ToRole="TB_POLICIA" />
+        </EntityType>
+        <EntityType Name="Tb_Usuario">
+          <Key>
+            <PropertyRef Name="Login_Usuario" />
+          </Key>
+          <Property Name="Login_Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass_Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Niv_Usuario" Type="Int32" />
+          <Property Name="Est_Usuario" Type="Int32" />
+          <Property Name="Fec_Registro" Type="DateTime" Precision="3" />
+          <Property Name="Usu_Registro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_VEHICULO">
+          <Key>
+            <PropertyRef Name="COD_VEHICULO" />
+          </Key>
+          <Property Name="COD_VEHICULO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_INFRACTOR" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="COD_MARCA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="COD_COLOR" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ANIO_FABRICACION" Type="Int32" />
+          <Property Name="NRO_MOTOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FEC_REGISTRO" Type="DateTime" Precision="0" />
+          <Property Name="USU_REGISTRO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ULT_MODIFICACION" Type="DateTime" Precision="0" />
+          <Property Name="USU_ULT_MODIFICACION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COD_TIPO_VEHICULO" Type="Int32" />
+          <NavigationProperty Name="TB_COLOR" Relationship="Self.FK_VEHICULO_COLOR" FromRole="TB_VEHICULO" ToRole="TB_COLOR" />
+          <NavigationProperty Name="TB_INFRACTOR" Relationship="Self.FK_VEHICULO_INFRACTOR" FromRole="TB_VEHICULO" ToRole="TB_INFRACTOR" />
+          <NavigationProperty Name="TB_MARCA" Relationship="Self.FK_VEHICULO_MARCA" FromRole="TB_VEHICULO" ToRole="TB_MARCA" />
+          <NavigationProperty Name="TB_PAPELETA" Relationship="Self.FK_PAPELETA_VEHICULO" FromRole="TB_VEHICULO" ToRole="TB_PAPELETA" />
+          <NavigationProperty Name="TB_TIPO_VEHICULO" Relationship="Self.FK_TB_VEHICULO_TB_TIPO_VEHICULO" FromRole="TB_VEHICULO" ToRole="TB_TIPO_VEHICULO" />
+        </EntityType>
+        <EntityType Name="VW_INFRACCION">
+          <Key>
+            <PropertyRef Name="COD_INFRACCION" />
+          </Key>
+          <Property Name="COD_INFRACCION" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_SANCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CALIFICACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PUNTOS" Type="Int32" />
+          <Property Name="UIT" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ESTADO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MEDIDA_PREVENTIVA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_INFRACTOR">
+          <Key>
+            <PropertyRef Name="COD_INFRACTOR" />
+            <PropertyRef Name="NOMBRES" />
+            <PropertyRef Name="APE_PATERNO" />
+            <PropertyRef Name="APE_MATERNO" />
+            <PropertyRef Name="DEPARTAMENTO" />
+            <PropertyRef Name="PROVINCIA" />
+            <PropertyRef Name="DISTRITO" />
+          </Key>
+          <Property Name="COD_INFRACTOR" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APE_PATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APE_MATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_NACIMIENTO" Type="DateTime" Precision="0" />
+          <Property Name="NRO_BREVETE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="TIPO_BREVETE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DEPARTAMENTO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVINCIA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DISTRITO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_PAPELETA">
+          <Key>
+            <PropertyRef Name="COD_PAPELETA" />
+            <PropertyRef Name="COD_INFRACCION" />
+            <PropertyRef Name="POLICIA" />
+            <PropertyRef Name="COD_VEHICULO" />
+            <PropertyRef Name="FECHA_INFRACCION" />
+            <PropertyRef Name="HORA_INFRACCION" />
+          </Key>
+          <Property Name="COD_PAPELETA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_INFRACCION" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_SANCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="POLICIA" Type="String" MaxLength="81" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_VEHICULO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_INFRACCION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HORA_INFRACCION" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="LUGAR_INFRACCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PAPELETA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_POLICIA">
+          <Key>
+            <PropertyRef Name="COD_POLICIA" />
+            <PropertyRef Name="PATERNO" />
+            <PropertyRef Name="MATERNO" />
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="RANGO" />
+          </Key>
+          <Property Name="COD_POLICIA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_RANGO" Type="Int32" />
+          <Property Name="SEXO" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="FECHANACIMIENTO" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RANGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DISTRITO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PROVINCIA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTAMENTO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_UBIGEO">
+          <Key>
+            <PropertyRef Name="COD_UBIGEO" />
+            <PropertyRef Name="DEPARTAMENTO" />
+            <PropertyRef Name="PROVINCIA" />
+            <PropertyRef Name="DISTRITO" />
+          </Key>
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_DEPA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ID_PROV" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ID_DIST" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DEPARTAMENTO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVINCIA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DISTRITO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_VEHICULO">
+          <Key>
+            <PropertyRef Name="COD_VEHICULO" />
+            <PropertyRef Name="INFRACTOR" />
+            <PropertyRef Name="COLOR" />
+            <PropertyRef Name="ESTADO" />
+          </Key>
+          <Property Name="COD_VEHICULO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="INFRACTOR" Type="String" MaxLength="112" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARCA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COLOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_VEHICULO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ANIO_FABRICACION" Type="Int32" />
+          <Property Name="NRO_MOTOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_VISTAMULTAS">
+          <Key>
+            <PropertyRef Name="COD_PAPELETA" />
+            <PropertyRef Name="COD_INFRACTOR" />
+            <PropertyRef Name="INFRACTOR" />
+            <PropertyRef Name="FECHA_INFRACCION" />
+            <PropertyRef Name="POLICIA" />
+          </Key>
+          <Property Name="COD_PAPELETA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_INFRACTOR" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="INFRACTOR" Type="String" MaxLength="112" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LUGAR_INFRACCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FALTA_COMETIDA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CALIFICACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UIT" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FECHA_INFRACCION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="POLICIA" Type="String" MaxLength="112" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO_PAPELETA" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_VEHICULO_COLOR">
+          <End Role="TB_COLOR" Type="Self.TB_COLOR" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_COLOR">
+              <PropertyRef Name="COD_COLOR" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_COLOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAPELETA_INFRACCION">
+          <End Role="TB_INFRACCION" Type="Self.TB_INFRACCION" Multiplicity="0..1" />
+          <End Role="TB_PAPELETA" Type="Self.TB_PAPELETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_INFRACCION">
+              <PropertyRef Name="COD_INFRACCION" />
+            </Principal>
+            <Dependent Role="TB_PAPELETA">
+              <PropertyRef Name="COD_INFRACCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INFRACTOR_UBIGEO">
+          <End Role="TB_UBIGEO" Type="Self.TB_UBIGEO" Multiplicity="0..1" />
+          <End Role="TB_INFRACTOR" Type="Self.TB_INFRACTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_UBIGEO">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Principal>
+            <Dependent Role="TB_INFRACTOR">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEHICULO_INFRACTOR">
+          <End Role="TB_INFRACTOR" Type="Self.TB_INFRACTOR" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_INFRACTOR">
+              <PropertyRef Name="COD_INFRACTOR" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_INFRACTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEHICULO_MARCA">
+          <End Role="TB_MARCA" Type="Self.TB_MARCA" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MARCA">
+              <PropertyRef Name="COD_MARCA" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAPELETA_POLICIA">
+          <End Role="TB_POLICIA" Type="Self.TB_POLICIA" Multiplicity="0..1" />
+          <End Role="TB_PAPELETA" Type="Self.TB_PAPELETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_POLICIA">
+              <PropertyRef Name="COD_POLICIA" />
+            </Principal>
+            <Dependent Role="TB_PAPELETA">
+              <PropertyRef Name="COD_POLICIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAPELETA_VEHICULO">
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="0..1" />
+          <End Role="TB_PAPELETA" Type="Self.TB_PAPELETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_VEHICULO">
+              <PropertyRef Name="COD_VEHICULO" />
+            </Principal>
+            <Dependent Role="TB_PAPELETA">
+              <PropertyRef Name="COD_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POLICIA_UBIGEO">
+          <End Role="TB_UBIGEO" Type="Self.TB_UBIGEO" Multiplicity="0..1" />
+          <End Role="TB_POLICIA" Type="Self.TB_POLICIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_UBIGEO">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Principal>
+            <Dependent Role="TB_POLICIA">
+              <PropertyRef Name="COD_UBIGEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_POLICIA_TB_RANGO">
+          <End Role="TB_RANGO" Type="Self.TB_RANGO" Multiplicity="0..1" />
+          <End Role="TB_POLICIA" Type="Self.TB_POLICIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_RANGO">
+              <PropertyRef Name="COD_RANGO" />
+            </Principal>
+            <Dependent Role="TB_POLICIA">
+              <PropertyRef Name="COD_RANGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_VEHICULO_TB_TIPO_VEHICULO">
+          <End Role="TB_TIPO_VEHICULO" Type="Self.TB_TIPO_VEHICULO" Multiplicity="0..1" />
+          <End Role="TB_VEHICULO" Type="Self.TB_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_VEHICULO">
+              <PropertyRef Name="COD_TIPO_VEHICULO" />
+            </Principal>
+            <Dependent Role="TB_VEHICULO">
+              <PropertyRef Name="COD_TIPO_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PAPELETAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_COLOR" EntityType="Self.TB_COLOR" />
+          <EntitySet Name="TB_INFRACCION" EntityType="Self.TB_INFRACCION" />
+          <EntitySet Name="TB_INFRACTOR" EntityType="Self.TB_INFRACTOR" />
+          <EntitySet Name="TB_MARCA" EntityType="Self.TB_MARCA" />
+          <EntitySet Name="TB_PAPELETA" EntityType="Self.TB_PAPELETA" />
+          <EntitySet Name="TB_POLICIA" EntityType="Self.TB_POLICIA" />
+          <EntitySet Name="TB_RANGO" EntityType="Self.TB_RANGO" />
+          <EntitySet Name="TB_TIPO_VEHICULO" EntityType="Self.TB_TIPO_VEHICULO" />
+          <EntitySet Name="TB_UBIGEO" EntityType="Self.TB_UBIGEO" />
+          <EntitySet Name="Tb_Usuario" EntityType="Self.Tb_Usuario" />
+          <EntitySet Name="TB_VEHICULO" EntityType="Self.TB_VEHICULO" />
+          <EntitySet Name="VW_INFRACCION" EntityType="Self.VW_INFRACCION" />
+          <EntitySet Name="VW_INFRACTOR" EntityType="Self.VW_INFRACTOR" />
+          <EntitySet Name="VW_PAPELETA" EntityType="Self.VW_PAPELETA" />
+          <EntitySet Name="VW_POLICIA" EntityType="Self.VW_POLICIA" />
+          <EntitySet Name="VW_UBIGEO" EntityType="Self.VW_UBIGEO" />
+          <EntitySet Name="VW_VEHICULO" EntityType="Self.VW_VEHICULO" />
+          <EntitySet Name="VW_VISTAMULTAS" EntityType="Self.VW_VISTAMULTAS" />
+          <AssociationSet Name="FK_VEHICULO_COLOR" Association="Self.FK_VEHICULO_COLOR">
+            <End Role="TB_COLOR" EntitySet="TB_COLOR" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAPELETA_INFRACCION" Association="Self.FK_PAPELETA_INFRACCION">
+            <End Role="TB_INFRACCION" EntitySet="TB_INFRACCION" />
+            <End Role="TB_PAPELETA" EntitySet="TB_PAPELETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INFRACTOR_UBIGEO" Association="Self.FK_INFRACTOR_UBIGEO">
+            <End Role="TB_UBIGEO" EntitySet="TB_UBIGEO" />
+            <End Role="TB_INFRACTOR" EntitySet="TB_INFRACTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEHICULO_INFRACTOR" Association="Self.FK_VEHICULO_INFRACTOR">
+            <End Role="TB_INFRACTOR" EntitySet="TB_INFRACTOR" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEHICULO_MARCA" Association="Self.FK_VEHICULO_MARCA">
+            <End Role="TB_MARCA" EntitySet="TB_MARCA" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAPELETA_POLICIA" Association="Self.FK_PAPELETA_POLICIA">
+            <End Role="TB_POLICIA" EntitySet="TB_POLICIA" />
+            <End Role="TB_PAPELETA" EntitySet="TB_PAPELETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAPELETA_VEHICULO" Association="Self.FK_PAPELETA_VEHICULO">
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+            <End Role="TB_PAPELETA" EntitySet="TB_PAPELETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POLICIA_UBIGEO" Association="Self.FK_POLICIA_UBIGEO">
+            <End Role="TB_UBIGEO" EntitySet="TB_UBIGEO" />
+            <End Role="TB_POLICIA" EntitySet="TB_POLICIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_POLICIA_TB_RANGO" Association="Self.FK_TB_POLICIA_TB_RANGO">
+            <End Role="TB_RANGO" EntitySet="TB_RANGO" />
+            <End Role="TB_POLICIA" EntitySet="TB_POLICIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_VEHICULO_TB_TIPO_VEHICULO" Association="Self.FK_TB_VEHICULO_TB_TIPO_VEHICULO">
+            <End Role="TB_TIPO_VEHICULO" EntitySet="TB_TIPO_VEHICULO" />
+            <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
+          </AssociationSet>
+          <FunctionImport Name="SP_ACTUALIZAR_INFRACCION">
+            <Parameter Name="COD_INFRACCION" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="CALIFICACION" Mode="In" Type="String" />
+            <Parameter Name="PUNTOS" Mode="In" Type="Int32" />
+            <Parameter Name="UIT" Mode="In" Type="Decimal" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="MEDIDA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTUALIZAR_INFRACTOR">
+            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+            <Parameter Name="DNI" Mode="In" Type="String" />
+            <Parameter Name="APE_PATERNO" Mode="In" Type="String" />
+            <Parameter Name="APE_MATERNO" Mode="In" Type="String" />
+            <Parameter Name="NOMBRES" Mode="In" Type="String" />
+            <Parameter Name="CORREO" Mode="In" Type="String" />
+            <Parameter Name="DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
+            <Parameter Name="SEXO" Mode="In" Type="String" />
+            <Parameter Name="FEC_NACIMIENTO" Mode="In" Type="DateTime" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="NRO_BREVETE" Mode="In" Type="String" />
+            <Parameter Name="TIPO_BREVETE" Mode="In" Type="String" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTUALIZAR_PAPELETA">
+            <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
+            <Parameter Name="LUGAR" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTUALIZAR_POLICIA">
+            <Parameter Name="COD_POLICIA" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="PATERNO" Mode="In" Type="String" />
+            <Parameter Name="MATERNO" Mode="In" Type="String" />
+            <Parameter Name="DNI" Mode="In" Type="String" />
+            <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
+            <Parameter Name="COD_RANGO" Mode="In" Type="Int32" />
+            <Parameter Name="SEXO" Mode="In" Type="String" />
+            <Parameter Name="FECHANACIMIENTO" Mode="In" Type="DateTime" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTUALIZAR_VEHICULO">
+            <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
+            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+            <Parameter Name="COD_MARCA" Mode="In" Type="String" />
+            <Parameter Name="COD_COLOR" Mode="In" Type="String" />
+            <Parameter Name="TIPO_VEHICULO" Mode="In" Type="String" />
+            <Parameter Name="ANIO_FABRICACION" Mode="In" Type="Int32" />
+            <Parameter Name="NRO_MOTOR" Mode="In" Type="String" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_INFRACCION" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_INFRACCION_Result)">
+            <Parameter Name="COD_INFRACCION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_INFRACTOR" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_INFRACTOR_Result)">
+            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_PAPELETA">
+            <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_POLICIA" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_POLICIA_Result)">
+            <Parameter Name="COD_POLICIA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_USUARIO" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_USUARIO_Result)">
+            <Parameter Name="Login_Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_VEHICULO">
+            <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_INFRACCION">
+            <Parameter Name="COD_INFRACCION" Mode="In" Type="String" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_INFRACTOR">
+            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_PAPELETA">
+            <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_POLICIA">
+            <Parameter Name="COD_POLICIA" Mode="In" Type="String" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_VEHICULO">
+            <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTAR_INFRACCION">
+            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="CALIFICACION" Mode="In" Type="String" />
+            <Parameter Name="PUNTOS" Mode="In" Type="Int32" />
+            <Parameter Name="UIT" Mode="In" Type="Decimal" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="MEDIDA" Mode="In" Type="String" />
+            <Parameter Name="USU_REGISTRO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTAR_INFRACTOR">
+            <Parameter Name="DNI" Mode="In" Type="String" />
+            <Parameter Name="APE_PATERNO" Mode="In" Type="String" />
+            <Parameter Name="APE_MATERNO" Mode="In" Type="String" />
+            <Parameter Name="NOMBRES" Mode="In" Type="String" />
+            <Parameter Name="CORREO" Mode="In" Type="String" />
+            <Parameter Name="DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
+            <Parameter Name="SEXO" Mode="In" Type="String" />
+            <Parameter Name="FEC_NACIMIENTO" Mode="In" Type="DateTime" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="NRO_BREVETE" Mode="In" Type="String" />
+            <Parameter Name="TIPO_BREVETE" Mode="In" Type="String" />
+            <Parameter Name="USU_REGISTRO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTAR_POLICIA">
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="PATERNO" Mode="In" Type="String" />
+            <Parameter Name="MATERNO" Mode="In" Type="String" />
+            <Parameter Name="DNI" Mode="In" Type="String" />
+            <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
+            <Parameter Name="COD_RANGO" Mode="In" Type="Int32" />
+            <Parameter Name="SEXO" Mode="In" Type="String" />
+            <Parameter Name="FECHANACIMIENTO" Mode="In" Type="DateTime" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="USU_REGISTRO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTAR_VEHICULO">
+            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+            <Parameter Name="COD_MARCA" Mode="In" Type="String" />
+            <Parameter Name="COD_COLOR" Mode="In" Type="String" />
+            <Parameter Name="TIPO_VEHICULO" Mode="In" Type="String" />
+            <Parameter Name="ANIO_FABRICACION" Mode="In" Type="Int32" />
+            <Parameter Name="NRO_MOTOR" Mode="In" Type="String" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="FOTO" Mode="In" Type="Binary" />
+            <Parameter Name="USU_REGISTRO" Mode="In" Type="String" />
+            <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTAR_INFRACCION" ReturnType="Collection(PAPELETAModel.SP_LISTAR_INFRACCION_Result)" />
+          <FunctionImport Name="SP_LISTAR_INFRACTOR" ReturnType="Collection(PAPELETAModel.SP_LISTAR_INFRACTOR_Result)" />
+          <FunctionImport Name="SP_LISTAR_PAPELETA" />
+          <FunctionImport Name="SP_LISTAR_POLICIA" ReturnType="Collection(PAPELETAModel.SP_LISTAR_POLICIA_Result)" />
+          <FunctionImport Name="SP_LISTAR_VEHICULO" />
+          <FunctionImport Name="SP_LISTARMULTASINFRACTOR" ReturnType="Collection(PAPELETAModel.SP_LISTARMULTASINFRACTOR_Result)">
+            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+            <Parameter Name="FECINI" Mode="In" Type="DateTime" />
+            <Parameter Name="FECFIN" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OBTENER_UBIGEO" ReturnType="Collection(PAPELETAModel.SP_OBTENER_UBIGEO_Result)">
+            <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UBIGEO_DEPARTAMENTOS" ReturnType="Collection(PAPELETAModel.SP_UBIGEO_DEPARTAMENTOS_Result)" />
+          <FunctionImport Name="SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO" ReturnType="Collection(PAPELETAModel.SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO_Result)">
+            <Parameter Name="ID_DEPA" Mode="In" Type="String" />
+            <Parameter Name="ID_PROV" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UBIGEO_PROVINCIASDEPARTAMENTO" ReturnType="Collection(PAPELETAModel.SP_UBIGEO_PROVINCIASDEPARTAMENTO_Result)">
+            <Parameter Name="ID_DEPA" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_CONSULTAR_INFRACCION_Result">
+          <Property Type="String" Name="COD_INFRACCION" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="DESCRIPCION_SANCION" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CALIFICACION" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="PUNTOS" Nullable="true" />
+          <Property Type="Decimal" Name="UIT" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="MEDIDA_PREVENTIVA" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_CONSULTAR_INFRACTOR_Result">
+          <Property Type="String" Name="COD_INFRACTOR" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="DNI" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="APE_PATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="APE_MATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="SEXO" Nullable="true" MaxLength="9" />
+          <Property Type="DateTime" Name="FEC_NACIMIENTO" Nullable="true" Precision="16" />
+          <Property Type="String" Name="NRO_BREVETE" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="TIPO_BREVETE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="COD_UBIGEO" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="DEPARTAMENTO" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="PROVINCIA" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="DISTRITO" Nullable="false" MaxLength="40" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="SP_CONSULTAR_POLICIA_Result">
+          <Property Type="String" Name="COD_POLICIA" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="PATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="MATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="COD_RANGO" Nullable="true" />
+          <Property Type="String" Name="SEXO" Nullable="true" MaxLength="9" />
+          <Property Type="DateTime" Name="FECHANACIMIENTO" Nullable="true" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="8" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+          <Property Type="String" Name="RANGO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="COD_UBIGEO" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="DISTRITO" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PROVINCIA" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="DEPARTAMENTO" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_CONSULTAR_USUARIO_Result">
+          <Property Type="String" Name="Login_Usuario" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Pass_Usuario" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Niv_Usuario" Nullable="true" />
+          <Property Type="Int32" Name="Est_Usuario" Nullable="true" />
+          <Property Type="DateTime" Name="Fec_Registro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Usu_Registro" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_INFRACCION_Result">
+          <Property Type="String" Name="COD_INFRACCION" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="DESCRIPCION_SANCION" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CALIFICACION" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="PUNTOS" Nullable="true" />
+          <Property Type="Decimal" Name="UIT" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="MEDIDA_PREVENTIVA" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_INFRACTOR_Result">
+          <Property Type="String" Name="COD_INFRACTOR" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="DNI" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="APE_PATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="APE_MATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="SEXO" Nullable="true" MaxLength="9" />
+          <Property Type="DateTime" Name="FEC_NACIMIENTO" Nullable="true" Precision="16" />
+          <Property Type="String" Name="NRO_BREVETE" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="TIPO_BREVETE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="COD_UBIGEO" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="DEPARTAMENTO" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="PROVINCIA" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="DISTRITO" Nullable="false" MaxLength="40" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_POLICIA_Result">
+          <Property Type="String" Name="COD_POLICIA" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="PATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="MATERNO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="COD_RANGO" Nullable="true" />
+          <Property Type="String" Name="SEXO" Nullable="true" MaxLength="9" />
+          <Property Type="DateTime" Name="FECHANACIMIENTO" Nullable="true" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="8" />
+          <Property Type="Binary" Name="FOTO" Nullable="true" />
+          <Property Type="String" Name="RANGO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="COD_UBIGEO" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="DISTRITO" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="PROVINCIA" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="DEPARTAMENTO" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTARMULTASINFRACTOR_Result">
+          <Property Type="String" Name="COD_PAPELETA" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="COD_INFRACTOR" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="INFRACTOR" Nullable="false" MaxLength="112" />
+          <Property Type="String" Name="LUGAR_INFRACCION" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="FALTA_COMETIDA" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CALIFICACION" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="UIT" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="DateTime" Name="FECHA_INFRACCION" Nullable="false" />
+          <Property Type="String" Name="POLICIA" Nullable="false" MaxLength="112" />
+          <Property Type="String" Name="ESTADO_PAPELETA" Nullable="true" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="SP_OBTENER_UBIGEO_Result">
+          <Property Type="String" Name="DEPARTAMENTO" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="PROVINCIA" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="DISTRITO" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_UBIGEO_DEPARTAMENTOS_Result">
+          <Property Type="String" Name="ID_DEPA" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="DEPARTAMENTO" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO_Result">
+          <Property Type="String" Name="ID_DIST" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="DISTRITO" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_UBIGEO_PROVINCIASDEPARTAMENTO_Result">
+          <Property Type="String" Name="ID_PROV" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="PROVINCIA" Nullable="false" MaxLength="40" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PAPELETAModelStoreContainer" CdmEntityContainer="PAPELETAEntities">
+          <EntitySetMapping Name="TB_COLOR">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_COLOR">
+              <MappingFragment StoreEntitySet="TB_COLOR">
+                <ScalarProperty Name="COD_COLOR" ColumnName="COD_COLOR" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_INFRACCION">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_INFRACCION">
+              <MappingFragment StoreEntitySet="TB_INFRACCION">
+                <ScalarProperty Name="COD_INFRACCION" ColumnName="COD_INFRACCION" />
+                <ScalarProperty Name="DESCRIPCION_SANCION" ColumnName="DESCRIPCION_SANCION" />
+                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
+                <ScalarProperty Name="PUNTOS" ColumnName="PUNTOS" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="MEDIDA_PREVENTIVA" ColumnName="MEDIDA_PREVENTIVA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_INFRACTOR">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_INFRACTOR">
+              <MappingFragment StoreEntitySet="TB_INFRACTOR">
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="APE_PATERNO" ColumnName="APE_PATERNO" />
+                <ScalarProperty Name="APE_MATERNO" ColumnName="APE_MATERNO" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FEC_NACIMIENTO" ColumnName="FEC_NACIMIENTO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="NRO_BREVETE" ColumnName="NRO_BREVETE" />
+                <ScalarProperty Name="TIPO_BREVETE" ColumnName="TIPO_BREVETE" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_MARCA">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_MARCA">
+              <MappingFragment StoreEntitySet="TB_MARCA">
+                <ScalarProperty Name="COD_MARCA" ColumnName="COD_MARCA" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PAPELETA">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_PAPELETA">
+              <MappingFragment StoreEntitySet="TB_PAPELETA">
+                <ScalarProperty Name="COD_PAPELETA" ColumnName="COD_PAPELETA" />
+                <ScalarProperty Name="COD_INFRACCION" ColumnName="COD_INFRACCION" />
+                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
+                <ScalarProperty Name="COD_VEHICULO" ColumnName="COD_VEHICULO" />
+                <ScalarProperty Name="FECHA_INFRACCION" ColumnName="FECHA_INFRACCION" />
+                <ScalarProperty Name="HORA_INFRACCION" ColumnName="HORA_INFRACCION" />
+                <ScalarProperty Name="LUGAR_INFRACCION" ColumnName="LUGAR_INFRACCION" />
+                <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+                <ScalarProperty Name="INFO_ADICIONAL" ColumnName="INFO_ADICIONAL" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="ESTADO_PAPELETA" ColumnName="ESTADO_PAPELETA" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_POLICIA">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_POLICIA">
+              <MappingFragment StoreEntitySet="TB_POLICIA">
+                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
+                <ScalarProperty Name="PATERNO" ColumnName="PATERNO" />
+                <ScalarProperty Name="MATERNO" ColumnName="MATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_RANGO">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_RANGO">
+              <MappingFragment StoreEntitySet="TB_RANGO">
+                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
+                <ScalarProperty Name="NOM_RANGO" ColumnName="NOM_RANGO" />
+                <ScalarProperty Name="DESCRIPCION_RANGO" ColumnName="DESCRIPCION_RANGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPO_VEHICULO">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_TIPO_VEHICULO">
+              <MappingFragment StoreEntitySet="TB_TIPO_VEHICULO">
+                <ScalarProperty Name="COD_TIPO_VEHICULO" ColumnName="COD_TIPO_VEHICULO" />
+                <ScalarProperty Name="NOM_TIPO_VEHICULO" ColumnName="NOM_TIPO_VEHICULO" />
+                <ScalarProperty Name="DESCRIPCION_TIPO_VEHICULO" ColumnName="DESCRIPCION_TIPO_VEHICULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_UBIGEO">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_UBIGEO">
+              <MappingFragment StoreEntitySet="TB_UBIGEO">
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+                <ScalarProperty Name="ID_DEPA" ColumnName="ID_DEPA" />
+                <ScalarProperty Name="ID_PROV" ColumnName="ID_PROV" />
+                <ScalarProperty Name="ID_DIST" ColumnName="ID_DIST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Usuario">
+            <EntityTypeMapping TypeName="PAPELETAModel.Tb_Usuario">
+              <MappingFragment StoreEntitySet="Tb_Usuario">
+                <ScalarProperty Name="Login_Usuario" ColumnName="Login_Usuario" />
+                <ScalarProperty Name="Pass_Usuario" ColumnName="Pass_Usuario" />
+                <ScalarProperty Name="Niv_Usuario" ColumnName="Niv_Usuario" />
+                <ScalarProperty Name="Est_Usuario" ColumnName="Est_Usuario" />
+                <ScalarProperty Name="Fec_Registro" ColumnName="Fec_Registro" />
+                <ScalarProperty Name="Usu_Registro" ColumnName="Usu_Registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_VEHICULO">
+            <EntityTypeMapping TypeName="PAPELETAModel.TB_VEHICULO">
+              <MappingFragment StoreEntitySet="TB_VEHICULO">
+                <ScalarProperty Name="COD_VEHICULO" ColumnName="COD_VEHICULO" />
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="COD_MARCA" ColumnName="COD_MARCA" />
+                <ScalarProperty Name="COD_COLOR" ColumnName="COD_COLOR" />
+                <ScalarProperty Name="ANIO_FABRICACION" ColumnName="ANIO_FABRICACION" />
+                <ScalarProperty Name="NRO_MOTOR" ColumnName="NRO_MOTOR" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="FEC_REGISTRO" ColumnName="FEC_REGISTRO" />
+                <ScalarProperty Name="USU_REGISTRO" ColumnName="USU_REGISTRO" />
+                <ScalarProperty Name="FEC_ULT_MODIFICACION" ColumnName="FEC_ULT_MODIFICACION" />
+                <ScalarProperty Name="USU_ULT_MODIFICACION" ColumnName="USU_ULT_MODIFICACION" />
+                <ScalarProperty Name="COD_TIPO_VEHICULO" ColumnName="COD_TIPO_VEHICULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_INFRACCION">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_INFRACCION">
+              <MappingFragment StoreEntitySet="VW_INFRACCION">
+                <ScalarProperty Name="COD_INFRACCION" ColumnName="COD_INFRACCION" />
+                <ScalarProperty Name="DESCRIPCION_SANCION" ColumnName="DESCRIPCION_SANCION" />
+                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
+                <ScalarProperty Name="PUNTOS" ColumnName="PUNTOS" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="MEDIDA_PREVENTIVA" ColumnName="MEDIDA_PREVENTIVA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_INFRACTOR">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_INFRACTOR">
+              <MappingFragment StoreEntitySet="VW_INFRACTOR">
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APE_PATERNO" ColumnName="APE_PATERNO" />
+                <ScalarProperty Name="APE_MATERNO" ColumnName="APE_MATERNO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FEC_NACIMIENTO" ColumnName="FEC_NACIMIENTO" />
+                <ScalarProperty Name="NRO_BREVETE" ColumnName="NRO_BREVETE" />
+                <ScalarProperty Name="TIPO_BREVETE" ColumnName="TIPO_BREVETE" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PAPELETA">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_PAPELETA">
+              <MappingFragment StoreEntitySet="VW_PAPELETA">
+                <ScalarProperty Name="COD_PAPELETA" ColumnName="COD_PAPELETA" />
+                <ScalarProperty Name="COD_INFRACCION" ColumnName="COD_INFRACCION" />
+                <ScalarProperty Name="DESCRIPCION_SANCION" ColumnName="DESCRIPCION_SANCION" />
+                <ScalarProperty Name="POLICIA" ColumnName="POLICIA" />
+                <ScalarProperty Name="COD_VEHICULO" ColumnName="COD_VEHICULO" />
+                <ScalarProperty Name="FECHA_INFRACCION" ColumnName="FECHA_INFRACCION" />
+                <ScalarProperty Name="HORA_INFRACCION" ColumnName="HORA_INFRACCION" />
+                <ScalarProperty Name="LUGAR_INFRACCION" ColumnName="LUGAR_INFRACCION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="ESTADO_PAPELETA" ColumnName="ESTADO_PAPELETA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_POLICIA">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_POLICIA">
+              <MappingFragment StoreEntitySet="VW_POLICIA">
+                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
+                <ScalarProperty Name="PATERNO" ColumnName="PATERNO" />
+                <ScalarProperty Name="MATERNO" ColumnName="MATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="RANGO" ColumnName="RANGO" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_UBIGEO">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_UBIGEO">
+              <MappingFragment StoreEntitySet="VW_UBIGEO">
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="ID_DEPA" ColumnName="ID_DEPA" />
+                <ScalarProperty Name="ID_PROV" ColumnName="ID_PROV" />
+                <ScalarProperty Name="ID_DIST" ColumnName="ID_DIST" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_VEHICULO">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_VEHICULO">
+              <MappingFragment StoreEntitySet="VW_VEHICULO">
+                <ScalarProperty Name="COD_VEHICULO" ColumnName="COD_VEHICULO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="INFRACTOR" ColumnName="INFRACTOR" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="TIPO_VEHICULO" ColumnName="TIPO_VEHICULO" />
+                <ScalarProperty Name="ANIO_FABRICACION" ColumnName="ANIO_FABRICACION" />
+                <ScalarProperty Name="NRO_MOTOR" ColumnName="NRO_MOTOR" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_VISTAMULTAS">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_VISTAMULTAS">
+              <MappingFragment StoreEntitySet="VW_VISTAMULTAS">
+                <ScalarProperty Name="COD_PAPELETA" ColumnName="COD_PAPELETA" />
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="INFRACTOR" ColumnName="INFRACTOR" />
+                <ScalarProperty Name="LUGAR_INFRACCION" ColumnName="LUGAR_INFRACCION" />
+                <ScalarProperty Name="FALTA_COMETIDA" ColumnName="FALTA_COMETIDA" />
+                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="FECHA_INFRACCION" ColumnName="FECHA_INFRACCION" />
+                <ScalarProperty Name="POLICIA" ColumnName="POLICIA" />
+                <ScalarProperty Name="ESTADO_PAPELETA" ColumnName="ESTADO_PAPELETA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZAR_INFRACCION" FunctionName="PAPELETAModel.Store.SP_ACTUALIZAR_INFRACCION" />
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZAR_INFRACTOR" FunctionName="PAPELETAModel.Store.SP_ACTUALIZAR_INFRACTOR" />
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZAR_PAPELETA" FunctionName="PAPELETAModel.Store.SP_ACTUALIZAR_PAPELETA" />
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZAR_POLICIA" FunctionName="PAPELETAModel.Store.SP_ACTUALIZAR_POLICIA" />
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZAR_VEHICULO" FunctionName="PAPELETAModel.Store.SP_ACTUALIZAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_INFRACCION" FunctionName="PAPELETAModel.Store.SP_CONSULTAR_INFRACCION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_CONSULTAR_INFRACCION_Result">
+                <ScalarProperty Name="COD_INFRACCION" ColumnName="COD_INFRACCION" />
+                <ScalarProperty Name="DESCRIPCION_SANCION" ColumnName="DESCRIPCION_SANCION" />
+                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
+                <ScalarProperty Name="PUNTOS" ColumnName="PUNTOS" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="MEDIDA_PREVENTIVA" ColumnName="MEDIDA_PREVENTIVA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_INFRACTOR" FunctionName="PAPELETAModel.Store.SP_CONSULTAR_INFRACTOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_CONSULTAR_INFRACTOR_Result">
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APE_PATERNO" ColumnName="APE_PATERNO" />
+                <ScalarProperty Name="APE_MATERNO" ColumnName="APE_MATERNO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FEC_NACIMIENTO" ColumnName="FEC_NACIMIENTO" />
+                <ScalarProperty Name="NRO_BREVETE" ColumnName="NRO_BREVETE" />
+                <ScalarProperty Name="TIPO_BREVETE" ColumnName="TIPO_BREVETE" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_PAPELETA" FunctionName="PAPELETAModel.Store.SP_CONSULTAR_PAPELETA" />
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_POLICIA" FunctionName="PAPELETAModel.Store.SP_CONSULTAR_POLICIA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_CONSULTAR_POLICIA_Result">
+                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
+                <ScalarProperty Name="PATERNO" ColumnName="PATERNO" />
+                <ScalarProperty Name="MATERNO" ColumnName="MATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="RANGO" ColumnName="RANGO" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_USUARIO" FunctionName="PAPELETAModel.Store.SP_CONSULTAR_USUARIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_CONSULTAR_USUARIO_Result">
+                <ScalarProperty Name="Login_Usuario" ColumnName="Login_Usuario" />
+                <ScalarProperty Name="Pass_Usuario" ColumnName="Pass_Usuario" />
+                <ScalarProperty Name="Niv_Usuario" ColumnName="Niv_Usuario" />
+                <ScalarProperty Name="Est_Usuario" ColumnName="Est_Usuario" />
+                <ScalarProperty Name="Fec_Registro" ColumnName="Fec_Registro" />
+                <ScalarProperty Name="Usu_Registro" ColumnName="Usu_Registro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULO" FunctionName="PAPELETAModel.Store.SP_CONSULTAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_INFRACCION" FunctionName="PAPELETAModel.Store.SP_ELIMINAR_INFRACCION" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_INFRACTOR" FunctionName="PAPELETAModel.Store.SP_ELIMINAR_INFRACTOR" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_PAPELETA" FunctionName="PAPELETAModel.Store.SP_ELIMINAR_PAPELETA" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_POLICIA" FunctionName="PAPELETAModel.Store.SP_ELIMINAR_POLICIA" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_VEHICULO" FunctionName="PAPELETAModel.Store.SP_ELIMINAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTAR_INFRACCION" FunctionName="PAPELETAModel.Store.SP_INSERTAR_INFRACCION" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTAR_INFRACTOR" FunctionName="PAPELETAModel.Store.SP_INSERTAR_INFRACTOR" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTAR_POLICIA" FunctionName="PAPELETAModel.Store.SP_INSERTAR_POLICIA" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTAR_VEHICULO" FunctionName="PAPELETAModel.Store.SP_INSERTAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_INFRACCION" FunctionName="PAPELETAModel.Store.SP_LISTAR_INFRACCION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_LISTAR_INFRACCION_Result">
+                <ScalarProperty Name="COD_INFRACCION" ColumnName="COD_INFRACCION" />
+                <ScalarProperty Name="DESCRIPCION_SANCION" ColumnName="DESCRIPCION_SANCION" />
+                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
+                <ScalarProperty Name="PUNTOS" ColumnName="PUNTOS" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="MEDIDA_PREVENTIVA" ColumnName="MEDIDA_PREVENTIVA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_INFRACTOR" FunctionName="PAPELETAModel.Store.SP_LISTAR_INFRACTOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_LISTAR_INFRACTOR_Result">
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APE_PATERNO" ColumnName="APE_PATERNO" />
+                <ScalarProperty Name="APE_MATERNO" ColumnName="APE_MATERNO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FEC_NACIMIENTO" ColumnName="FEC_NACIMIENTO" />
+                <ScalarProperty Name="NRO_BREVETE" ColumnName="NRO_BREVETE" />
+                <ScalarProperty Name="TIPO_BREVETE" ColumnName="TIPO_BREVETE" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_PAPELETA" FunctionName="PAPELETAModel.Store.SP_LISTAR_PAPELETA" />
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_POLICIA" FunctionName="PAPELETAModel.Store.SP_LISTAR_POLICIA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_LISTAR_POLICIA_Result">
+                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
+                <ScalarProperty Name="PATERNO" ColumnName="PATERNO" />
+                <ScalarProperty Name="MATERNO" ColumnName="MATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="RANGO" ColumnName="RANGO" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_VEHICULO" FunctionName="PAPELETAModel.Store.SP_LISTAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_LISTARMULTASINFRACTOR" FunctionName="PAPELETAModel.Store.SP_LISTARMULTASINFRACTOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_LISTARMULTASINFRACTOR_Result">
+                <ScalarProperty Name="COD_PAPELETA" ColumnName="COD_PAPELETA" />
+                <ScalarProperty Name="COD_INFRACTOR" ColumnName="COD_INFRACTOR" />
+                <ScalarProperty Name="INFRACTOR" ColumnName="INFRACTOR" />
+                <ScalarProperty Name="LUGAR_INFRACCION" ColumnName="LUGAR_INFRACCION" />
+                <ScalarProperty Name="FALTA_COMETIDA" ColumnName="FALTA_COMETIDA" />
+                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="FECHA_INFRACCION" ColumnName="FECHA_INFRACCION" />
+                <ScalarProperty Name="POLICIA" ColumnName="POLICIA" />
+                <ScalarProperty Name="ESTADO_PAPELETA" ColumnName="ESTADO_PAPELETA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OBTENER_UBIGEO" FunctionName="PAPELETAModel.Store.SP_OBTENER_UBIGEO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_OBTENER_UBIGEO_Result">
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UBIGEO_DEPARTAMENTOS" FunctionName="PAPELETAModel.Store.SP_UBIGEO_DEPARTAMENTOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_UBIGEO_DEPARTAMENTOS_Result">
+                <ScalarProperty Name="ID_DEPA" ColumnName="ID_DEPA" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO" FunctionName="PAPELETAModel.Store.SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO_Result">
+                <ScalarProperty Name="ID_DIST" ColumnName="ID_DIST" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UBIGEO_PROVINCIASDEPARTAMENTO" FunctionName="PAPELETAModel.Store.SP_UBIGEO_PROVINCIASDEPARTAMENTO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_UBIGEO_PROVINCIASDEPARTAMENTO_Result">
+                <ScalarProperty Name="ID_PROV" ColumnName="ID_PROV" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -161,7 +161,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PapeletaWeb_BE\PapeletaWeb_BE.csproj">
+      <Project>{5605fba6-d9ad-4b4e-aac3-082ccbfc8d2f}</Project>
+      <Name>PapeletaWeb_BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PapeletaWeb_BL\PapeletaWeb_BL.csproj">
+      <Project>{f70e567a-e92a-4031-bc0c-84c600cef2fc}</Project>
+      <Name>PapeletaWeb_BL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
