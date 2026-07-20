@@ -1,0 +1,135 @@
+﻿html, body, form {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: #eef2f7;
+    font-family: 'Segoe UI';
+}
+
+.nav-item.dropend {
+    position: relative;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #1f2937;
+    color: white;
+    z-index: 1050;
+}
+
+    .sidebar .dropdown-menu {
+        background: #111827;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 8px;
+        padding: 6px;
+        min-width: 220px;
+        box-shadow: 0 8px 20px rgba(0,0,0,.35);
+        z-index: 1055;
+    }
+
+    .sidebar .dropdown-item {
+        color: #e5e7eb !important;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: .2s;
+    }
+
+        .sidebar .dropdown-item i {
+            width: 18px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .sidebar .dropdown-item:hover {
+            background: #0d6efd;
+            color: white !important;
+            padding-left: 18px;
+        }
+
+            .sidebar .dropdown-item:hover i {
+                color: white;
+            }
+
+    .sidebar .dropdown-toggle::after {
+        margin-left: auto;
+    }
+
+    .sidebar .dropdown-toggle {
+        display: flex;
+        align-items: center;
+    }
+
+.logo {
+    padding: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+    .logo i {
+        color: #0d6efd;
+        margin-right: 8px;
+    }
+
+.sidebar a {
+    display: block;
+    padding: 16px 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    transition: .3s;
+}
+
+    .sidebar a:hover {
+        background: #0d6efd;
+        padding-left: 35px;
+    }
+
+    .sidebar a i {
+        width: 25px;
+    }
+
+.main {
+    margin-left: 250px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar {
+    height: 70px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0,0,0,.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    flex-shrink: 0;
+}
+
+.usuario {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.contenido {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 15px;
+}

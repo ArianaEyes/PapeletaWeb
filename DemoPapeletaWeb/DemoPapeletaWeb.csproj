@@ -109,6 +109,7 @@
     <Content Include="CSS\infractores.css" />
     <Content Include="CSS\login.css" />
     <Content Include="CSS\inicio.css" />
+    <Content Include="CSS\sidebar.css" />
     <Content Include="Images\img1.jpg" />
     <Content Include="Images\img2.jpg" />
     <Content Include="Images\img3.jpg" />
