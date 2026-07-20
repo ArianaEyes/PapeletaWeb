@@ -2,9 +2,6 @@
 using PapeletaWeb_BE;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PapeletaWeb_BL
 {
@@ -20,5 +17,14 @@ namespace PapeletaWeb_BL
 
         public List<MultaBE> ListarMultasPorPolicia(string cod, DateTime ini, DateTime fin)
             => objPapeletaADO.ListarMultasPorPolicia(cod, ini, fin);
+
+        public decimal CalcularUitPendiente(string cod, DateTime ini, DateTime fin)
+            => objPapeletaADO.CalcularUitPendiente(cod, ini, fin);
+
+        public (int pendientes, int canceladas) ContarPorEstado(string cod, DateTime ini, DateTime fin)
+            => objPapeletaADO.ContarPorEstado(cod, ini, fin);
+
+        public string ObtenerFaltaMasFrecuente(string cod, DateTime ini, DateTime fin)
+            => objPapeletaADO.ObtenerFaltaMasFrecuente(cod, ini, fin);
     }
 }

@@ -82,6 +82,64 @@ namespace PapeletaWeb_ADO
             catch (EntityException ex) { throw new Exception(ex.Message); }
         }
 
+        public decimal CalcularUitPendiente(string codInfractor, DateTime fecIni, DateTime fecFin)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var total = (from p in Papeleta.TB_PAPELETA
+                                 join i in Papeleta.TB_INFRACCION on p.COD_INFRACCION equals i.COD_INFRACCION
+                                 join v in Papeleta.TB_VEHICULO on p.COD_VEHICULO equals v.COD_VEHICULO
+                                 where v.COD_INFRACTOR == codInfractor
+                                    && p.FECHA_INFRACCION >= fecIni && p.FECHA_INFRACCION <= fecFin
+                                    && p.ESTADO_PAPELETA == "A" // Pendiente
+                                 select (decimal?)i.UIT).Sum() ?? 0m;
+                    return total;
+                }
+            }
+            catch (EntityException ex) { throw new Exception(ex.Message); }
+        }
+
+        public (int pendientes, int canceladas) ContarPorEstado(string codVehiculo, DateTime fecIni, DateTime fecFin)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var query = Papeleta.TB_PAPELETA
+                        .Where(p => p.COD_VEHICULO == codVehiculo
+                                 && p.FECHA_INFRACCION >= fecIni && p.FECHA_INFRACCION <= fecFin);
+
+                    int pend = query.Count(p => p.ESTADO_PAPELETA == "A");
+                    int canc = query.Count(p => p.ESTADO_PAPELETA == "C");
+                    return (pend, canc);
+                }
+            }
+            catch (EntityException ex) { throw new Exception(ex.Message); }
+        }
+
+        public string ObtenerFaltaMasFrecuente(string codPolicia, DateTime fecIni, DateTime fecFin)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var top = (from p in Papeleta.TB_PAPELETA
+                               join i in Papeleta.TB_INFRACCION on p.COD_INFRACCION equals i.COD_INFRACCION
+                               where p.COD_POLICIA == codPolicia
+                                  && p.FECHA_INFRACCION >= fecIni && p.FECHA_INFRACCION <= fecFin
+                               group i by i.DESCRIPCION_SANCION into g
+                               orderby g.Count() descending
+                               select new { Falta = g.Key, Cantidad = g.Count() })
+                               .FirstOrDefault();
+
+                    return top == null ? "Sin registros" : $"{top.Falta} ({top.Cantidad} veces)";
+                }
+            }
+            catch (EntityException ex) { throw new Exception(ex.Message); }
+        }
+
         public List<MultaBE> ListarMultasPorPolicia(string codPolicia, DateTime fecIni, DateTime fecFin)
         {
             try

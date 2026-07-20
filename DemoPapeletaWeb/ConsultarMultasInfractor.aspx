@@ -52,7 +52,10 @@
         <div class="card shadow border-0 mb-5">
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="fa-solid fa-list"></i> Resultados</h5>
-                <asp:Label ID="lblCantidad" runat="server" CssClass="badge bg-warning text-dark"></asp:Label>
+                <div class="d-flex align-items-center gap-2">
+                    <asp:Label ID="lblDeudaTotal" runat="server" CssClass="badge bg-danger fs-6"></asp:Label>
+                    <asp:Label ID="lblCantidad" runat="server" CssClass="badge bg-warning text-dark"></asp:Label>
+                </div>
             </div>
             <div class="card-body table-responsive">
                 <asp:GridView ID="gvMultas" runat="server" CssClass="table table-hover align-middle"

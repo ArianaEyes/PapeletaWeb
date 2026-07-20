@@ -4,10 +4,6 @@ using PapeletaWeb_BL;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DemoPapeletaWeb
 {
@@ -46,11 +42,17 @@ namespace DemoPapeletaWeb
                     gvMultas.DataSource = null;
                     gvMultas.DataBind();
                     lblCantidad.Text = "0 registros";
+                    lblFaltaFrecuente.Text = "";
                     return;
                 }
                 gvMultas.DataSource = lista;
                 gvMultas.DataBind();
                 lblCantidad.Text = lista.Count + " registros";
+
+                DateTime ini = Convert.ToDateTime(txtFecIni.Text);
+                DateTime fin = Convert.ToDateTime(txtFecFin.Text);
+                lblFaltaFrecuente.Text = "Falta más frecuente: " +
+                    objBL.ObtenerFaltaMasFrecuente(txtCodigo.Text.Trim().ToUpper(), ini, fin);
             }
             catch (Exception ex) { lblMensaje.Text = "Error: " + ex.Message; }
         }
@@ -63,6 +65,10 @@ namespace DemoPapeletaWeb
                 if (lista == null || lista.Count == 0)
                 { lblMensaje.Text = "No hay datos para descargar."; return; }
 
+                DateTime ini = Convert.ToDateTime(txtFecIni.Text);
+                DateTime fin = Convert.ToDateTime(txtFecFin.Text);
+                string faltaFrec = objBL.ObtenerFaltaMasFrecuente(txtCodigo.Text.Trim().ToUpper(), ini, fin);
+
                 ExcelPackage.License.SetNonCommercialOrganization("ISIL");
 
                 using (var pck = new ExcelPackage())
@@ -72,19 +78,21 @@ namespace DemoPapeletaWeb
                     ws.Cells[1, 1].Value = "SISTEMA DE PAPELETAS - MULTAS POR POLICÍA";
                     ws.Cells[2, 1].Value = "Policía: " + txtCodigo.Text.Trim().ToUpper();
                     ws.Cells[3, 1].Value = "Período: " + txtFecIni.Text + " al " + txtFecFin.Text;
+                    ws.Cells[4, 1].Value = "Falta más frecuente: " + faltaFrec;
+                    ws.Cells[4, 1].Style.Font.Bold = true;
 
-                    ws.Cells[5, 1].Value = "Papeleta";
-                    ws.Cells[5, 2].Value = "Infractor";
-                    ws.Cells[5, 3].Value = "Lugar";
-                    ws.Cells[5, 4].Value = "Falta";
-                    ws.Cells[5, 5].Value = "Calificación";
-                    ws.Cells[5, 6].Value = "UIT";
-                    ws.Cells[5, 7].Value = "Fecha";
-                    ws.Cells[5, 8].Value = "Policía";
-                    ws.Cells[5, 9].Value = "Estado";
-                    ws.Cells[5, 1, 5, 9].Style.Font.Bold = true;
+                    ws.Cells[6, 1].Value = "Papeleta";
+                    ws.Cells[6, 2].Value = "Infractor";
+                    ws.Cells[6, 3].Value = "Lugar";
+                    ws.Cells[6, 4].Value = "Falta";
+                    ws.Cells[6, 5].Value = "Calificación";
+                    ws.Cells[6, 6].Value = "UIT";
+                    ws.Cells[6, 7].Value = "Fecha";
+                    ws.Cells[6, 8].Value = "Policía";
+                    ws.Cells[6, 9].Value = "Estado";
+                    ws.Cells[6, 1, 6, 9].Style.Font.Bold = true;
 
-                    int fila = 6;
+                    int fila = 7;
                     foreach (var m in lista)
                     {
                         ws.Cells[fila, 1].Value = m.Cod_Papeleta;
