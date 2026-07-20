@@ -26,7 +26,7 @@
         <a href="Inicio.aspx"><i class="fa-solid fa-house"></i> Inicio</a>
         <div class="nav-item dropend">
           <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-            <i class="fas fa-sliders-h me-2"></i> CONSULTAS
+            <i class="fas fa-sliders-h me-2"></i> LISTAS
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" runat="server" href="Infractores.aspx"><i class="fa-solid fa-user"></i> Infractores</a></li>
@@ -34,6 +34,17 @@
             <li><a class="dropdown-item" runat="server" href="Papeletas.aspx"><i class="fa-solid fa-file-circle-exclamation"></i> Papeletas</a></li>
             <li><a class="dropdown-item" runat="server" href="Vehiculos.aspx"><i class="fa-solid fa-car"></i> Vehículos</a></li>
             <li><a class="dropdown-item" runat="server" href="Infracciones.aspx"><i class="fa-solid fa-triangle-exclamation"></i> Infracciones</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item dropend">
+          <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+            <i class="fas fa-sliders-h me-2"></i> CONSULTAS
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="ConsultarMultasInfractor.aspx"><i class="fa-solid fa-user"></i> Multas por Infractor</a></li>
+            <li><a href="ConsultaMultasVehiculo.aspx"><i class="fa-solid fa-car"></i> Multas por Vehículo</a></li>
+            <li><a href="ConsultaMultasPolicia.aspx"><i class="fa-solid fa-user-shield"></i> Multas por Policía</a></li>
           </ul>
         </div>
 

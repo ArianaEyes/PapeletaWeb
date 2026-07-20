@@ -105,6 +105,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ConsultaMultasPolicia.aspx" />
+    <Content Include="ConsultaMultasVehiculo.aspx" />
+    <Content Include="ConsultarMultasInfractor.aspx" />
     <Content Include="CSS\infracciones.css" />
     <Content Include="CSS\infractores.css" />
     <Content Include="CSS\login.css" />
@@ -130,6 +133,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsultaMultasPolicia.aspx.cs">
+      <DependentUpon>ConsultaMultasPolicia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaMultasPolicia.aspx.designer.cs">
+      <DependentUpon>ConsultaMultasPolicia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMultasVehiculo.aspx.cs">
+      <DependentUpon>ConsultaMultasVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaMultasVehiculo.aspx.designer.cs">
+      <DependentUpon>ConsultaMultasVehiculo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarMultasInfractor.aspx.cs">
+      <DependentUpon>ConsultarMultasInfractor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultarMultasInfractor.aspx.designer.cs">
+      <DependentUpon>ConsultarMultasInfractor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Infracciones.aspx.cs">
       <DependentUpon>Infracciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
