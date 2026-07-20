@@ -44,6 +44,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="InfractorBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehiculoBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PapeletaWeb_ADO\PapeletaWeb_ADO.csproj">
