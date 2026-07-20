@@ -15,67 +15,54 @@
 
     <div class="container-fluid">
 
+        <div class="card shadow border-0 mb-4">
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label class="form-label fw-bold">Buscar por Código de Infractor, DNI, nombres o apellidos:</label>
+                        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Ej: 78451257 o Carlos"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary w-100" OnClick="btnConsultar_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card shadow border-0 mb-5">
 
-            <div class="card-header bg-dark text-white">
-                <h5><i class="fa-solid fa-list"></i>Listado de Infractores</h5>
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fa-solid fa-list"></i> Listado de Infractores</h5>
+                <span><asp:Label ID="lblCantidad" runat="server" CssClass="badge bg-warning text-dark"></asp:Label></span>
             </div>
 
             <div class="card-body table-responsive">
 
-                <table class="table table-hover align-middle">
-
-                    <thead class="table-warning">
-                        <tr>
-                            <th>DNI</th>
-                            <th>Nombres y Apellidos</th>
-                            <th>Correo</th>
-                            <th>Dirección</th>
-                            <th>Nro Brevete</th>
-                            <th>Tipo Brevete</th>
-                            <th>Fecha Registro</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>45678901</td>
-                            <td>Carlos Mendoza López</td>
-                            <td>cmendoza@gmail.com</td>
-                            <td>Av. Primavera 123</td>
-                            <td>Q12345678</td>
-                            <td>A-IIb</td>
-                            <td>15/06/2026</td>
-                            <td><span class="badge bg-success">Activo</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>32145678</td>
-                            <td>Ana Torres Quispe</td>
-                            <td>atorres@gmail.com</td>
-                            <td>Jr. Los Olivos 254</td>
-                            <td>Q98765432</td>
-                            <td>A-I</td>
-                            <td>18/06/2026</td>
-                            <td><span class="badge bg-danger">Inactivo</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>78901234</td>
-                            <td>Luis Ramos Díaz</td>
-                            <td>lramos@gmail.com</td>
-                            <td>Av. Perú 455</td>
-                            <td>Q44556677</td>
-                            <td>A-IIIa</td>
-                            <td>20/06/2026</td>
-                            <td><span class="badge bg-success">Activo</span></td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
+                <asp:GridView ID="gvInfractores" runat="server" CssClass="table table-hover align-middle"
+                    AutoGenerateColumns="false" GridLines="None">
+                    <HeaderStyle CssClass="table-warning" />
+                    <Columns>
+                        <asp:BoundField DataField="Cod_Infractor" HeaderText="CODIGO" />
+                        <asp:BoundField DataField="Dni" HeaderText="DNI" />
+                        <asp:TemplateField HeaderText="Nombres y Apellidos">
+                            <ItemTemplate>
+                                <%# Eval("Nombres") %> <%# Eval("Ape_Paterno") %> <%# Eval("Ape_Materno") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="Correo" HeaderText="Correo" />
+                        <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                        <asp:BoundField DataField="Nro_Brevete" HeaderText="Nro Brevete" />
+                        <asp:BoundField DataField="Tipo_Brevete" HeaderText="Tipo Brevete" />
+                        <asp:BoundField DataField="Fec_Registro" HeaderText="Fecha Registro" DataFormatString="{0:dd/MM/yyyy}" />
+                        <asp:TemplateField HeaderText="Estado">
+                            <ItemTemplate>
+                                <span class='badge <%# Eval("EstadoTexto").ToString() == "Activo" ? "bg-success" : "bg-danger" %>'>
+                                    <%# Eval("EstadoTexto") %>
+                                </span>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
 
             </div>
 
