@@ -54,104 +54,56 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="page-header">
-        <h2><i class="fa-solid fa-file-invoice"></i>Gestión de Papeletas</h2>
-        <p>Consulta, registra y administra las papeletas de infracción del sistema.</p>
+        <h2><i class="fa-solid fa-file-circle-exclamation"></i>Gestión de Papeletas</h2>
+        <p>Consulta y administra las papeletas registradas.</p>
     </div>
 
     <div class="container-fluid">
-        <div class="card shadow border-0 mb-5">
-            <div class="card-header bg-dark text-white">
-                <h5 class="mb-0"><i class="fa-solid fa-list"></i>Listado de Papeletas</h5>
-            </div>
-            <div class="card-body table-responsive">
 
-                <table class="table table-striped table-hover table-bordered align-middle">
-
-                    <thead class="table-primary">
-
-                        <tr class="text-center">
-                            <th>Cod. Papeleta</th>
-                            <th>Cod. Infracción</th>
-                            <th>Cod. Policía</th>
-                            <th>Cod. Vehículo</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Referencia</th>
-                            <th>Información Adicional</th>
-                            <th>Observaciones</th>
-                            <th>Estado</th>
-                            <th>Fec. Registro</th>
-                            <th>Usuario Registro</th>
-                            <th>Fec. Modificación</th>
-                            <th>Usuario Modificación</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>PAP0001</td>
-                            <td>I001</td>
-                            <td>POL001</td>
-                            <td>VEH001</td>
-                            <td>15/06/2026</td>
-                            <td>10:35</td>
-                            <td>Av. Javier Prado</td>
-                            <td>Exceso de velocidad</td>
-                            <td>Sin novedades</td>
-                            <td class="text-center">
-                                <span class="badge bg-success">Activo</span>
-                            </td>
-                            <td>15/06/2026</td>
-                            <td>Administrador</td>
-                            <td>16/06/2026</td>
-                            <td>Administrador</td>
-                        </tr>
-
-                        <tr>
-                            <td>PAP0002</td>
-                            <td>I003</td>
-                            <td>POL003</td>
-                            <td>VEH005</td>
-                            <td>18/06/2026</td>
-                            <td>18:20</td>
-                            <td>Panamericana Sur</td>
-                            <td>Conducía ebrio</td>
-                            <td>Vehículo internado</td>
-                            <td class="text-center">
-                                <span class="badge bg-danger">Inactivo</span>
-                            </td>
-                            <td>18/06/2026</td>
-                            <td>Administrador</td>
-                            <td>20/06/2026</td>
-                            <td>Administrador</td>
-                        </tr>
-
-                        <tr>
-                            <td>PAP0003</td>
-                            <td>I002</td>
-                            <td>POL002</td>
-                            <td>VEH010</td>
-                            <td>20/06/2026</td>
-                            <td>09:10</td>
-                            <td>Av. Arequipa</td>
-                            <td>No llevaba cinturón</td>
-                            <td>Primera infracción</td>
-                            <td class="text-center">
-                                <span class="badge bg-success">Activo</span>
-                            </td>
-                            <td>20/06/2026</td>
-                            <td>Administrador</td>
-                            <td>20/06/2026</td>
-                            <td>Administrador</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
+        <div class="card shadow border-0 mb-4">
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label class="form-label fw-bold">Buscar por código, infractor, lugar, policía o estado:</label>
+                        <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Ej: P00001, Pedro Salas, PENDIENTE..."></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary w-100" OnClick="btnConsultar_Click" />
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="card shadow border-0 mb-5">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fa-solid fa-list"></i> Listado de Papeletas</h5>
+                <asp:Label ID="lblCantidad" runat="server" CssClass="badge bg-warning text-dark"></asp:Label>
+            </div>
+
+            <div class="card-body table-responsive">
+                <asp:GridView ID="gvPapeletas" runat="server" CssClass="table table-hover align-middle"
+                    AutoGenerateColumns="false" GridLines="None" EmptyDataText="No hay papeletas registradas.">
+                    <HeaderStyle CssClass="table-warning" />
+                    <Columns>
+                        <asp:BoundField DataField="Cod_Papeleta" HeaderText="Código" />
+                        <asp:BoundField DataField="Infractor" HeaderText="Infractor" />
+                        <asp:BoundField DataField="Lugar_Infraccion" HeaderText="Lugar" />
+                        <asp:BoundField DataField="Falta_Cometida" HeaderText="Falta" />
+                        <asp:BoundField DataField="Uit" HeaderText="UIT" DataFormatString="{0:N2}" />
+                        <asp:BoundField DataField="Fecha_Infraccion" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                        <asp:BoundField DataField="Policia" HeaderText="Policía" />
+                        <asp:TemplateField HeaderText="Estado">
+                            <ItemTemplate>
+                                <span class='badge <%# Eval("Estado_Papeleta").ToString() == "CANCELADO" ? "bg-success" : "bg-danger" %>'>
+                                    <%# Eval("Estado_Papeleta") %>
+                                </span>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
+
     </div>
+
 </asp:Content>

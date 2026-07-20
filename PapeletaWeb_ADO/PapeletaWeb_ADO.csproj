@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="InfraccionADO.cs" />
     <Compile Include="InfractorADO.cs" />
     <Compile Include="PAPELETA.Context.cs">
       <AutoGen>True</AutoGen>

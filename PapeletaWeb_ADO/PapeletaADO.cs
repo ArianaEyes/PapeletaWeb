@@ -172,5 +172,31 @@ namespace PapeletaWeb_ADO
             }
             catch (EntityException ex) { throw new Exception(ex.Message); }
         }
+
+        public List<MultaBE> BuscarPapeletas(string strFiltro)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var query = ConsultaBase(Papeleta);
+
+                    if (!string.IsNullOrWhiteSpace(strFiltro))
+                    {
+                        query = query.Where(m =>
+                            m.Cod_Papeleta.Contains(strFiltro) ||
+                            m.Infractor.Contains(strFiltro) ||
+                            m.Lugar_Infraccion.Contains(strFiltro) ||
+                            m.Policia.Contains(strFiltro) ||
+                            m.Estado_Papeleta.Contains(strFiltro));
+                    }
+
+                    return query.OrderByDescending(m => m.Fecha_Infraccion).ToList();
+                }
+            }
+            catch (EntityException ex) { throw new Exception(ex.Message); }
+        }
+
+        public List<MultaBE> ListarPapeletas() => BuscarPapeletas(null);
     }
 }
