@@ -9,7 +9,22 @@
         .card-menu { border: none; border-radius: 20px; transition: .3s; box-shadow: 0px 5px 20px rgba(0,0,0,.1); cursor: pointer; }
         .card-menu:hover { transform: translateY(-8px); }
         .icono { font-size: 55px; color: #0d6efd; }
-        .card-menu h5 { margin-top: 15px; font-weight: bold; }
+        .icono-papeleta { color: #ffc107; }     
+        .icono-infractor { color: #dc3545; }    
+        .icono-vehiculo { color: #212529; }   
+        .icono-policia { color: #0d6efd; }
+        .icono-infraccion {
+            color: #ffc107;
+        }
+
+        .icono-ubigeo {
+            color: #198754;
+        }
+
+        .card-menu h5 {
+            margin-top: 15px;
+            font-weight: bold;
+        }
     </style>
 </asp:Content>
 
@@ -23,76 +38,133 @@
     <div class="container-fluid">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card card-menu p-4 text-center">
-                    <i class="fa-solid fa-file-circle-exclamation icono"></i>
-                    <h5>Papeletas</h5><p>Registrar y consultar papeletas.</p>
-                    <a href="Papeletas.aspx" class="btn btn-primary">Ingresar</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center">
-                    <i class="fa-solid fa-user icono"></i>
-                    <h5>Infractores</h5><p>Administrar infractores.</p>
-                    <a href="Infractores.aspx" class="btn btn-primary">Ingresar</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center">
-                    <i class="fa-solid fa-car icono"></i>
-                    <h5>Vehículos</h5><p>Gestionar vehículos.</p>
-                    <a href="Vehiculos.aspx" class="btn btn-primary">Ingresar</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center">
-                    <i class="fa-solid fa-user-shield icono"></i>
-                    <h5>Policías</h5><p>Administrar policías de tránsito.</p>
-                    <a href="Policias.aspx" class="btn btn-primary">Ingresar</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center">
-                    <i class="fa-solid fa-triangle-exclamation icono"></i>
-                    <h5>Infracciones</h5><p>Gestionar tipos de infracción.</p>
-                    <button class="btn btn-primary">Ingresar</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center">
-                    <i class="fa-solid fa-location-dot icono"></i>
-                    <h5>Ubigeo</h5><p>Consultar departamentos y distritos.</p>
-                    <button class="btn btn-primary">Ingresar</button>
-                </div>
-            </div>
-        </div>
+                <div class="card card-menu p-4 text-center border border-warning border-3">
+                    <i class="fa-solid fa-file-circle-exclamation icono icono-papeleta"></i>
 
-        <div class="row mt-5">
-            <div class="col-md-3">
-                <div class="card bg-primary text-white shadow border-0">
-                    <div class="card-body text-center"><h2>125</h2><p>Total Papeletas</p></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-success text-white shadow border-0">
-                    <div class="card-body text-center"><h2>350</h2><p>Vehículos</p></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-warning text-dark shadow border-0">
-                    <div class="card-body text-center"><h2>210</h2><p>Infractores</p></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-danger text-white shadow border-0">
-                    <div class="card-body text-center"><h2>18</h2><p>Policías</p></div>
-                </div>
-            </div>
-        </div>
+                    <h5 class="texto-amarillo">Papeletas</h5>
 
-        <div class="card shadow mt-5 mb-5 border-0">
-            <div class="card-header bg-dark text-white">
-                <h5 class="mb-0"><i class="fa-solid fa-clock-rotate-left"></i> Últimas Papeletas Registradas</h5>
+                    <p>Registrar y consultar papeletas.</p>
+
+                    <a href="Papeletas.aspx"
+                        class="btn btn-warning fw-bold text-dark">Ingresar
+                    </a>
+                </div>
             </div>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 text-center border border-danger border-3">
+                    <i class="fa-solid fa-user icono icono-infractor"></i>
+
+                    <h5 class="texto-rojo">Infractores</h5>
+
+                    <p>Administrar infractores.</p>
+
+                    <a href="Infractores.aspx"
+                        class="btn btn-danger">Ingresar
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 text-center border border-dark border-3">
+                    <i class="fa-solid fa-car icono icono-vehiculo"></i>
+
+                    <h5 style="color: #212529; font-weight: bold;">Vehículos
+                    </h5>
+
+                    <p>Gestionar vehículos.</p>
+
+                    <a href="Vehiculos.aspx"
+                        class="btn btn-dark">Ingresar
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 text-center border border-primary border-3">
+                    <i class="fa-solid fa-user-shield icono icono-policia"></i>
+
+                    <h5 class="texto-azul">Policías</h5>
+
+                    <p>Administrar policías de tránsito.</p>
+
+                    <a href="Policias.aspx"
+                        class="btn btn-primary">Ingresar
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 text-center border border-warning border-3">
+                    <i class="fa-solid fa-triangle-exclamation icono icono-infraccion"></i>
+
+                    <h5 class="texto-amarillo">Infracciones</h5>
+
+                    <p>Gestionar tipos de infracción.</p>
+
+                    <a href="Infracciones.aspx"
+                        class="btn btn-warning fw-bold text-dark">Ingresar
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-menu p-4 text-center border border-success border-3">
+                    <i class="fa-solid fa-location-dot icono icono-ubigeo"></i>
+
+                    <h5 class="texto-verde">Ubigeo</h5>
+
+                    <p>Consultar departamentos y distritos.</p>
+
+                    <a href="Ubigeo.aspx"
+                        class="btn btn-success">Ingresar
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col-md-3">
+                    <div class="card bg-warning text-dark shadow border-0">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-file-circle-exclamation fa-2x mb-2"></i>
+                            <h2>125</h2>
+                            <p class="mb-0 fw-bold">Papeletas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white shadow border-0">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-user fa-2x mb-2"></i>
+                            <h2>210</h2>
+                            <p class="mb-0 fw-bold">Infractores</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card bg-dark text-white shadow border-0">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-car fa-2x mb-2"></i>
+                            <h2>350</h2>
+                            <p class="mb-0 fw-bold">Vehículos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white shadow border-0">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-user-shield fa-2x mb-2"></i>
+                            <h2>18</h2>
+                            <p class="mb-0 fw-bold">Policías</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card shadow mt-5 mb-5 border-0">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0"><i class="fa-solid fa-clock-rotate-left"></i>Últimas Papeletas Registradas</h5>
+                </div>
             <div class="card-body">
                 <table class="table table-hover align-middle">
                     <thead class="table-primary">

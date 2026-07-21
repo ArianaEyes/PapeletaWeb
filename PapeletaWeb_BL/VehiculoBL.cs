@@ -12,7 +12,23 @@ namespace PapeletaWeb_BL
     {
         VehiculoADO objVehiculoADO = new VehiculoADO();
 
-        public List<VehiculoBE> BuscarVehiculos(string filtro) => objVehiculoADO.BuscarVehiculos(filtro);
-        public List<VehiculoBE> ListarVehiculos() => objVehiculoADO.ListarVehiculos();
+        public List<VehiculoBE> ListarVehiculos(int pagina, int registrosPorPagina)
+        {
+            return objVehiculoADO.ListarVehiculos(pagina, registrosPorPagina);
+        }
+
+        public List<VehiculoBE> BuscarVehiculos(string filtro,
+                                                int pagina,
+                                                int registrosPorPagina)
+        {
+            return objVehiculoADO.BuscarVehiculos(filtro,
+                                                  pagina,
+                                                  registrosPorPagina);
+        }
+
+        public int ContarVehiculos(string filtro)
+        {
+            return objVehiculoADO.ContarVehiculos(filtro);
+        }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using PapeletaWeb_ADO;
 using PapeletaWeb_BE;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PapeletaWeb_BL
 {
@@ -12,7 +8,24 @@ namespace PapeletaWeb_BL
     {
         InfraccionADO objInfraccionADO = new InfraccionADO();
 
-        public List<InfraccionBE> BuscarInfracciones(string filtro) => objInfraccionADO.BuscarInfracciones(filtro);
-        public List<InfraccionBE> ListarInfracciones() => objInfraccionADO.ListarInfracciones();
+        public List<InfraccionBE> ListarInfracciones(int pagina,
+                                                     int registrosPorPagina)
+        {
+            return objInfraccionADO.ListarInfracciones(pagina, registrosPorPagina);
+        }
+
+        public List<InfraccionBE> BuscarInfracciones(string filtro,
+                                                     int pagina,
+                                                     int registrosPorPagina)
+        {
+            return objInfraccionADO.BuscarInfracciones(filtro,
+                                                       pagina,
+                                                       registrosPorPagina);
+        }
+
+        public int ContarInfracciones(string filtro)
+        {
+            return objInfraccionADO.ContarInfracciones(filtro);
+        }
     }
 }

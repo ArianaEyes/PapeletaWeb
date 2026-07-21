@@ -3,13 +3,16 @@
     Inherits="DemoPapeletaWeb.Infracciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/infractores.css" rel="stylesheet" runat="server" />
+    <link href="CSS/infracciones.css" rel="stylesheet" runat="server" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="page-header">
-        <h2><i class="fa-solid fa-triangle-exclamation"></i>Gestión de Infracciones</h2>
+        <h2>
+            <i class="fa-solid fa-triangle-exclamation text-dark"></i>
+            Gestión de Infracciones
+        </h2>
         <p>Consulta y administra los tipos de infracción registrados.</p>
     </div>
 
@@ -23,7 +26,7 @@
                         <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Ej: G02, luz roja, GRAVE..."></asp:TextBox>
                     </div>
                     <div class="col-md-3">
-                        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary w-100" OnClick="btnConsultar_Click" />
+                        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-warning w-100" OnClick="btnConsultar_Click" />
                     </div>
                 </div>
             </div>
@@ -53,6 +56,25 @@
                         <asp:BoundField DataField="Uit" HeaderText="UIT" DataFormatString="{0:N2}" />
                     </Columns>
                 </asp:GridView>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+
+                    <asp:Button ID="btnAnterior"
+                        runat="server"
+                        Text="← Anterior"
+                        CssClass="btn btn-outline-warning"
+                        OnClick="btnAnterior_Click" />
+
+                    <asp:Label ID="lblPagina"
+                        runat="server"
+                        CssClass="fw-bold fs-5" />
+
+                    <asp:Button ID="btnSiguiente"
+                        runat="server"
+                        Text="Siguiente →"
+                        CssClass="btn btn-outline-warning"
+                        OnClick="btnSiguiente_Click" />
+
+                </div>
             </div>
         </div>
 

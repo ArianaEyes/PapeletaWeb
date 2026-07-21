@@ -27,7 +27,13 @@ namespace PapeletaWeb_BL
         public string ObtenerFaltaMasFrecuente(string cod, DateTime ini, DateTime fin)
             => objPapeletaADO.ObtenerFaltaMasFrecuente(cod, ini, fin);
 
-        public List<MultaBE> BuscarPapeletas(string filtro) => objPapeletaADO.BuscarPapeletas(filtro);
-        public List<MultaBE> ListarPapeletas() => objPapeletaADO.ListarPapeletas();
+        public List<MultaBE> BuscarPapeletas(string filtro, int pagina, int registrosPorPagina)
+            => objPapeletaADO.BuscarPapeletas(filtro, pagina, registrosPorPagina);
+
+        public int ContarPapeletas(string filtro)
+            => objPapeletaADO.ContarPapeletas(filtro);
+
+        public List<MultaBE> ListarPapeletas(int pagina, int registrosPorPagina)
+            => objPapeletaADO.ListarPapeletas(pagina, registrosPorPagina);
     }
 }

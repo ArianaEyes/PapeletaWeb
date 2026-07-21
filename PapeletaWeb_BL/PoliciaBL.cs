@@ -12,7 +12,23 @@ namespace PapeletaWeb_BL
     {
         PoliciaADO objPoliciaADO = new PoliciaADO();
 
-        public List<PoliciaBE> BuscarPolicias(string filtro) => objPoliciaADO.BuscarPolicias(filtro);
-        public List<PoliciaBE> ListarPolicias() => objPoliciaADO.ListarPolicias();
+        public List<PoliciaBE> ListarPolicias(int pagina, int registrosPorPagina)
+        {
+            return objPoliciaADO.ListarPolicias(pagina, registrosPorPagina);
+        }
+
+        public List<PoliciaBE> BuscarPolicias(string filtro,
+                                              int pagina,
+                                              int registrosPorPagina)
+        {
+            return objPoliciaADO.BuscarPolicias(filtro,
+                                                pagina,
+                                                registrosPorPagina);
+        }
+
+        public int ContarPolicias(string filtro)
+        {
+            return objPoliciaADO.ContarPolicias(filtro);
+        }
     }
 }

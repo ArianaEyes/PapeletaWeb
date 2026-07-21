@@ -173,7 +173,7 @@ namespace PapeletaWeb_ADO
             catch (EntityException ex) { throw new Exception(ex.Message); }
         }
 
-        public List<MultaBE> BuscarPapeletas(string strFiltro)
+        public List<MultaBE> BuscarPapeletas(string strFiltro, int pagina, int registrosPorPagina)
         {
             try
             {
@@ -191,12 +191,49 @@ namespace PapeletaWeb_ADO
                             m.Estado_Papeleta.Contains(strFiltro));
                     }
 
-                    return query.OrderByDescending(m => m.Fecha_Infraccion).ToList();
+                    return query
+                            .OrderByDescending(m => m.Fecha_Infraccion)
+                            .Skip((pagina - 1) * registrosPorPagina)
+                            .Take(registrosPorPagina)
+                            .ToList();
                 }
             }
-            catch (EntityException ex) { throw new Exception(ex.Message); }
+            catch (EntityException ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public List<MultaBE> ListarPapeletas() => BuscarPapeletas(null);
+        public List<MultaBE> ListarPapeletas(int pagina, int registrosPorPagina)
+        {
+            return BuscarPapeletas(null, pagina, registrosPorPagina);
+        }
+
+        public int ContarPapeletas(string strFiltro)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var query = ConsultaBase(Papeleta);
+
+                    if (!string.IsNullOrWhiteSpace(strFiltro))
+                    {
+                        query = query.Where(m =>
+                            m.Cod_Papeleta.Contains(strFiltro) ||
+                            m.Infractor.Contains(strFiltro) ||
+                            m.Lugar_Infraccion.Contains(strFiltro) ||
+                            m.Policia.Contains(strFiltro) ||
+                            m.Estado_Papeleta.Contains(strFiltro));
+                    }
+
+                    return query.Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

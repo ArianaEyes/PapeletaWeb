@@ -4,13 +4,20 @@ using PapeletaWeb_BL;
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
 namespace DemoPapeletaWeb
 {
     public partial class ConsultarMultasInfractor : System.Web.UI.Page
     {
         PapeletaBL objBL = new PapeletaBL();
 
+        private const int REGISTROS_POR_PAGINA = 10;
+
+        private int PaginaActual
+        {
+            get { return ViewState["PaginaActual"] == null ? 1 : (int)ViewState["PaginaActual"]; }
+            set { ViewState["PaginaActual"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -38,29 +45,60 @@ namespace DemoPapeletaWeb
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
+            PaginaActual = 1;
+            CargarDatos();
+        }
+
+        private void CargarDatos()
+        {
             try
             {
                 var lista = ObtenerDatos();
-                if (lista == null) return;
+
+                if (lista == null)
+                    return;
 
                 if (lista.Count == 0)
                 {
                     lblMensaje.Text = "No se encontraron multas en el período indicado.";
+
                     gvMultas.DataSource = null;
                     gvMultas.DataBind();
+
                     lblCantidad.Text = "0 registros";
                     lblDeudaTotal.Text = "";
+                    lblPagina.Text = "";
+
                     return;
                 }
 
-                gvMultas.DataSource = lista;
+                int totalRegistros = lista.Count;
+                int totalPaginas = (int)Math.Ceiling((double)totalRegistros / REGISTROS_POR_PAGINA);
+
+                var pagina = lista
+                    .Skip((PaginaActual - 1) * REGISTROS_POR_PAGINA)
+                    .Take(REGISTROS_POR_PAGINA)
+                    .ToList();
+
+                gvMultas.DataSource = pagina;
                 gvMultas.DataBind();
-                lblCantidad.Text = lista.Count + " registros";
+
+                lblCantidad.Text = totalRegistros + " registros";
 
                 DateTime ini = Convert.ToDateTime(txtFecIni.Text);
                 DateTime fin = Convert.ToDateTime(txtFecFin.Text);
-                decimal deuda = objBL.CalcularUitPendiente(txtCodigo.Text.Trim().ToUpper(), ini, fin);
+
+                decimal deuda = objBL.CalcularUitPendiente(
+                    txtCodigo.Text.Trim().ToUpper(),
+                    ini,
+                    fin);
+
                 lblDeudaTotal.Text = "UIT pendientes: " + deuda.ToString("N2");
+
+                lblPagina.Text = $"Página {PaginaActual} de {totalPaginas}";
+
+                btnAnterior.Enabled = PaginaActual > 1;
+                btnSiguiente.Enabled = PaginaActual < totalPaginas;
             }
             catch (Exception ex)
             {
@@ -153,6 +191,18 @@ namespace DemoPapeletaWeb
             {
                 lblMensaje.Text = "Error al generar Excel: " + ex.Message;
             }
+        }
+
+        protected void btnAnterior_Click(object sender, EventArgs e)
+        {
+            PaginaActual--;
+            CargarDatos();
+        }
+
+        protected void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            PaginaActual++;
+            CargarDatos();
         }
     }
 }

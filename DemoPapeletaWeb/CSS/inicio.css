@@ -71,3 +71,40 @@
     color: #fd7e14;
     font-weight: bold;
 }
+.card-menu:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+}
+
+.card-menu .btn {
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.card-menu {
+    overflow: hidden;
+}
+
+.icono-papeleta {
+    color: #ffc107;
+}
+
+.icono-infractor {
+    color: #dc3545;
+}
+
+.icono-vehiculo {
+    color: #212529;
+}
+
+.icono-policia {
+    color: #0d6efd;
+}
+
+.icono-infraccion {
+    color: #ffc107;
+}
+
+.icono-ubigeo {
+    color: #198754;
+}

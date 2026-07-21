@@ -9,7 +9,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="page-header">
-        <h2><i class="fa-solid fa-user"></i>Gestión de Infractores</h2>
+        <h2>
+            <i class="fa-solid fa-user text-white"></i>
+            Gestión de Infractores
+        </h2>
         <p>Consulta y administra los infractores registrados.</p>
     </div>
 
@@ -23,7 +26,7 @@
                         <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Ej: 78451257 o Carlos"></asp:TextBox>
                     </div>
                     <div class="col-md-3">
-                        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-primary w-100" OnClick="btnConsultar_Click" />
+                        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-danger w-100" OnClick="btnConsultar_Click" />
                     </div>
                 </div>
             </div>
@@ -33,14 +36,14 @@
 
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="fa-solid fa-list"></i> Listado de Infractores</h5>
-                <span><asp:Label ID="lblCantidad" runat="server" CssClass="badge bg-warning text-dark"></asp:Label></span>
+                <span><asp:Label ID="lblCantidad" runat="server" CssClass="badge bg-danger text-dark"></asp:Label></span>
             </div>
 
             <div class="card-body table-responsive">
 
                 <asp:GridView ID="gvInfractores" runat="server" CssClass="table table-hover align-middle"
                     AutoGenerateColumns="false" GridLines="None">
-                    <HeaderStyle CssClass="table-warning" />
+                    <HeaderStyle CssClass="table-danger" />
                     <Columns>
                         <asp:BoundField DataField="Cod_Infractor" HeaderText="CODIGO" />
                         <asp:BoundField DataField="Dni" HeaderText="DNI" />
@@ -63,7 +66,25 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <div class="d-flex justify-content-between align-items-center mt-3">
 
+                    <asp:Button ID="btnAnterior"
+                        runat="server"
+                        Text="← Anterior"
+                        CssClass="btn btn-outline-danger"
+                        OnClick="btnAnterior_Click" />
+
+                    <asp:Label ID="lblPagina"
+                        runat="server"
+                        CssClass="fw-bold fs-5" />
+
+                    <asp:Button ID="btnSiguiente"
+                        runat="server"
+                        Text="Siguiente →"
+                        CssClass="btn btn-outline-danger"
+                        OnClick="btnSiguiente_Click" />
+
+                </div>
             </div>
 
         </div>

@@ -10,7 +10,9 @@ namespace PapeletaWeb_ADO
 {
     public class PoliciaADO
     {
-        public List<PoliciaBE> BuscarPolicias(string strFiltro)
+        public List<PoliciaBE> BuscarPolicias(string strFiltro,
+                                      int pagina,
+                                      int registrosPorPagina)
         {
             try
             {
@@ -46,13 +48,58 @@ namespace PapeletaWeb_ADO
                             x.Paterno.Contains(strFiltro) ||
                             x.Materno.Contains(strFiltro));
                     }
-
-                    return query.OrderBy(x => x.Paterno).ToList();
+                    return query
+    .OrderBy(x => x.Paterno)
+    .Skip((pagina - 1) * registrosPorPagina)
+    .Take(registrosPorPagina)
+    .ToList();
                 }
             }
             catch (EntityException ex) { throw new Exception(ex.Message); }
         }
 
-        public List<PoliciaBE> ListarPolicias() => BuscarPolicias(null);
+        public List<PoliciaBE> ListarPolicias(int pagina,
+                                      int registrosPorPagina)
+        {
+            return BuscarPolicias(null, pagina, registrosPorPagina);
+        }
+
+        public int ContarPolicias(string strFiltro)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var query = from p in Papeleta.TB_POLICIA
+                                join r in Papeleta.TB_RANGO on p.COD_RANGO equals r.COD_RANGO
+                                join u in Papeleta.TB_UBIGEO on p.COD_UBIGEO equals u.COD_UBIGEO into ubigeoJoin
+                                from u in ubigeoJoin.DefaultIfEmpty()
+                                select new PoliciaBE
+                                {
+                                    Cod_Policia = p.COD_POLICIA,
+                                    Dni = p.DNI,
+                                    Nombre = p.NOMBRE,
+                                    Paterno = p.PATERNO,
+                                    Materno = p.MATERNO
+                                };
+
+                    if (!string.IsNullOrWhiteSpace(strFiltro))
+                    {
+                        query = query.Where(x =>
+                            x.Cod_Policia.Contains(strFiltro) ||
+                            x.Dni.Contains(strFiltro) ||
+                            x.Nombre.Contains(strFiltro) ||
+                            x.Paterno.Contains(strFiltro) ||
+                            x.Materno.Contains(strFiltro));
+                    }
+
+                    return query.Count();
+                }
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

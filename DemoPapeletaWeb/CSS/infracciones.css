@@ -1,16 +1,45 @@
 ﻿.page-header {
-    background: linear-gradient(135deg,#fd7e14,#ffb36b);
-    color: white;
+    background: linear-gradient(135deg,#ffc107,#ffda6a);
+    color: #212529;
     border-radius: 20px;
     padding: 30px;
     margin: 30px;
     box-shadow: 0px 10px 25px rgba(0,0,0,.15);
 }
 
-    .page-header h2 {
-        font-weight: bold;
+.table-responsive {
+    border-radius: 15px;
+}
+
+.table {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+    .table thead th {
+        text-align: center;
+        vertical-align: middle;
     }
 
-.table th {
-    white-space: nowrap;
+    .table tbody td {
+        vertical-align: middle;
+    }
+
+.badge {
+    font-size: 13px;
+    padding: 7px 12px;
+    border-radius: 20px;
+}
+
+.card {
+    border-radius: 18px;
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.page-header h2 {
+    font-weight: bold;
 }

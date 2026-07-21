@@ -62,94 +62,92 @@ namespace PapeletaWeb_ADO
             }
         }
 
-		public List<InfractorBE> ListarInfractores()
-		{
-			try
-			{
-				List<InfractorBE> objLista = new List<InfractorBE>();
+        public List<InfractorBE> ListarInfractores(int pagina,
+                                           int registrosPorPagina)
+        {
+            return BuscarInfractores(null, pagina, registrosPorPagina);
+        }
 
-				using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
-				{
-					var query = PAPELETA.TB_INFRACTOR
-						.OrderBy(i => i.NOMBRES)
+        public List<InfractorBE> BuscarInfractores(string strFiltro,
+                                           int pagina,
+                                           int registrosPorPagina)
+        {
+            try
+            {
+                List<InfractorBE> objLista = new List<InfractorBE>();
 
-						.ToList();
+                using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
+                {
+                    var query = PAPELETA.TB_INFRACTOR.AsQueryable();
 
-					foreach (var i in query)
-					{
-						objLista.Add(new InfractorBE
-						{
-							Cod_Infractor = i.COD_INFRACTOR,
-							Dni = i.DNI,
-							Nombres = i.NOMBRES,
-							Ape_Paterno = i.APE_PATERNO,
-							Ape_Materno = i.APE_MATERNO,
-							Correo = i.CORREO,
-							Direccion = i.DIRECCION,
-							Nro_Brevete = i.NRO_BREVETE,
-							Tipo_Brevete = i.TIPO_BREVETE,
-							Fec_Registro = (DateTime)i.FEC_REGISTRO,
-							EstadoTexto = (i.ESTADO == "A") ? "Activo" : "Inactivo"
-						});
-					}
+                    if (!string.IsNullOrWhiteSpace(strFiltro))
+                    {
+                        query = query.Where(i =>
+                            i.COD_INFRACTOR.Contains(strFiltro) ||
+                            i.DNI.Contains(strFiltro) ||
+                            i.NOMBRES.Contains(strFiltro) ||
+                            i.APE_PATERNO.Contains(strFiltro) ||
+                            i.APE_MATERNO.Contains(strFiltro));
+                    }
+
+                    var resultado = query
+                        .OrderBy(i => i.NOMBRES)
+                        .Skip((pagina - 1) * registrosPorPagina)
+                        .Take(registrosPorPagina)
+                        .ToList();
+
+                    foreach (var i in resultado)
+                    {
+                        objLista.Add(new InfractorBE
+                        {
+                            Cod_Infractor = i.COD_INFRACTOR,
+                            Dni = i.DNI,
+                            Nombres = i.NOMBRES,
+                            Ape_Paterno = i.APE_PATERNO,
+                            Ape_Materno = i.APE_MATERNO,
+                            Correo = i.CORREO,
+                            Direccion = i.DIRECCION,
+                            Nro_Brevete = i.NRO_BREVETE,
+                            Tipo_Brevete = i.TIPO_BREVETE,
+                            Fec_Registro = (DateTime)i.FEC_REGISTRO,
+                            EstadoTexto = i.ESTADO == "A" ? "Activo" : "Inactivo"
+                        });
+                    }
                 }
 
-				return objLista;
-			}
-            catch (EntityException ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-		public List<InfractorBE> BuscarInfractores(String strFiltro)
-		{
-			try
-			{
-				List<InfractorBE> objLista = new List<InfractorBE>();
-
-				using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
-				{
-					var query = PAPELETA.TB_INFRACTOR.AsQueryable();
-
-					if (!string.IsNullOrWhiteSpace(strFiltro))
-					{
-						query = query.Where(i =>
-							i.COD_INFRACTOR.Contains(strFiltro) ||
-							i.DNI.Contains(strFiltro) ||
-							i.NOMBRES.Contains(strFiltro) ||
-							i.APE_PATERNO.Contains(strFiltro) ||
-							i.APE_MATERNO.Contains(strFiltro)
-						);
-					}
-
-					var resultado = query.OrderBy(i => i.NOMBRES).ToList();
-
-					foreach (var i in resultado)
-					{
-						objLista.Add(new InfractorBE
-						{
-							Cod_Infractor = i.COD_INFRACTOR,
-							Dni = i.DNI,
-							Nombres = i.NOMBRES,
-							Ape_Paterno = i.APE_PATERNO,
-							Ape_Materno = i.APE_MATERNO,
-							Correo = i.CORREO,
-							Direccion = i.DIRECCION,
-							Nro_Brevete = i.NRO_BREVETE,
-							Tipo_Brevete = i.TIPO_BREVETE,
-							Fec_Registro = (DateTime)i.FEC_REGISTRO,
-							EstadoTexto = (i.ESTADO == "A") ? "Activo" : "Inactivo"
-						});
-					}
-				}
-
-				return objLista;
+                return objLista;
             }
             catch (EntityException ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-	}
+
+        public int ContarInfractores(string strFiltro)
+        {
+            try
+            {
+                using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
+                {
+                    var query = PAPELETA.TB_INFRACTOR.AsQueryable();
+
+                    if (!string.IsNullOrWhiteSpace(strFiltro))
+                    {
+                        query = query.Where(i =>
+                            i.COD_INFRACTOR.Contains(strFiltro) ||
+                            i.DNI.Contains(strFiltro) ||
+                            i.NOMBRES.Contains(strFiltro) ||
+                            i.APE_PATERNO.Contains(strFiltro) ||
+                            i.APE_MATERNO.Contains(strFiltro));
+                    }
+
+                    return query.Count();
+                }
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
 }

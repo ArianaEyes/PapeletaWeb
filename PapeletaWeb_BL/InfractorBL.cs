@@ -17,14 +17,24 @@ namespace PapeletaWeb_BL
             return objInfractorADO.ConsultarInfractor(strCodigo);
         }
 
-        public List<InfractorBE> ListarInfractores()
+        public List<InfractorBE> ListarInfractores(int pagina,
+                                           int registrosPorPagina)
         {
-            return objInfractorADO.BuscarInfractores(null);
+            return objInfractorADO.ListarInfractores(pagina, registrosPorPagina);
         }
 
-        public List<InfractorBE> BuscarInfractores(string strFiltro)
+        public List<InfractorBE> BuscarInfractores(string filtro,
+                                                   int pagina,
+                                                   int registrosPorPagina)
         {
-            return objInfractorADO.BuscarInfractores(strFiltro);
+            return objInfractorADO.BuscarInfractores(filtro,
+                                                     pagina,
+                                                     registrosPorPagina);
+        }
+
+        public int ContarInfractores(string filtro)
+        {
+            return objInfractorADO.ContarInfractores(filtro);
         }
     }
 }
