@@ -74,6 +74,7 @@
     <Compile Include="PapeletaADO.cs" />
     <Compile Include="PoliciaADO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangoADO.cs" />
     <Compile Include="SP_CONSULTAR_INFRACCION_Result.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
@@ -143,6 +144,7 @@
     <Compile Include="TB_VEHICULO.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
+    <Compile Include="UbigeoADO.cs" />
     <Compile Include="VehiculoADO.cs" />
     <Compile Include="VW_INFRACCION.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>

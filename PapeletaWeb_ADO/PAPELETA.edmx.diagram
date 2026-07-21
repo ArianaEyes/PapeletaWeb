@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e23a40a6a7ff4f51a7c5742f8e18b7dc" Name="Diagram1">
+      <Diagram DiagramId="e23a40a6a7ff4f51a7c5742f8e18b7dc" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="PAPELETAModel.TB_COLOR" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PAPELETAModel.TB_INFRACCION" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PAPELETAModel.TB_INFRACTOR" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />

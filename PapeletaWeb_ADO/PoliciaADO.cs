@@ -101,5 +101,138 @@ namespace PapeletaWeb_ADO
                 throw new Exception(ex.Message);
             }
         }
+        public bool EliminarPolicia(string codPolicia, string usuario)
+        {
+            try
+            {
+                using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
+                {
+                    PAPELETA.SP_ELIMINAR_POLICIA(
+                        codPolicia,
+                        usuario
+                    );
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public PoliciaBE ConsultarPolicia(string strCodigo)
+        {
+            try
+            {
+                PoliciaBE objPoliciaBE = new PoliciaBE();
+
+                using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
+                {
+                    var resultado =
+                        (from p in PAPELETA.TB_POLICIA
+                         join u in PAPELETA.TB_UBIGEO
+                             on p.COD_UBIGEO equals u.COD_UBIGEO
+                         where p.COD_POLICIA == strCodigo
+                         select new { Policia = p, Ubigeo = u })
+                         .FirstOrDefault();
+
+                    if (resultado == null)
+                    {
+                        objPoliciaBE = null;
+                    }
+                    else
+                    {
+                        var p = resultado.Policia;
+
+                        objPoliciaBE.Cod_Policia = p.COD_POLICIA;
+                        objPoliciaBE.Nombre = p.NOMBRE;
+                        objPoliciaBE.Paterno = p.PATERNO;
+                        objPoliciaBE.Materno = p.MATERNO;
+                        objPoliciaBE.Dni = p.DNI;
+
+                        objPoliciaBE.Cod_Ubigeo = p.COD_UBIGEO;
+                        objPoliciaBE.Cod_Rango = p.COD_RANGO ?? 0;
+                        objPoliciaBE.Sexo = p.SEXO;
+                        objPoliciaBE.Estado = p.ESTADO;
+
+                        objPoliciaBE.FechaNacimiento = (DateTime)p.FECHANACIMIENTO;
+                        objPoliciaBE.Foto = p.FOTO;
+
+                        objPoliciaBE.Departamento = resultado.Ubigeo.DEPARTAMENTO;
+                        objPoliciaBE.Provincia = resultado.Ubigeo.PROVINCIA;
+                        objPoliciaBE.Distrito = resultado.Ubigeo.DISTRITO;
+
+                        objPoliciaBE.Id_Depa = resultado.Ubigeo.ID_DEPA;
+                        objPoliciaBE.Id_Prov = resultado.Ubigeo.ID_PROV;
+                        objPoliciaBE.Id_Dist = resultado.Ubigeo.ID_DIST;
+                    }
+                }
+
+                return objPoliciaBE;
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool InsertarPolicia(PoliciaBE objPoliciaBE)
+        {
+            try
+            {
+                using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
+                {
+                    PAPELETA.SP_INSERTAR_POLICIA(
+                        objPoliciaBE.Nombre,
+                        objPoliciaBE.Paterno,
+                        objPoliciaBE.Materno,
+                        objPoliciaBE.Dni,
+                        objPoliciaBE.Cod_Ubigeo,
+                        objPoliciaBE.Cod_Rango,
+                        objPoliciaBE.Sexo,
+                        objPoliciaBE.FechaNacimiento,
+                        objPoliciaBE.Estado,
+                        objPoliciaBE.Foto,
+                        objPoliciaBE.Usu_Registro
+                    );
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool ActualizarPolicia(PoliciaBE objPoliciaBE)
+        {
+            try
+            {
+                using (PAPELETAEntities PAPELETA = new PAPELETAEntities())
+                {
+                    PAPELETA.SP_ACTUALIZAR_POLICIA(
+                        objPoliciaBE.Cod_Policia,
+                        objPoliciaBE.Nombre,
+                        objPoliciaBE.Paterno,
+                        objPoliciaBE.Materno,
+                        objPoliciaBE.Dni,
+                        objPoliciaBE.Cod_Ubigeo,
+                        objPoliciaBE.Cod_Rango,
+                        objPoliciaBE.Sexo,
+                        objPoliciaBE.FechaNacimiento,
+                        objPoliciaBE.Estado,
+                        objPoliciaBE.Foto,
+                        objPoliciaBE.Usu_Ult_Modificacion
+                    );
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

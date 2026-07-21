@@ -30,8 +30,12 @@ namespace PapeletaWeb_BE
         // Calculados (igual que en VW_INFRACTOR)
         public String SexoTexto { get; set; }          // MASCULINO / FEMENINO
         public String EstadoTexto { get; set; }         // ACTIVO / INACTIVO
+
         public String Departamento { get; set; }
         public String Provincia { get; set; }
         public String Distrito { get; set; }
+        public String Id_Depa { get; set; }
+        public String Id_Prov { get; set; }
+        public String Id_Dist { get; set; }
     }
 }

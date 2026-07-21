@@ -30,5 +30,25 @@ namespace PapeletaWeb_BL
         {
             return objPoliciaADO.ContarPolicias(filtro);
         }
+
+        public bool EliminarPolicia(string codigo, string usuario)
+        {
+            return objPoliciaADO.EliminarPolicia(codigo, usuario);
+        }
+
+        public PoliciaBE ConsultarPolicia(string codigo)
+        {
+            return objPoliciaADO.ConsultarPolicia(codigo);
+        }
+
+        public bool InsertarPolicia(PoliciaBE objPoliciaBE)
+        {
+            return objPoliciaADO.InsertarPolicia(objPoliciaBE);
+        }
+
+        public bool ActualizarPolicia(PoliciaBE objPoliciaBE)
+        {
+            return objPoliciaADO.ActualizarPolicia(objPoliciaBE);
+        }
     }
 }

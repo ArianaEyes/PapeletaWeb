@@ -47,6 +47,8 @@
     <Compile Include="MultaBE.cs" />
     <Compile Include="PoliciaBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangoBE.cs" />
+    <Compile Include="UbigeoBE.cs" />
     <Compile Include="VehiculoBE.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

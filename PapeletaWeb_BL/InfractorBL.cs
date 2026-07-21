@@ -32,9 +32,23 @@ namespace PapeletaWeb_BL
                                                      registrosPorPagina);
         }
 
+        public Boolean EliminarInfractor(string codigo, string usuario)
+        {
+            return objInfractorADO.EliminarInfractor(codigo, usuario);
+        }
         public int ContarInfractores(string filtro)
         {
             return objInfractorADO.ContarInfractores(filtro);
+        }
+
+        public bool InsertarInfractor(InfractorBE objInfractorBE)
+        {
+            return objInfractorADO.InsertarInfractor(objInfractorBE);
+        }
+
+        public bool ActualizarInfractor(InfractorBE objInfractorBE)
+        {
+            return objInfractorADO.ActualizarInfractor(objInfractorBE);
         }
     }
 }

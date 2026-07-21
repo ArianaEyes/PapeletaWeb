@@ -47,6 +47,8 @@
     <Compile Include="PapeletaBL.cs" />
     <Compile Include="PoliciaBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangoBL.cs" />
+    <Compile Include="UbigeoBL.cs" />
     <Compile Include="VehiculoBL.cs" />
   </ItemGroup>
   <ItemGroup>
