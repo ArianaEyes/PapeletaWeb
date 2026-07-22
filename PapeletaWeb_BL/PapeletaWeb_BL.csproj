@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DashboardBL.cs" />
     <Compile Include="InfraccionBL.cs" />
     <Compile Include="InfractorBL.cs" />
     <Compile Include="PapeletaBL.cs" />

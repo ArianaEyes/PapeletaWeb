@@ -10,16 +10,10 @@
 namespace PapeletaWeb_ADO
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VW_INFRACCION
+    public partial class usp_PapeletasPorMes_Result
     {
-        public string COD_INFRACCION { get; set; }
-        public string DESCRIPCION_SANCION { get; set; }
-        public string CALIFICACION { get; set; }
-        public Nullable<int> PUNTOS { get; set; }
-        public Nullable<decimal> UIT { get; set; }
-        public string ESTADO { get; set; }
-        public string MEDIDA_PREVENTIVA { get; set; }
+        public Nullable<int> MesNumero { get; set; }
+        public Nullable<int> Cantidad { get; set; }
     }
 }

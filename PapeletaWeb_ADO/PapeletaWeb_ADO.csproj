@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DashboardADO.cs" />
     <Compile Include="InfraccionADO.cs" />
     <Compile Include="InfractorADO.cs" />
     <Compile Include="PAPELETA.Context.cs">
@@ -87,6 +88,12 @@
     <Compile Include="SP_CONSULTAR_USUARIO_Result.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_DASHBOARD_PAPELETAS_ANUAL_Result.cs">
+      <DependentUpon>PAPELETA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_DASHBOARD_TOP_INFRACCIONES_Result.cs">
+      <DependentUpon>PAPELETA.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_LISTARMULTASINFRACTOR_Result.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
@@ -100,6 +107,9 @@
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_OBTENER_UBIGEO_Result.cs">
+      <DependentUpon>PAPELETA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PAPELETAS_POR_TIPO_VEHICULO_Result.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_UBIGEO_DEPARTAMENTOS_Result.cs">
@@ -145,6 +155,9 @@
       <DependentUpon>PAPELETA.tt</DependentUpon>
     </Compile>
     <Compile Include="UbigeoADO.cs" />
+    <Compile Include="usp_PapeletasPorMes_Result.cs">
+      <DependentUpon>PAPELETA.tt</DependentUpon>
+    </Compile>
     <Compile Include="VehiculoADO.cs" />
     <Compile Include="VW_INFRACCION.cs">
       <DependentUpon>PAPELETA.tt</DependentUpon>

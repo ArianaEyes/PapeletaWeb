@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PAPELETAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PAPELETAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TB_COLOR">
           <Key>
             <PropertyRef Name="COD_COLOR" />
@@ -514,6 +514,8 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
         <Function Name="SP_CONSULTAR_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="COD_VEHICULO" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_DASHBOARD_PAPELETAS_ANUAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_DASHBOARD_TOP_INFRACCIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_ELIMINAR_INFRACCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="COD_INFRACCION" Type="char" Mode="In" />
           <Parameter Name="USU_ULT_MODIFICACION" Type="varchar" Mode="In" />
@@ -595,6 +597,7 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
         <Function Name="SP_OBTENER_UBIGEO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="COD_UBIGEO" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_PAPELETAS_POR_TIPO_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_UBIGEO_DEPARTAMENTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_DEPA" Type="char" Mode="In" />
@@ -603,6 +606,7 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
         <Function Name="SP_UBIGEO_PROVINCIASDEPARTAMENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_DEPA" Type="char" Mode="In" />
         </Function>
+        <Function Name="usp_PapeletasPorMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="PAPELETAModelStoreContainer">
           <EntitySet Name="TB_COLOR" EntityType="Self.TB_COLOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_INFRACCION" EntityType="Self.TB_INFRACCION" Schema="dbo" store:Type="Tables" />
@@ -760,8 +764,7 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
             <End Role="TB_VEHICULO" EntitySet="TB_VEHICULO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PAPELETAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1008,31 +1011,6 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
           <Property Name="OBSERVACIONES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO_PAPELETA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
-        <EntityType Name="VW_POLICIA">
-          <Key>
-            <PropertyRef Name="COD_POLICIA" />
-            <PropertyRef Name="PATERNO" />
-            <PropertyRef Name="MATERNO" />
-            <PropertyRef Name="NOMBRE" />
-            <PropertyRef Name="DNI" />
-            <PropertyRef Name="RANGO" />
-          </Key>
-          <Property Name="COD_POLICIA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MATERNO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="COD_RANGO" Type="Int32" />
-          <Property Name="SEXO" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="FECHANACIMIENTO" Type="DateTime" Precision="0" />
-          <Property Name="ESTADO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="RANGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="DISTRITO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="PROVINCIA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="DEPARTAMENTO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="VW_UBIGEO">
           <Key>
             <PropertyRef Name="COD_UBIGEO" />
@@ -1219,7 +1197,6 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
           <EntitySet Name="VW_INFRACCION" EntityType="Self.VW_INFRACCION" />
           <EntitySet Name="VW_INFRACTOR" EntityType="Self.VW_INFRACTOR" />
           <EntitySet Name="VW_PAPELETA" EntityType="Self.VW_PAPELETA" />
-          <EntitySet Name="VW_POLICIA" EntityType="Self.VW_POLICIA" />
           <EntitySet Name="VW_UBIGEO" EntityType="Self.VW_UBIGEO" />
           <EntitySet Name="VW_VEHICULO" EntityType="Self.VW_VEHICULO" />
           <EntitySet Name="VW_VISTAMULTAS" EntityType="Self.VW_VISTAMULTAS" />
@@ -1322,22 +1299,22 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
             <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_INFRACCION" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_INFRACCION_Result)">
-            <Parameter Name="COD_INFRACCION" Mode="In" Type="String" />
+          <Parameter Name="COD_INFRACCION" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_INFRACTOR" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_INFRACTOR_Result)">
-            <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
+          <Parameter Name="COD_INFRACTOR" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_PAPELETA">
-            <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
+          <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_POLICIA" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_POLICIA_Result)">
-            <Parameter Name="COD_POLICIA" Mode="In" Type="String" />
+          <Parameter Name="COD_POLICIA" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_USUARIO" ReturnType="Collection(PAPELETAModel.SP_CONSULTAR_USUARIO_Result)">
-            <Parameter Name="Login_Usuario" Mode="In" Type="String" />
+          <Parameter Name="Login_Usuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_VEHICULO">
-            <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
+          <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ELIMINAR_INFRACCION">
             <Parameter Name="COD_INFRACCION" Mode="In" Type="String" />
@@ -1348,14 +1325,14 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
             <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ELIMINAR_PAPELETA">
-            <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
+          <Parameter Name="COD_PAPELETA" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ELIMINAR_POLICIA">
             <Parameter Name="COD_POLICIA" Mode="In" Type="String" />
             <Parameter Name="USU_ULT_MODIFICACION" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ELIMINAR_VEHICULO">
-            <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
+          <Parameter Name="COD_VEHICULO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_INSERTAR_INFRACCION">
             <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
@@ -1418,7 +1395,7 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
             <Parameter Name="FECFIN" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SP_OBTENER_UBIGEO" ReturnType="Collection(PAPELETAModel.SP_OBTENER_UBIGEO_Result)">
-            <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
+          <Parameter Name="COD_UBIGEO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UBIGEO_DEPARTAMENTOS" ReturnType="Collection(PAPELETAModel.SP_UBIGEO_DEPARTAMENTOS_Result)" />
           <FunctionImport Name="SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO" ReturnType="Collection(PAPELETAModel.SP_UBIGEO_DISTRITOSPROVINCIASDEPARTAMENTO_Result)">
@@ -1426,8 +1403,13 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
             <Parameter Name="ID_PROV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UBIGEO_PROVINCIASDEPARTAMENTO" ReturnType="Collection(PAPELETAModel.SP_UBIGEO_PROVINCIASDEPARTAMENTO_Result)">
-            <Parameter Name="ID_DEPA" Mode="In" Type="String" />
+          <Parameter Name="ID_DEPA" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_DASHBOARD_PAPELETAS_ANUAL" ReturnType="Collection(PAPELETAModel.SP_DASHBOARD_PAPELETAS_ANUAL_Result)" />
+          <FunctionImport Name="SP_DASHBOARD_TOP_INFRACCIONES" ReturnType="Collection(PAPELETAModel.SP_DASHBOARD_TOP_INFRACCIONES_Result)" />
+          <EntitySet Name="VW_POLICIA" EntityType="PAPELETAModel.VW_POLICIA" />
+          <FunctionImport Name="usp_PapeletasPorMes" ReturnType="Collection(PAPELETAModel.usp_PapeletasPorMes_Result)" />
+          <FunctionImport Name="SP_PAPELETAS_POR_TIPO_VEHICULO" ReturnType="Collection(PAPELETAModel.SP_PAPELETAS_POR_TIPO_VEHICULO_Result)" />
         </EntityContainer>
         <ComplexType Name="SP_CONSULTAR_INFRACCION_Result">
           <Property Type="String" Name="COD_INFRACCION" Nullable="false" MaxLength="3" />
@@ -1555,6 +1537,47 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
         <ComplexType Name="SP_UBIGEO_PROVINCIASDEPARTAMENTO_Result">
           <Property Type="String" Name="ID_PROV" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="PROVINCIA" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_DASHBOARD_PAPELETAS_ANUAL_Result">
+          <Property Type="Int32" Name="Año" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_DASHBOARD_TOP_INFRACCIONES_Result">
+          <Property Type="String" Name="Infraccion" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="VW_POLICIA">
+          <Key>
+            <PropertyRef Name="COD_POLICIA" />
+            <PropertyRef Name="PATERNO" />
+            <PropertyRef Name="MATERNO" />
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="DNI" />
+            <PropertyRef Name="RANGO" />
+          </Key>
+          <Property Name="COD_POLICIA" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="PATERNO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MATERNO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="COD_RANGO" Type="Int32" />
+          <Property Name="SEXO" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="FECHANACIMIENTO" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RANGO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COD_UBIGEO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="DISTRITO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PROVINCIA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTAMENTO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="usp_PapeletasPorMes_Result">
+          <Property Type="Int32" Name="MesNumero" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_PAPELETAS_POR_TIPO_VEHICULO_Result">
+          <Property Type="String" Name="TipoVehiculo" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1785,27 +1808,6 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
                 <ScalarProperty Name="ESTADO_PAPELETA" ColumnName="ESTADO_PAPELETA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VW_POLICIA">
-            <EntityTypeMapping TypeName="PAPELETAModel.VW_POLICIA">
-              <MappingFragment StoreEntitySet="VW_POLICIA">
-                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
-                <ScalarProperty Name="PATERNO" ColumnName="PATERNO" />
-                <ScalarProperty Name="MATERNO" ColumnName="MATERNO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="DNI" ColumnName="DNI" />
-                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
-                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
-                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
-                <ScalarProperty Name="RANGO" ColumnName="RANGO" />
-                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
-                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
-                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
-                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2043,6 +2045,59 @@ warning 6002: The table/view 'PAPELETA.dbo.VW_VISTAMULTAS' does not have a prima
               <ComplexTypeMapping TypeName="PAPELETAModel.SP_UBIGEO_PROVINCIASDEPARTAMENTO_Result">
                 <ScalarProperty Name="ID_PROV" ColumnName="ID_PROV" />
                 <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DASHBOARD_PAPELETAS_ANUAL" FunctionName="PAPELETAModel.Store.SP_DASHBOARD_PAPELETAS_ANUAL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_DASHBOARD_PAPELETAS_ANUAL_Result">
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DASHBOARD_TOP_INFRACCIONES" FunctionName="PAPELETAModel.Store.SP_DASHBOARD_TOP_INFRACCIONES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_DASHBOARD_TOP_INFRACCIONES_Result">
+                <ScalarProperty Name="Infraccion" ColumnName="Infraccion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="VW_POLICIA">
+            <EntityTypeMapping TypeName="PAPELETAModel.VW_POLICIA">
+              <MappingFragment StoreEntitySet="VW_POLICIA">
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="COD_UBIGEO" ColumnName="COD_UBIGEO" />
+                <ScalarProperty Name="RANGO" ColumnName="RANGO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="COD_RANGO" ColumnName="COD_RANGO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="MATERNO" ColumnName="MATERNO" />
+                <ScalarProperty Name="PATERNO" ColumnName="PATERNO" />
+                <ScalarProperty Name="COD_POLICIA" ColumnName="COD_POLICIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_PapeletasPorMes" FunctionName="PAPELETAModel.Store.usp_PapeletasPorMes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.usp_PapeletasPorMes_Result">
+                <ScalarProperty Name="MesNumero" ColumnName="MesNumero" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PAPELETAS_POR_TIPO_VEHICULO" FunctionName="PAPELETAModel.Store.SP_PAPELETAS_POR_TIPO_VEHICULO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAPELETAModel.SP_PAPELETAS_POR_TIPO_VEHICULO_Result">
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
