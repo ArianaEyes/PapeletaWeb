@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
 <form id="form1" runat="server">
 
     <div class="sidebar">
@@ -56,6 +55,11 @@
             <li><a class="dropdown-item" runat="server" href="~/Consultas/WebFacturacionCliente.aspx"><i class="fa-solid fa-file-invoice"></i> Facturación clientes</a></li>
             <li><a class="dropdown-item" runat="server" href="~/Consultas/WebFacturacionVendedor.aspx"><i class="fa-solid fa-user-tie"></i> Facturación vendedores</a></li>
           </ul>
+        </div>
+        <div class="nav-item dropend">
+            <a href="Dashboard.aspx">
+                <i class="fas fa-sliders-h me-2"></i>DASHBOARD
+            </a>
         </div>
 
         <a href="Login.aspx"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</a>
