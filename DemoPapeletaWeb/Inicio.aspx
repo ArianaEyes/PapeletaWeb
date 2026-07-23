@@ -173,10 +173,11 @@
             </div>
         </div>
     </div>
+        </div>
         <%--FUNCION EN JAVA SCRIPT PARA LA EXPIRACION DE LA SESION--%>
 <script type="text/javascript">
         // Tiempo de inactividad en milisegundos (60 segundos =60000 ms)
-        const tiempoInactividad = 5000; 
+        const tiempoInactividad = 60000; 
         let temporizador;
 
         function ReiniciarTemporizador() {

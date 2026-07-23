@@ -15,16 +15,17 @@ namespace DemoPapeletaWeb
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
 
-            if (Session["Usuario"] != null)
+            if (Session["Usuario"] == null)
             {
-                lblUsuario.InnerText = "Bienvenido " + Session["Usuario"].ToString();
-            }
-            else
-            {
-            
                 Response.Redirect("Login.aspx");
+                return; // importante: corta la ejecución para que no siga con el resto del código
             }
+            lblUsuario.InnerText = "Bienvenido " + Session["Usuario"].ToString();
+
+            
         }
+
+        
     }
 }
 
