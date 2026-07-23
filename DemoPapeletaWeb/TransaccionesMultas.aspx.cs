@@ -23,6 +23,9 @@ namespace DemoPapeletaWeb
         private readonly PapeletaBL objPapeletaBL =
             new PapeletaBL();
 
+        private readonly UbigeoBL objUbigeoBL =
+            new UbigeoBL();
+
         private const string CLAVE_TABLA =
             "TABLA_PAPELETAS_TEMPORALES";
 
@@ -34,6 +37,7 @@ namespace DemoPapeletaWeb
             if (!IsPostBack)
             {
                 CargarInfracciones();
+                CargarDepartamentos();
                 CargarFechaActual();
                 InicializarTablaTemporal();
 
@@ -329,10 +333,27 @@ namespace DemoPapeletaWeb
                             100
                         );
 
-                InfractorBE infractor =
+                InfractorBE infractorEncontrado =
                     resultados.FirstOrDefault(
                         item =>
                             item.Dni == dni
+                    );
+
+                if (infractorEncontrado == null)
+                {
+                    LimpiarDatosInfractor();
+
+                    MostrarMensaje(
+                        "No se encontró un infractor con ese DNI.",
+                        false
+                    );
+
+                    return;
+                }
+
+                InfractorBE infractor =
+                    objInfractorBL.ConsultarInfractor(
+                        infractorEncontrado.Cod_Infractor
                     );
 
                 if (infractor == null)
@@ -340,7 +361,7 @@ namespace DemoPapeletaWeb
                     LimpiarDatosInfractor();
 
                     MostrarMensaje(
-                        "No se encontró un infractor con ese DNI.",
+                        "No se pudieron obtener los datos completos del infractor.",
                         false
                     );
 
@@ -357,6 +378,12 @@ namespace DemoPapeletaWeb
 
                 txtBrevete.Text =
                     infractor.Nro_Brevete;
+
+                txtDepartamentoInfractor.Text =
+                    infractor.Departamento;
+
+                txtProvinciaInfractor.Text =
+                    infractor.Provincia;
 
                 txtDistritoInfractor.Text =
                     infractor.Distrito;
@@ -465,6 +492,12 @@ namespace DemoPapeletaWeb
             txtBrevete.Text =
                 string.Empty;
 
+            txtDepartamentoInfractor.Text =
+                string.Empty;
+
+            txtProvinciaInfractor.Text =
+                string.Empty;
+
             txtDistritoInfractor.Text =
                 string.Empty;
 
@@ -483,6 +516,172 @@ namespace DemoPapeletaWeb
 
             ViewState.Remove(
                 "DNI_INFRACTOR"
+            );
+        }
+
+        private void CargarDepartamentos()
+        {
+            try
+            {
+                List<UbigeoBE> departamentos =
+                    objUbigeoBL.ListarDepartamentos();
+
+                ddlDepartamento.Items.Clear();
+                ddlDepartamento.DataSource = departamentos;
+                ddlDepartamento.DataTextField = "Departamento";
+                ddlDepartamento.DataValueField = "Id_Depa";
+                ddlDepartamento.DataBind();
+                ddlDepartamento.Items.Insert(
+                    0,
+                    new ListItem(
+                        "Seleccione un departamento",
+                        ""
+                    )
+                );
+
+                ReiniciarProvinciasDistritos();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje(
+                    "No se pudieron cargar los departamentos: " +
+                    ex.Message,
+                    false
+                );
+            }
+        }
+
+        private void ReiniciarProvinciasDistritos()
+        {
+            ddlProvincia.Items.Clear();
+            ddlProvincia.Items.Add(
+                new ListItem(
+                    "Seleccione una provincia",
+                    ""
+                )
+            );
+
+            ddlDistrito.Items.Clear();
+            ddlDistrito.Items.Add(
+                new ListItem(
+                    "Seleccione un distrito",
+                    ""
+                )
+            );
+        }
+
+        protected void ddlDepartamento_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
+        {
+            ddlProvincia.Items.Clear();
+            ddlDistrito.Items.Clear();
+            ddlDistrito.Items.Add(
+                new ListItem(
+                    "Seleccione un distrito",
+                    ""
+                )
+            );
+
+            if (string.IsNullOrWhiteSpace(
+                ddlDepartamento.SelectedValue))
+            {
+                ddlProvincia.Items.Add(
+                    new ListItem(
+                        "Seleccione una provincia",
+                        ""
+                    )
+                );
+                return;
+            }
+
+            try
+            {
+                List<UbigeoBE> provincias =
+                    objUbigeoBL.ListarProvincias(
+                        ddlDepartamento.SelectedValue
+                    );
+
+                ddlProvincia.DataSource = provincias;
+                ddlProvincia.DataTextField = "Provincia";
+                ddlProvincia.DataValueField = "Id_Prov";
+                ddlProvincia.DataBind();
+                ddlProvincia.Items.Insert(
+                    0,
+                    new ListItem(
+                        "Seleccione una provincia",
+                        ""
+                    )
+                );
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje(
+                    "No se pudieron cargar las provincias: " +
+                    ex.Message,
+                    false
+                );
+            }
+        }
+
+        protected void ddlProvincia_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
+        {
+            ddlDistrito.Items.Clear();
+
+            if (string.IsNullOrWhiteSpace(
+                    ddlDepartamento.SelectedValue) ||
+                string.IsNullOrWhiteSpace(
+                    ddlProvincia.SelectedValue))
+            {
+                ddlDistrito.Items.Add(
+                    new ListItem(
+                        "Seleccione un distrito",
+                        ""
+                    )
+                );
+                return;
+            }
+
+            try
+            {
+                List<UbigeoBE> distritos =
+                    objUbigeoBL.ListarDistritos(
+                        ddlDepartamento.SelectedValue,
+                        ddlProvincia.SelectedValue
+                    );
+
+                ddlDistrito.DataSource = distritos;
+                ddlDistrito.DataTextField = "Distrito";
+                ddlDistrito.DataValueField = "Cod_Ubigeo";
+                ddlDistrito.DataBind();
+                ddlDistrito.Items.Insert(
+                    0,
+                    new ListItem(
+                        "Seleccione un distrito",
+                        ""
+                    )
+                );
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje(
+                    "No se pudieron cargar los distritos: " +
+                    ex.Message,
+                    false
+                );
+            }
+        }
+
+        private string ConstruirLugarInfraccion()
+        {
+            return string.Format(
+                "{0} - {1} - {2} - {3}",
+                ddlDepartamento.SelectedItem.Text,
+                ddlProvincia.SelectedItem.Text,
+                ddlDistrito.SelectedItem.Text,
+                txtLugar.Text.Trim()
             );
         }
 
@@ -693,7 +892,7 @@ namespace DemoPapeletaWeb
                         .ToUpper();
 
                 string lugar =
-                    txtLugar.Text.Trim();
+                    ConstruirLugarInfraccion();
 
                 PapeletaBE papeleta =
                     new PapeletaBE
@@ -842,10 +1041,60 @@ namespace DemoPapeletaWeb
             }
 
             if (string.IsNullOrWhiteSpace(
+                ddlDepartamento.SelectedValue))
+            {
+                MostrarMensaje(
+                    "Seleccione el departamento de la infracción.",
+                    false
+                );
+
+                ddlDepartamento.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(
+                ddlProvincia.SelectedValue))
+            {
+                MostrarMensaje(
+                    "Seleccione la provincia de la infracción.",
+                    false
+                );
+
+                ddlProvincia.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(
+                ddlDistrito.SelectedValue))
+            {
+                MostrarMensaje(
+                    "Seleccione el distrito de la infracción.",
+                    false
+                );
+
+                ddlDistrito.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(
                 txtLugar.Text))
             {
                 MostrarMensaje(
                     "Ingrese el lugar de la infracción.",
+                    false
+                );
+
+                txtLugar.Focus();
+                return false;
+            }
+
+            string lugarCompleto =
+                ConstruirLugarInfraccion();
+
+            if (lugarCompleto.Length > 150)
+            {
+                MostrarMensaje(
+                    "La ubicación completa no puede superar 150 caracteres.",
                     false
                 );
 
@@ -981,6 +1230,13 @@ namespace DemoPapeletaWeb
                 ddlInfraccion.SelectedIndex =
                     0;
             }
+
+            if (ddlDepartamento.Items.Count > 0)
+            {
+                ddlDepartamento.SelectedIndex = 0;
+            }
+
+            ReiniciarProvinciasDistritos();
 
             txtLugar.Text =
                 string.Empty;

@@ -1,6 +1,4 @@
-﻿/* =========================================================
-   CONTENEDOR PRINCIPAL
-========================================================= */
+﻿
 
 .registro-container {
     width: 100%;
@@ -10,9 +8,6 @@
 }
 
 
-/* =========================================================
-   ENCABEZADO
-========================================================= */
 
 .registro-header {
     margin-bottom: 24px;
@@ -54,10 +49,6 @@
     font-size: 17px;
 }
 
-
-/* =========================================================
-   TARJETAS
-========================================================= */
 
 .registro-card {
     width: 100%;
@@ -103,11 +94,6 @@
 .registro-card-body {
     padding: 23px 20px;
 }
-
-
-/* =========================================================
-   LABELS Y CONTROLES
-========================================================= */
 
 .registro-label {
     display: block;
@@ -162,9 +148,6 @@ textarea.registro-control {
 }
 
 
-/* =========================================================
-   BOTONES
-========================================================= */
 
 .btn-registro {
     display: inline-flex;
@@ -236,9 +219,6 @@ textarea.registro-control {
     }
 
 
-/* =========================================================
-   DATOS DEL INFRACTOR
-========================================================= */
 
 .datos-encontrados {
     margin-top: 22px;
@@ -276,10 +256,6 @@ textarea.registro-control {
         color: #1672ff;
     }
 
-
-/* =========================================================
-   RESUMEN DE INFRACCIÓN
-========================================================= */
 
 .resumen-horizontal {
     display: grid;
@@ -326,10 +302,6 @@ textarea.registro-control {
     font-size: 13px;
 }
 
-
-/* =========================================================
-   TABLA DE PAPELETAS
-========================================================= */
 
 .table-responsive {
     width: 100%;
@@ -399,10 +371,6 @@ textarea.registro-control {
 }
 
 
-/* =========================================================
-   TOTALES
-========================================================= */
-
 .totales-papeletas {
     display: flex;
     justify-content: flex-end;
@@ -429,9 +397,6 @@ textarea.registro-control {
     }
 
 
-/* =========================================================
-   MENSAJES
-========================================================= */
 
 .mensaje-registro {
     display: block;
@@ -457,10 +422,6 @@ textarea.registro-control {
 }
 
 
-/* =========================================================
-   ACCIONES FINALES
-========================================================= */
-
 .acciones-finales {
     display: flex;
     justify-content: flex-end;
@@ -469,10 +430,6 @@ textarea.registro-control {
     margin: 5px 0 30px;
 }
 
-
-/* =========================================================
-   AJUSTES PARA BOOTSTRAP Y WEB FORMS
-========================================================= */
 
 .registro-container input[type="text"],
 .registro-container input[type="date"],
@@ -491,9 +448,6 @@ textarea.registro-control {
 }
 
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media screen and (max-width: 991px) {
 
