@@ -30,5 +30,10 @@ namespace PapeletaWeb_BL
         {
             return objVehiculoADO.ContarVehiculos(filtro);
         }
+
+        public List<MarcaBE> ListarMarcas() => objVehiculoADO.ListarMarcas();
+        public List<ColorBE> ListarColores() => objVehiculoADO.ListarColores();
+        public List<TipoVehiculoBE> ListarTiposVehiculo() => objVehiculoADO.ListarTiposVehiculo();
+        public bool InsertarVehiculo(VehiculoBE obj) => objVehiculoADO.InsertarVehiculo(obj);
     }
 }

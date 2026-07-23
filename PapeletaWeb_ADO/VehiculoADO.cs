@@ -99,5 +99,62 @@ namespace PapeletaWeb_ADO
         {
             return BuscarVehiculos(null, pagina, registrosPorPagina);
         }
+
+        public List<MarcaBE> ListarMarcas()
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                return Papeleta.TB_MARCA
+                    .Select(m => new MarcaBE { Cod_Marca = m.COD_MARCA, Marca = m.MARCA })
+                    .OrderBy(m => m.Marca)
+                    .ToList();
+            }
+        }
+
+        public List<ColorBE> ListarColores()
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                return Papeleta.TB_COLOR
+                    .Select(c => new ColorBE { Cod_Color = c.COD_COLOR, Color = c.COLOR })
+                    .OrderBy(c => c.Color)
+                    .ToList();
+            }
+        }
+
+        public List<TipoVehiculoBE> ListarTiposVehiculo()
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                return Papeleta.TB_TIPO_VEHICULO
+                    .Select(t => new TipoVehiculoBE { Cod_Tipo = t.COD_TIPO_VEHICULO.ToString(), Descripcion = t.DESCRIPCION_TIPO_VEHICULO })
+                    .OrderBy(t => t.Descripcion)
+                    .ToList();
+            }
+        }
+
+        public bool InsertarVehiculo(VehiculoBE obj)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    Papeleta.SP_INSERTAR_VEHICULO(
+                        obj.Cod_Infractor,
+                        obj.Cod_Marca,
+                        obj.Cod_Color,
+                        obj.Tipo_Vehiculo,
+                        obj.Anio_Fabricacion,
+                        obj.Nro_Motor,
+                        "A",
+                        null,
+                        "ADMIN",
+                        "ADMIN"
+                    );
+                    return true;
+                }
+            }
+            catch (Exception) { throw; }
+        }
     }
 }
