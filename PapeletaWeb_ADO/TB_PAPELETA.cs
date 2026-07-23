@@ -33,5 +33,6 @@ namespace PapeletaWeb_ADO
         public virtual TB_INFRACCION TB_INFRACCION { get; set; }
         public virtual TB_POLICIA TB_POLICIA { get; set; }
         public virtual TB_VEHICULO TB_VEHICULO { get; set; }
+        public string DESCRIPCION { get; internal set; }
     }
 }

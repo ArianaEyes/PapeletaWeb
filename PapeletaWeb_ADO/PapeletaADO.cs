@@ -239,6 +239,123 @@ namespace PapeletaWeb_ADO
             }
         }
 
+        public PapeletaBE ConsultarPapeleta(string codigo)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    var p = Papeleta.TB_PAPELETA
+                        .FirstOrDefault(x =>
+                            x.COD_PAPELETA == codigo);
+
+                    if (p == null)
+                        return null;
+
+
+                    return new PapeletaBE
+                    {
+                        Cod_Papeleta = p.COD_PAPELETA,
+                        Cod_Infraccion = p.COD_INFRACCION,
+                        Cod_Policia = p.COD_POLICIA,
+                        Cod_Vehiculo = p.COD_VEHICULO,
+                        Fecha_Infraccion = p.FECHA_INFRACCION,
+                        Hora_Infraccion = p.HORA_INFRACCION,
+                        Lugar_Infraccion = p.LUGAR_INFRACCION,
+                        Referencia = p.REFERENCIA,
+                        Info_Adicional = p.INFO_ADICIONAL,
+                        Observaciones = p.OBSERVACIONES,
+                        Estado_Papeleta = p.ESTADO_PAPELETA
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool ActualizarPapeleta(PapeletaBE obj)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+
+                    var papeleta =
+                        Papeleta.TB_PAPELETA
+                        .FirstOrDefault(x =>
+                            x.COD_PAPELETA == obj.Cod_Papeleta);
+
+
+                    if (papeleta == null)
+                        return false;
+
+
+                    papeleta.LUGAR_INFRACCION =
+                        obj.Lugar_Infraccion;
+
+
+                    papeleta.INFO_ADICIONAL =
+                        obj.Info_Adicional;
+
+
+                    papeleta.OBSERVACIONES =
+                        obj.Observaciones;
+
+
+                    papeleta.FEC_ULT_MODIFICACION =
+                        DateTime.Now;
+
+
+                    papeleta.USU_ULT_MODIFICACION =
+                        obj.Usu_Ult_Modificacion;
+
+
+                    Papeleta.SaveChanges();
+
+
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool EliminarPapeleta(string codigo)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+
+                    var papeleta =
+                        Papeleta.TB_PAPELETA
+                        .FirstOrDefault(x =>
+                            x.COD_PAPELETA == codigo);
+
+
+                    if (papeleta == null)
+                        return false;
+
+
+                    Papeleta.TB_PAPELETA.Remove(papeleta);
+
+                    Papeleta.SaveChanges();
+
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
         //PARTE TRANSACCIONES
         public string InsertarPapeleta(PapeletaBE objPapeleta)
