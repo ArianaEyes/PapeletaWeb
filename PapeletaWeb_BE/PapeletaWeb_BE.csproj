@@ -47,6 +47,7 @@
     <Compile Include="InfractorBE.cs" />
     <Compile Include="MultaBE.cs" />
     <Compile Include="PapeletaAnualBE.cs" />
+    <Compile Include="PapeletaBE.cs" />
     <Compile Include="PapeletaMesBE.cs" />
     <Compile Include="PapeletaVehiculoBE.cs" />
     <Compile Include="PoliciaBE.cs" />

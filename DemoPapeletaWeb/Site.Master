@@ -52,6 +52,7 @@
             <i class="fas fa-sliders-h me-2"></i> TRANSACCIONES
           </a>
           <ul class="dropdown-menu">
+            <li><a href="TransaccionesMultas.aspx"><i class="fa-solid fa-user"></i> Registro Multas</a></li>
             <li><a class="dropdown-item" runat="server" href="~/Consultas/WebFacturacionCliente.aspx"><i class="fa-solid fa-file-invoice"></i> Facturación clientes</a></li>
             <li><a class="dropdown-item" runat="server" href="~/Consultas/WebFacturacionVendedor.aspx"><i class="fa-solid fa-user-tie"></i> Facturación vendedores</a></li>
           </ul>

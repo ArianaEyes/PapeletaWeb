@@ -35,5 +35,67 @@ namespace PapeletaWeb_BL
 
         public List<MultaBE> ListarPapeletas(int pagina, int registrosPorPagina)
             => objPapeletaADO.ListarPapeletas(pagina, registrosPorPagina);
+
+        //PARTE TRANSACCION
+
+        public string InsertarPapeleta(
+    PapeletaBE objPapeleta)
+        {
+            if (objPapeleta == null)
+            {
+                throw new Exception(
+                    "No se recibieron los datos de la papeleta."
+                );
+            }
+
+            if (string.IsNullOrWhiteSpace(
+                objPapeleta.Cod_Infraccion))
+            {
+                throw new Exception(
+                    "Debe seleccionar una infracción."
+                );
+            }
+
+            if (string.IsNullOrWhiteSpace(
+                objPapeleta.Cod_Policia))
+            {
+                throw new Exception(
+                    "Debe identificar al policía."
+                );
+            }
+
+            if (string.IsNullOrWhiteSpace(
+                objPapeleta.Cod_Vehiculo))
+            {
+                throw new Exception(
+                    "Debe indicar el vehículo."
+                );
+            }
+
+            if (string.IsNullOrWhiteSpace(
+                objPapeleta.Lugar_Infraccion))
+            {
+                throw new Exception(
+                    "Debe ingresar el lugar de la infracción."
+                );
+            }
+
+            DateTime fechaHora =
+                objPapeleta.Fecha_Infraccion.Date
+                    .Add(
+                        objPapeleta.Hora_Infraccion
+                    );
+
+            if (fechaHora > DateTime.Now)
+            {
+                throw new Exception(
+                    "La fecha y hora de la infracción no pueden ser futuras."
+                );
+            }
+
+            return objPapeletaADO.InsertarPapeleta(
+                objPapeleta
+            );
+        }
     }
 }

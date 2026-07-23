@@ -234,5 +234,43 @@ namespace PapeletaWeb_ADO
                 throw;
             }
         }
+
+        //PARTE TRANSACCION
+        public PoliciaBE ConsultarPoliciaPorDni(string dni)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta =
+                    new PAPELETAEntities())
+                {
+                    return (
+                        from p in Papeleta.TB_POLICIA
+                        where p.DNI == dni
+                        select new PoliciaBE
+                        {
+                            Cod_Policia =
+                                p.COD_POLICIA,
+
+                            Dni =
+                                p.DNI,
+
+                            Nombre =
+                                p.NOMBRE,
+
+                            Paterno =
+                                p.PATERNO,
+
+                            Materno =
+                                p.MATERNO
+                        }
+                    ).FirstOrDefault();
+                }
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

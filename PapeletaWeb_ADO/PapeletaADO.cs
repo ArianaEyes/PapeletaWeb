@@ -235,5 +235,140 @@ namespace PapeletaWeb_ADO
                 throw;
             }
         }
+
+
+        //PARTE TRANSACCIONES
+        public string InsertarPapeleta(PapeletaBE objPapeleta)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    string nuevoCodigo =
+                        GenerarCodigoPapeleta(Papeleta);
+
+                    TB_PAPELETA nuevaPapeleta =
+                        new TB_PAPELETA
+                        {
+                            COD_PAPELETA =
+                                nuevoCodigo,
+
+                            COD_INFRACCION =
+                                objPapeleta.Cod_Infraccion,
+
+                            COD_POLICIA =
+                                objPapeleta.Cod_Policia,
+
+                            COD_VEHICULO =
+                                objPapeleta.Cod_Vehiculo,
+
+                            FECHA_INFRACCION =
+                                objPapeleta.Fecha_Infraccion,
+
+                            HORA_INFRACCION =
+                                objPapeleta.Hora_Infraccion,
+
+                            LUGAR_INFRACCION =
+                                objPapeleta.Lugar_Infraccion,
+
+                            REFERENCIA =
+                                objPapeleta.Referencia,
+
+                            INFO_ADICIONAL =
+                                objPapeleta.Info_Adicional,
+
+                            OBSERVACIONES =
+                                objPapeleta.Observaciones,
+
+                            // A = pendiente en tu proyecto
+                            ESTADO_PAPELETA = "A",
+
+                            FEC_REGISTRO =
+                                DateTime.Now,
+
+                            USU_REGISTRO =
+                                objPapeleta.Usu_Registro,
+
+                            FEC_ULT_MODIFICACION =
+                                null,
+
+                            USU_ULT_MODIFICACION =
+                                null
+                        };
+
+                    Papeleta.TB_PAPELETA.Add(
+                        nuevaPapeleta
+                    );
+
+                    Papeleta.SaveChanges();
+
+                    return nuevoCodigo;
+                }
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception(
+                    "Error de conexión al registrar la papeleta: " +
+                    ex.Message
+                );
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(
+                    "No se pudo registrar la papeleta: " +
+                    ex.Message
+                );
+            }
+        }
+
+        private string GenerarCodigoPapeleta(
+    PAPELETAEntities Papeleta)
+        {
+            List<string> codigos =
+                Papeleta.TB_PAPELETA
+                    .Where(p =>
+                        p.COD_PAPELETA.StartsWith("PA"))
+                    .Select(
+                        p => p.COD_PAPELETA
+                    )
+                    .ToList();
+
+            int ultimoNumero = 0;
+
+            foreach (string codigo in codigos)
+            {
+                if (string.IsNullOrWhiteSpace(codigo) ||
+                    codigo.Length != 6)
+                {
+                    continue;
+                }
+
+                string parteNumerica =
+                    codigo.Substring(2);
+
+                int numero;
+
+                if (int.TryParse(
+                    parteNumerica,
+                    out numero) &&
+                    numero > ultimoNumero)
+                {
+                    ultimoNumero = numero;
+                }
+            }
+
+            int nuevoNumero =
+                ultimoNumero + 1;
+
+            if (nuevoNumero > 9999)
+            {
+                throw new Exception(
+                    "Se alcanzó el límite de códigos de papeleta."
+                );
+            }
+
+            return "PA" +
+                nuevoNumero.ToString("D4");
+        }
     }
 }

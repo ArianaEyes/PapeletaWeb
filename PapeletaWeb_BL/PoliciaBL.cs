@@ -50,5 +50,11 @@ namespace PapeletaWeb_BL
         {
             return objPoliciaADO.ActualizarPolicia(objPoliciaBE);
         }
+
+        //PARTE TRANSACCION
+        public PoliciaBE ConsultarPoliciaPorDni(string dni)
+        {
+            return objPoliciaADO.ConsultarPoliciaPorDni(dni);
+        }
     }
 }

@@ -115,6 +115,7 @@
     <Content Include="CSS\inicio.css" />
     <Content Include="CSS\policia.css" />
     <Content Include="CSS\sidebar.css" />
+    <Content Include="CSS\transaccionesmultas.css" />
     <Content Include="CSS\vehiculos.css" />
     <Content Include="Images\img1.jpg" />
     <Content Include="Images\img2.jpg" />
@@ -125,6 +126,7 @@
     <Content Include="Infracciones.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="TransaccionesMultas.aspx" />
     <Content Include="Vehiculos.aspx" />
     <Content Include="Papeletas.aspx" />
     <Content Include="Infractores.aspx" />
@@ -176,6 +178,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TransaccionesMultas.aspx.cs">
+      <DependentUpon>TransaccionesMultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransaccionesMultas.aspx.designer.cs">
+      <DependentUpon>TransaccionesMultas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vehiculos.aspx.cs">
       <DependentUpon>Vehiculos.aspx</DependentUpon>
