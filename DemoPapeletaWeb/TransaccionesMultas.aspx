@@ -2,8 +2,6 @@
     AutoEventWireup="true" CodeBehind="TransaccionesMultas.aspx.cs"
     Inherits="DemoPapeletaWeb.TransaccionesMultas"%>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* =========================================================
@@ -775,22 +773,7 @@ textarea.registro-control {
 
                                 </div>
 
-                                <div class="col-md-5">
-
-                                    <label class="registro-label">
-                                        Distrito
-                                    </label>
-
-                                    <asp:TextBox
-                                        ID="txtDistritoInfractor"
-                                        runat="server"
-                                        CssClass="registro-control campo-bloqueado"
-                                        ReadOnly="true">
-                                    </asp:TextBox>
-
-                                </div>
-
-                                <div class="col-md-3">
+                                <div class="col-md-4">
 
                                     <label class="registro-label">
                                         Estado
@@ -798,6 +781,51 @@ textarea.registro-control {
 
                                     <asp:TextBox
                                         ID="txtEstadoInfractor"
+                                        runat="server"
+                                        CssClass="registro-control campo-bloqueado"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <label class="registro-label">
+                                        Departamento
+                                    </label>
+
+                                    <asp:TextBox
+                                        ID="txtDepartamentoInfractor"
+                                        runat="server"
+                                        CssClass="registro-control campo-bloqueado"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="registro-label">
+                                        Provincia
+                                    </label>
+
+                                    <asp:TextBox
+                                        ID="txtProvinciaInfractor"
+                                        runat="server"
+                                        CssClass="registro-control campo-bloqueado"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="registro-label">
+                                        Distrito
+                                    </label>
+
+                                    <asp:TextBox
+                                        ID="txtDistritoInfractor"
                                         runat="server"
                                         CssClass="registro-control campo-bloqueado"
                                         ReadOnly="true">
@@ -922,10 +950,59 @@ textarea.registro-control {
 
                             </div>
 
+                            <div class="col-md-4">
+
+                                <label class="registro-label">
+                                    Departamento
+                                    <span class="campo-requerido">*</span>
+                                </label>
+
+                                <asp:DropDownList
+                                    ID="ddlDepartamento"
+                                    runat="server"
+                                    CssClass="registro-control"
+                                    AutoPostBack="true"
+                                    OnSelectedIndexChanged="ddlDepartamento_SelectedIndexChanged">
+                                </asp:DropDownList>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label class="registro-label">
+                                    Provincia
+                                    <span class="campo-requerido">*</span>
+                                </label>
+
+                                <asp:DropDownList
+                                    ID="ddlProvincia"
+                                    runat="server"
+                                    CssClass="registro-control"
+                                    AutoPostBack="true"
+                                    OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
+                                </asp:DropDownList>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label class="registro-label">
+                                    Distrito
+                                    <span class="campo-requerido">*</span>
+                                </label>
+
+                                <asp:DropDownList
+                                    ID="ddlDistrito"
+                                    runat="server"
+                                    CssClass="registro-control">
+                                </asp:DropDownList>
+
+                            </div>
+
                             <div class="col-12">
 
                                 <label class="registro-label">
-                                    Lugar
+                                    Dirección o lugar específico
                                     <span class="campo-requerido">*</span>
                                 </label>
 
@@ -933,8 +1010,8 @@ textarea.registro-control {
                                     ID="txtLugar"
                                     runat="server"
                                     CssClass="registro-control"
-                                    MaxLength="150"
-                                    placeholder="Lugar de la intervención">
+                                    MaxLength="100"
+                                    placeholder="Ejemplo: Av. Arequipa 1250">
                                 </asp:TextBox>
 
                             </div>
