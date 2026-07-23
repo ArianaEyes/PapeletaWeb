@@ -77,45 +77,39 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center border border-primary border-3">
-                    <i class="fa-solid fa-user-shield icono icono-policia"></i>
+            <div class="row g-4 justify-content-center">
 
-                    <h5 class="texto-azul">Policías</h5>
+    <div class="col-md-4">
+        <div class="card card-menu p-4 text-center border border-primary border-3">
+            <i class="fa-solid fa-user-shield icono icono-policia"></i>
 
-                    <p>Administrar policías de tránsito.</p>
+            <h5 class="texto-azul">Policías</h5>
 
-                    <a href="Policias.aspx"
-                        class="btn btn-primary">Ingresar
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center border border-warning border-3">
-                    <i class="fa-solid fa-triangle-exclamation icono icono-infraccion"></i>
+            <p>Administrar policías de tránsito.</p>
 
-                    <h5 class="texto-amarillo">Infracciones</h5>
+            <a href="Policias.aspx"
+                class="btn btn-primary">
+                Ingresar
+            </a>
+        </div>
+    </div>
 
-                    <p>Gestionar tipos de infracción.</p>
+    <div class="col-md-4">
+        <div class="card card-menu p-4 text-center border border-warning border-3">
+            <i class="fa-solid fa-triangle-exclamation icono icono-infraccion"></i>
 
-                    <a href="Infracciones.aspx"
-                        class="btn btn-warning fw-bold text-dark">Ingresar
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-menu p-4 text-center border border-success border-3">
-                    <i class="fa-solid fa-location-dot icono icono-ubigeo"></i>
+            <h5 class="texto-amarillo">Infracciones</h5>
 
-                    <h5 class="texto-verde">Ubigeo</h5>
+            <p>Gestionar tipos de infracción.</p>
 
-                    <p>Consultar departamentos y distritos.</p>
+            <a href="Infracciones.aspx"
+                class="btn btn-warning fw-bold text-dark">
+                Ingresar
+            </a>
+        </div>
+    </div>
 
-                    <a href="Ubigeo.aspx"
-                        class="btn btn-success">Ingresar
-                    </a>
-                </div>
-            </div>
+</div>
 
             <div class="row mt-5">
 
