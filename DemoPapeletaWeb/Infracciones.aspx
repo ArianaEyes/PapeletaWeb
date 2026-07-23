@@ -56,12 +56,24 @@
                         <asp:BoundField DataField="Uit" HeaderText="UIT" DataFormatString="{0:N2}" />
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnEliminar" runat="server" Text="Inactivar"
+
+                                <asp:LinkButton ID="btnEditar"
+                                    runat="server"
+                                    CssClass="btn btn-warning btn-sm me-1"
+                                    Text="Editar"
+                                    CommandArgument='<%# Eval("Cod_Infraccion") %>'
+                                    CausesValidation="False"
+                                    OnClick="btnEditar_Click"/>
+
+                                <asp:LinkButton ID="btnEliminar"
+                                    runat="server"
                                     CssClass="btn btn-danger btn-sm"
+                                    Text="Inactivar"
                                     CommandArgument='<%# Eval("Cod_Infraccion") %>'
                                     CausesValidation="False"
                                     OnClientClick="return confirm('¿Desea inactivar esta infracción?');"
-                                    OnClick="btnEliminar_Click" />
+                                    OnClick="btnEliminar_Click"/>
+
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

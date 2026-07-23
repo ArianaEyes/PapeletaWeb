@@ -27,6 +27,34 @@ namespace DemoPapeletaWeb
             }
         }
 
+        private string CodigoVehiculo
+        {
+            get
+            {
+                return ViewState["CodigoVehiculo"] == null
+                    ? ""
+                    : ViewState["CodigoVehiculo"].ToString();
+            }
+            set
+            {
+                ViewState["CodigoVehiculo"] = value;
+            }
+        }
+
+        private bool Editando
+        {
+            get
+            {
+                return ViewState["Editando"] == null
+                    ? false
+                    : (bool)ViewState["Editando"];
+            }
+            set
+            {
+                ViewState["Editando"] = value;
+            }
+        }
+
         private void CargarCatalogos()
         {
             ddlMarca.DataSource = objVehiculoBL.ListarMarcas();
@@ -85,6 +113,9 @@ namespace DemoPapeletaWeb
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+            Editando = false;
+            CodigoVehiculo = "";
+            btnGuardar.Text = "Guardar";
             CargarCatalogos();
             pnlFormulario.Visible = true;
         }
@@ -100,6 +131,8 @@ namespace DemoPapeletaWeb
             try
             {
                 VehiculoBE obj = new VehiculoBE();
+
+                obj.Cod_Vehiculo = CodigoVehiculo;
                 obj.Cod_Infractor = txtCodInfractor.Text.Trim().ToUpper();
                 obj.Cod_Marca = ddlMarca.SelectedValue;
                 obj.Cod_Color = ddlColor.SelectedValue;
@@ -107,13 +140,34 @@ namespace DemoPapeletaWeb
                 obj.Anio_Fabricacion = Convert.ToInt32(txtAnio.Text.Trim());
                 obj.Nro_Motor = txtNroMotor.Text.Trim();
 
-                if (objVehiculoBL.InsertarVehiculo(obj))
+                bool ok;
+                bool estabaEditando = Editando;
+
+                if (Editando)
+                {
+                    ok = objVehiculoBL.ActualizarVehiculo(obj);
+                }
+                else
+                {
+                    ok = objVehiculoBL.InsertarVehiculo(obj);
+                }
+
+                if (ok)
                 {
                     LimpiarFormulario();
                     pnlFormulario.Visible = false;
-                    CargarVehiculos(null);
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ok",
-                        "alert('Vehículo registrado correctamente.');", true);
+
+                    Editando = false;
+                    CodigoVehiculo = "";
+                    btnGuardar.Text = "Guardar";
+
+                    CargarVehiculos(txtBuscar.Text.Trim());
+
+                    ScriptManager.RegisterStartupScript(
+                        this,
+                        GetType(),
+                        "ok",
+                        $"alert('Vehículo {(estabaEditando ? "actualizado" : "registrado")} correctamente.');", true);
                 }
             }
             catch (Exception ex)
@@ -121,8 +175,49 @@ namespace DemoPapeletaWeb
                 var msg = ex.InnerException?.InnerException?.Message
                           ?? ex.InnerException?.Message
                           ?? ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "error",
-                    "alert('" + msg.Replace("'", "") + "');", true);
+
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                    "error",
+                    "alert('" + msg.Replace("'", "") + "');",
+                    true);
+            }
+        }
+
+        protected void gvVehiculos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Editar")
+            {
+                VehiculoBE obj = objVehiculoBL.ObtenerVehiculo(e.CommandArgument.ToString());
+
+                if (obj != null)
+                {
+                    CodigoVehiculo = obj.Cod_Vehiculo;
+                    Editando = true;
+
+                    txtCodInfractor.Text = obj.Cod_Infractor;
+                    ddlMarca.SelectedValue = obj.Cod_Marca;
+                    ddlColor.SelectedValue = obj.Cod_Color;
+                    ddlTipo.SelectedValue = obj.Tipo_Vehiculo;
+                    txtAnio.Text = obj.Anio_Fabricacion.ToString();
+                    txtNroMotor.Text = obj.Nro_Motor;
+
+                    btnGuardar.Text = "Actualizar";
+                    pnlFormulario.Visible = true;
+                }
+            }
+
+            if (e.CommandName == "Eliminar")
+            {
+                objVehiculoBL.EliminarVehiculo(e.CommandArgument.ToString());
+
+                CargarVehiculos(txtBuscar.Text.Trim());
+
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    GetType(),
+                    "ok",
+                    "alert('Vehículo desactivado correctamente.');",
+                    true);
             }
         }
 

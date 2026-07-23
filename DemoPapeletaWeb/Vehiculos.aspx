@@ -40,7 +40,7 @@
 
             <div class="card-body table-responsive">
                 <asp:GridView ID="gvVehiculos" runat="server" CssClass="table table-hover align-middle"
-                    AutoGenerateColumns="false" GridLines="None">
+                    AutoGenerateColumns="false" GridLines="None" OnRowCommand="gvVehiculos_RowCommand">
                     <HeaderStyle CssClass="table-dark" />
                     <Columns>
                         <asp:BoundField DataField="Cod_Vehiculo" HeaderText="Código" />
@@ -56,6 +56,32 @@
                                 <span class='badge <%# Eval("EstadoTexto").ToString() == "Activo" ? "bg-success" : "bg-danger" %>'>
                                     <%# Eval("EstadoTexto") %>
                                 </span>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Acciones">
+                            <ItemTemplate>
+
+                                <asp:LinkButton
+                                    ID="btnEditar"
+                                    runat="server"
+                                    CssClass="btn btn-warning btn-sm me-1"
+                                    CommandName="Editar"
+                                    CommandArgument='<%# Eval("Cod_Vehiculo") %>'
+                                    CausesValidation="False">
+                                    <i class="fa-solid fa-pen"></i>
+                                </asp:LinkButton>
+
+                                <asp:LinkButton
+                                    ID="btnEliminar"
+                                    runat="server"
+                                    CssClass="btn btn-danger btn-sm"
+                                    CommandName="Eliminar"
+                                    CommandArgument='<%# Eval("Cod_Vehiculo") %>'
+                                    CausesValidation="False"
+                                    OnClientClick="return confirm('¿Desea desactivar este vehículo?');">
+                                    <i class="fa-solid fa-trash"></i>
+                                </asp:LinkButton>
+
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

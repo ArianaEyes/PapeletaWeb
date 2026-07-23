@@ -98,6 +98,34 @@ namespace DemoPapeletaWeb
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+
+            Editando = false;
+            CodigoInfraccion = "";
+
+            btnGuardar.Text = "Guardar";
+
+            pnlFormulario.Visible = true;
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+
+            CodigoInfraccion = btn.CommandArgument;
+
+            InfraccionBE obj =
+                objInfraccionBL.ObtenerInfraccion(CodigoInfraccion);
+
+            txtDescripcion.Text = obj.Descripcion_Sancion;
+            ddlCalificacion.SelectedValue = obj.Calificacion;
+            txtPuntos.Text = obj.Puntos.ToString();
+            txtUit.Text = obj.Uit.ToString();
+            txtMedida.Text = obj.Medida_Preventiva;
+
+            Editando = true;
+
+            btnGuardar.Text = "Actualizar";
+
             pnlFormulario.Visible = true;
         }
 
@@ -112,19 +140,40 @@ namespace DemoPapeletaWeb
             try
             {
                 InfraccionBE obj = new InfraccionBE();
+
+                obj.Cod_Infraccion = CodigoInfraccion;
                 obj.Descripcion_Sancion = txtDescripcion.Text.Trim();
                 obj.Calificacion = ddlCalificacion.SelectedValue;
-                obj.Puntos = Convert.ToInt32(txtPuntos.Text.Trim());
-                obj.Uit = Convert.ToDecimal(txtUit.Text.Trim());
+                obj.Puntos = Convert.ToInt32(txtPuntos.Text);
+                obj.Uit = Convert.ToDecimal(txtUit.Text);
                 obj.Medida_Preventiva = txtMedida.Text.Trim();
 
-                if (objInfraccionBL.InsertarInfraccion(obj))
+                bool ok;
+
+                if (Editando)
+                    ok = objInfraccionBL.ActualizarInfraccion(obj);
+                else
+                    ok = objInfraccionBL.InsertarInfraccion(obj);
+
+                if (ok)
                 {
                     LimpiarFormulario();
+
                     pnlFormulario.Visible = false;
-                    CargarInfracciones(null);
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ok",
-                        "alert('Infracción registrada correctamente.');", true);
+
+                    Editando = false;
+                    CodigoInfraccion = "";
+
+                    btnGuardar.Text = "Guardar";
+
+                    CargarInfracciones(txtBuscar.Text.Trim());
+
+                    ScriptManager.RegisterStartupScript(
+                        this,
+                        GetType(),
+                        "ok",
+                        "alert('Operación realizada correctamente.');",
+                        true);
                 }
             }
             catch (Exception ex)
@@ -149,6 +198,34 @@ namespace DemoPapeletaWeb
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "error",
                     "alert('" + ex.Message.Replace("'", "") + "');", true);
+            }
+        }
+
+        private string CodigoInfraccion
+        {
+            get
+            {
+                return ViewState["CodigoInfraccion"] == null
+                    ? ""
+                    : ViewState["CodigoInfraccion"].ToString();
+            }
+            set
+            {
+                ViewState["CodigoInfraccion"] = value;
+            }
+        }
+
+        private bool Editando
+        {
+            get
+            {
+                return ViewState["Editando"] == null
+                    ? false
+                    : (bool)ViewState["Editando"];
+            }
+            set
+            {
+                ViewState["Editando"] = value;
             }
         }
     }

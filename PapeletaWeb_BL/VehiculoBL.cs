@@ -35,5 +35,20 @@ namespace PapeletaWeb_BL
         public List<ColorBE> ListarColores() => objVehiculoADO.ListarColores();
         public List<TipoVehiculoBE> ListarTiposVehiculo() => objVehiculoADO.ListarTiposVehiculo();
         public bool InsertarVehiculo(VehiculoBE obj) => objVehiculoADO.InsertarVehiculo(obj);
+
+        public VehiculoBE ObtenerVehiculo(string codigo)
+        {
+            return objVehiculoADO.ObtenerVehiculo(codigo);
+        }
+
+        public bool ActualizarVehiculo(VehiculoBE obj)
+        {
+            return objVehiculoADO.ActualizarVehiculo(obj);
+        }
+
+        public bool EliminarVehiculo(string codigo)
+        {
+            return objVehiculoADO.EliminarVehiculo(codigo);
+        }
     }
 }

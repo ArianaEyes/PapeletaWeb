@@ -156,5 +156,72 @@ namespace PapeletaWeb_ADO
             }
             catch (Exception) { throw; }
         }
+
+        public VehiculoBE ObtenerVehiculo(string codigo)
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                var vehiculo = (from v in Papeleta.TB_VEHICULO
+                                where v.COD_VEHICULO == codigo
+                                select new VehiculoBE
+                                {
+                                    Cod_Vehiculo = v.COD_VEHICULO,
+                                    Cod_Infractor = v.COD_INFRACTOR,
+                                    Cod_Marca = v.COD_MARCA,
+                                    Cod_Color = v.COD_COLOR,
+                                    Tipo_Vehiculo = v.COD_TIPO_VEHICULO.HasValue ? v.COD_TIPO_VEHICULO.Value.ToString() : "",
+                                    Anio_Fabricacion = (int)v.ANIO_FABRICACION,
+                                    Nro_Motor = v.NRO_MOTOR
+                                }).FirstOrDefault();
+
+                return vehiculo;
+            }
+        }
+
+        public bool ActualizarVehiculo(VehiculoBE obj)
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                var vehiculo = Papeleta.TB_VEHICULO
+                    .FirstOrDefault(v => v.COD_VEHICULO == obj.Cod_Vehiculo);
+
+                if (vehiculo == null)
+                    return false;
+
+                vehiculo.COD_INFRACTOR = obj.Cod_Infractor;
+                vehiculo.COD_MARCA = obj.Cod_Marca;
+                vehiculo.COD_COLOR = obj.Cod_Color;
+                vehiculo.COD_TIPO_VEHICULO = Convert.ToInt32(obj.Tipo_Vehiculo);
+                vehiculo.ANIO_FABRICACION = obj.Anio_Fabricacion;
+                vehiculo.NRO_MOTOR = obj.Nro_Motor;
+                vehiculo.ESTADO = "A";
+                vehiculo.USU_ULT_MODIFICACION = "ADMIN";
+                vehiculo.FEC_ULT_MODIFICACION = DateTime.Now;
+
+                Papeleta.SaveChanges();
+
+                return true;
+            }
+        }
+
+        public bool EliminarVehiculo(string codigo)
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                var vehiculo = Papeleta.TB_VEHICULO
+                    .FirstOrDefault(v => v.COD_VEHICULO == codigo);
+
+                if (vehiculo == null)
+                    return false;
+
+                vehiculo.ESTADO = "I";
+                vehiculo.USU_ULT_MODIFICACION = "ADMIN";
+                vehiculo.FEC_ULT_MODIFICACION = DateTime.Now;
+
+                Papeleta.SaveChanges();
+
+                return true;
+            }
+        }
     }
 }

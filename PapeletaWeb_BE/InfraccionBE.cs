@@ -15,5 +15,6 @@ namespace PapeletaWeb_BE
         public decimal Uit { get; set; }
         public string Medida_Preventiva { get; set; }
         public string EstadoTexto { get; set; }
+        public string Estado { get; set; }
     }
 }

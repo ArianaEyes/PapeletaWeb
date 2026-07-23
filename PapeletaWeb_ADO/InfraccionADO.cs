@@ -111,5 +111,54 @@ namespace PapeletaWeb_ADO
             }
             catch (Exception) { throw; }
         }
+
+        public InfraccionBE ObtenerInfraccion(string codigo)
+        {
+            using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+            {
+                return (from i in Papeleta.TB_INFRACCION
+                        where i.COD_INFRACCION == codigo
+                        select new InfraccionBE
+                        {
+                            Cod_Infraccion = i.COD_INFRACCION,
+                            Descripcion_Sancion = i.DESCRIPCION_SANCION,
+                            Calificacion = i.CALIFICACION,
+                            Puntos = (int)i.PUNTOS,
+                            Uit = (decimal)i.UIT,
+                            Medida_Preventiva = i.MEDIDA_PREVENTIVA,
+                            Estado = i.ESTADO
+                        }).FirstOrDefault();
+            }
+        }
+
+        public bool ActualizarInfraccion(InfraccionBE obj)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    TB_INFRACCION infraccion =
+                        Papeleta.TB_INFRACCION.FirstOrDefault(x =>
+                            x.COD_INFRACCION == obj.Cod_Infraccion);
+
+                    infraccion.DESCRIPCION_SANCION = obj.Descripcion_Sancion;
+                    infraccion.CALIFICACION = obj.Calificacion;
+                    infraccion.PUNTOS = obj.Puntos;
+                    infraccion.UIT = obj.Uit;
+                    infraccion.MEDIDA_PREVENTIVA = obj.Medida_Preventiva;
+                    infraccion.ESTADO = "A";
+                    infraccion.FEC_ULT_MODIFICACION = DateTime.Now;
+                    infraccion.USU_ULT_MODIFICACION = "ADMIN";
+
+                    Papeleta.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
