@@ -36,6 +36,23 @@ namespace PapeletaWeb_BL
         public List<MultaBE> ListarPapeletas(int pagina, int registrosPorPagina)
             => objPapeletaADO.ListarPapeletas(pagina, registrosPorPagina);
 
+        public PapeletaBE ConsultarPapeleta(string codigo)
+        {
+            return objPapeletaADO.ConsultarPapeleta(codigo);
+        }
+
+
+        public bool ActualizarPapeleta(PapeletaBE obj)
+        {
+            return objPapeletaADO.ActualizarPapeleta(obj);
+        }
+
+
+        public bool EliminarPapeleta(string codigo)
+        {
+            return objPapeletaADO.EliminarPapeleta(codigo);
+        }
+
         //PARTE TRANSACCION
 
         public string InsertarPapeleta(

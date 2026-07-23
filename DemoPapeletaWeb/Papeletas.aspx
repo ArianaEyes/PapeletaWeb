@@ -99,6 +99,13 @@
                     Listado de Papeletas
                 </h5>
 
+                <asp:Button 
+                    ID="btnNuevo"
+                    runat="server"
+                    Text="+ Nueva Papeleta"
+                    CssClass="btn btn-warning"
+                    OnClick="btnNuevo_Click"/>
+
                 <asp:Label ID="lblCantidad"
                     runat="server"
                     CssClass="badge bg-warning text-dark">
@@ -113,6 +120,7 @@
                     CssClass="table table-hover align-middle"
                     AutoGenerateColumns="false"
                     GridLines="None"
+                    OnRowCommand="gvPapeletas_RowCommand"
                     EmptyDataText="No hay papeletas registradas.">
 
                     <HeaderStyle CssClass="table-warning" />
@@ -137,9 +145,134 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
+                        <asp:TemplateField HeaderText="Acciones">
+                            <ItemTemplate>
+
+                            <asp:Button
+                             ID="btnEditar"
+                             runat="server"
+                             Text="Editar"
+                             CssClass="btn btn-sm btn-primary"
+                             CommandName="Editar"
+                             CommandArgument='<%# Eval("Cod_Papeleta") %>' />
+
+
+                            <asp:Button
+                             ID="btnEliminar"
+                             runat="server"
+                             Text="Eliminar"
+                             CssClass="btn btn-sm btn-danger"
+                             CommandName="Eliminar"
+                             CommandArgument='<%# Eval("Cod_Papeleta") %>' />
+
+                            </ItemTemplate>
+
+                         </asp:TemplateField>
+
                     </Columns>
 
                 </asp:GridView>
+
+                <asp:Panel ID="pnlFormulario"
+                    runat="server"
+                    Visible="false">
+                    <div class="card shadow border-0 mt-4">
+                        <div class="card-header bg-warning">
+                            <h5>
+                                <i class="fa-solid fa-file-circle-plus"></i>
+                                Nueva / Editar Papeleta
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label>Vehículo</label>
+                                    <asp:DropDownList
+                                        ID="ddlVehiculo"
+                                        runat="server"
+                                        CssClass="form-select">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>Infracción</label>
+                                    <asp:DropDownList
+                                        ID="ddlInfraccion"
+                                        runat="server"
+                                        CssClass="form-select">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>Policía</label>
+                                    <asp:DropDownList
+                                        ID="ddlPolicia"
+                                        runat="server"
+                                        CssClass="form-select">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>Lugar infracción</label>
+                                    <asp:TextBox
+                                        ID="txtLugar"
+                                        runat="server"
+                                        CssClass="form-control">
+                                    </asp:TextBox>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label>Fecha</label>
+                                    <asp:TextBox
+                                        ID="txtFecha"
+                                        runat="server"
+                                        TextMode="Date"
+                                        CssClass="form-control">
+                                    </asp:TextBox>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label>Hora</label>
+                                    <asp:TextBox
+                                        ID="txtHora"
+                                        runat="server"
+                                        TextMode="Time"
+                                        CssClass="form-control">
+                                    </asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label>Información adicional</label>
+                                <asp:TextBox
+                                    ID="txtInfo"
+                                    runat="server"
+                                    CssClass="form-control">
+                                </asp:TextBox>
+                            </div>
+                            <div class="mb-3">
+                                <label>Observaciones</label>
+                                <asp:TextBox
+                                    ID="txtObservaciones"
+                                    runat="server"
+                                    CssClass="form-control"
+                                    TextMode="MultiLine">
+                                </asp:TextBox>
+                            </div>
+                            <div class="text-center">
+                                <asp:Button
+                                    ID="btnGuardar"
+                                    runat="server"
+                                    Text="Guardar"
+                                    CssClass="btn btn-success"
+                                    OnClick="btnGuardar_Click" />
+                                <asp:Button
+                                    ID="btnCancelar"
+                                    runat="server"
+                                    Text="Cancelar"
+                                    CssClass="btn btn-secondary ms-2"
+                                    CausesValidation="False"
+                                    OnClick="btnCancelar_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
 
                 <div class="d-flex justify-content-between align-items-center mt-3">
 
