@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ColorBE.cs" />
     <Compile Include="DashboardBE.cs" />
     <Compile Include="InfraccionBE.cs" />
     <Compile Include="InfractorBE.cs" />
+    <Compile Include="MarcaBE.cs" />
     <Compile Include="MultaBE.cs" />
     <Compile Include="PapeletaAnualBE.cs" />
     <Compile Include="PapeletaBE.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="PoliciaBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangoBE.cs" />
+    <Compile Include="TipoVehiculoBE.cs" />
     <Compile Include="TopInfraccionBE.cs" />
     <Compile Include="UbigeoBE.cs" />
     <Compile Include="VehiculoBE.cs" />

@@ -27,5 +27,15 @@ namespace PapeletaWeb_BL
         {
             return objInfraccionADO.ContarInfracciones(filtro);
         }
+
+        public bool InsertarInfraccion(InfraccionBE obj)
+        {
+            return objInfraccionADO.InsertarInfraccion(obj);
+        }
+
+        public bool EliminarInfraccion(string codigo)
+        {
+            return objInfraccionADO.EliminarInfraccion(codigo);
+        }
     }
 }

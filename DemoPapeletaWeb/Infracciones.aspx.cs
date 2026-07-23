@@ -1,4 +1,5 @@
-﻿using PapeletaWeb_BL;
+﻿using PapeletaWeb_BE;
+using PapeletaWeb_BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,72 @@ namespace DemoPapeletaWeb
         {
             PaginaActual++;
             CargarInfracciones(txtBuscar.Text.Trim());
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtDescripcion.Text = "";
+            ddlCalificacion.SelectedValue = "";
+            txtPuntos.Text = "";
+            txtUit.Text = "";
+            txtMedida.Text = "";
+        }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            pnlFormulario.Visible = true;
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            pnlFormulario.Visible = false;
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InfraccionBE obj = new InfraccionBE();
+                obj.Descripcion_Sancion = txtDescripcion.Text.Trim();
+                obj.Calificacion = ddlCalificacion.SelectedValue;
+                obj.Puntos = Convert.ToInt32(txtPuntos.Text.Trim());
+                obj.Uit = Convert.ToDecimal(txtUit.Text.Trim());
+                obj.Medida_Preventiva = txtMedida.Text.Trim();
+
+                if (objInfraccionBL.InsertarInfraccion(obj))
+                {
+                    LimpiarFormulario();
+                    pnlFormulario.Visible = false;
+                    CargarInfracciones(null);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ok",
+                        "alert('Infracción registrada correctamente.');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    "alert('" + ex.Message.Replace("'", "") + "');", true);
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btn = (LinkButton)sender;
+                string codigo = btn.CommandArgument;
+                objInfraccionBL.EliminarInfraccion(codigo);
+                CargarInfracciones(txtBuscar.Text.Trim());
+                ScriptManager.RegisterStartupScript(this, GetType(), "ok",
+                    "alert('Infracción inactivada correctamente.');", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    "alert('" + ex.Message.Replace("'", "") + "');", true);
+            }
         }
     }
 }

@@ -13,5 +13,7 @@ namespace PapeletaWeb_BE
         public string Calificacion { get; set; }
         public int Puntos { get; set; }
         public decimal Uit { get; set; }
+        public string Medida_Preventiva { get; set; }
+        public string EstadoTexto { get; set; }
     }
 }

@@ -77,5 +77,39 @@ namespace PapeletaWeb_ADO
         {
             return BuscarInfracciones(null, pagina, registrosPorPagina);
         }
+
+        public bool InsertarInfraccion(InfraccionBE obj)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    Papeleta.SP_INSERTAR_INFRACCION(
+                        obj.Descripcion_Sancion,
+                        obj.Calificacion,
+                        obj.Puntos,
+                        obj.Uit,
+                        "A",
+                        obj.Medida_Preventiva,
+                        "ADMIN"
+                    );
+                    return true;
+                }
+            }
+            catch (Exception) { throw; }
+        }
+
+        public bool EliminarInfraccion(string codigo)
+        {
+            try
+            {
+                using (PAPELETAEntities Papeleta = new PAPELETAEntities())
+                {
+                    Papeleta.SP_ELIMINAR_INFRACCION(codigo, "ADMIN");
+                    return true;
+                }
+            }
+            catch (Exception) { throw; }
+        }
     }
 }

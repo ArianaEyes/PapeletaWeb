@@ -232,7 +232,10 @@ namespace PapeletaWeb_ADO
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception(
+                    "Ocurrió un problema: " +
+                    ex.Message
+                );
             }
         }
 
